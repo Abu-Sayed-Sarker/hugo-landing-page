@@ -98,9 +98,9 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={handleLogin}
-                className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform bg-primary text-white px-4 sm:px-6 py-2 rounded-lg whitespace-nowrap hover:bg-blue-700"
+                className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform border border-blue text-blue px-4 sm:px-6 py-2 rounded-lg whitespace-nowrap font-medium"
               >
-                <User size={18} />
+                <User size={18} strokeWidth={2.5} />
                 <span className="hidden sm:inline">Login</span>
               </button>
             )}
