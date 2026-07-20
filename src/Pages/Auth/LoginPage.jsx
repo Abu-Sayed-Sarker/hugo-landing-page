@@ -51,10 +51,10 @@ export default function LoginPage() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-5xl justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* University User Card */}
-            <div className="relative bg-white border border-slate-100 rounded-3xl p-8 w-full max-w-[440px] text-left flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="relative bg-white border border-slate-100 rounded-3xl p-8 w-full max-w-[440px] text-left flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-lg shadow-md hover:-translate-y-1">
               
               {/* Dynamic Wavy Background in Top Right */}
               <div className="absolute top-0 right-0 pointer-events-none opacity-20 translate-x-4 -translate-y-4">
@@ -125,7 +125,7 @@ export default function LoginPage() {
             </div>
 
             {/* Student User Card */}
-            <div className="relative bg-white border border-slate-100 rounded-3xl p-8 w-full max-w-[440px] text-left flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            <div className="relative bg-white border border-slate-100 rounded-3xl p-8 w-full max-w-[440px] text-left flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-lg shadow-md hover:-translate-y-1">
               
               {/* Dynamic Wavy Background in Top Right */}
               <div className="absolute top-0 right-0 pointer-events-none opacity-20 translate-x-4 -translate-y-4">
