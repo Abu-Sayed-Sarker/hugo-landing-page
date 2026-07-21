@@ -439,11 +439,10 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
           {/* Format badge top-left */}
           {event.event_type && (
             <span
-              className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full ${
-                isInPerson
+              className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full ${isInPerson
                   ? "bg-blue-600 text-white"
                   : "bg-green-500 text-white"
-              }`}
+                }`}
             >
               {isInPerson ? "In-Person" : "Online"}
             </span>
@@ -479,11 +478,10 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
             </div>
             <button
               onClick={() => setSaved((s) => !s)}
-              className={`p-1.5 rounded-full transition-colors ${
-                saved
+              className={`p-1.5 rounded-full transition-colors ${saved
                   ? "text-blue-600 bg-blue-50"
                   : "text-gray-300 hover:text-blue-500 hover:bg-blue-50"
-              }`}
+                }`}
               aria-label="Save event"
             >
               <Bookmark size={16} fill={saved ? "currentColor" : "none"} />
@@ -537,7 +535,7 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
               </button>
               <button
                 onClick={() => onViewDetails(event)}
-                className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
+                className="bg-primary hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
               >
                 View Details
                 <ArrowRight size={14} />

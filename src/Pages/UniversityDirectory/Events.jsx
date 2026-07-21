@@ -89,11 +89,10 @@ function UniEventCard({ event, getFullUrl, onViewDetails }) {
           {/* Format badge top-left */}
           {event.event_type && (
             <span
-              className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full ${
-                isInPerson
+              className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full ${isInPerson
                   ? "bg-blue-600 text-white"
                   : "bg-green-500 text-white"
-              }`}
+                }`}
             >
               {isInPerson ? "In-Person" : "Online"}
             </span>
@@ -125,11 +124,10 @@ function UniEventCard({ event, getFullUrl, onViewDetails }) {
             </div>
             <button
               onClick={() => setSaved((s) => !s)}
-              className={`p-1.5 rounded-full transition-colors ${
-                saved
+              className={`p-1.5 rounded-full transition-colors ${saved
                   ? "text-blue-600 bg-blue-50"
                   : "text-gray-300 hover:text-blue-500 hover:bg-blue-50"
-              }`}
+                }`}
               aria-label="Save event"
             >
               <Bookmark size={16} fill={saved ? "currentColor" : "none"} />
