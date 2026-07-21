@@ -1,6 +1,12 @@
-import React, { useState, useMemo } from "react";
-import { Star, ChevronDown, X } from "lucide-react";
-import { PiBookOpenBold, PiGlobeSimpleBold } from "react-icons/pi";
+﻿import React, { useState, useMemo } from "react";
+import {
+  ChevronDown,
+  X,
+  Clock,
+  DollarSign,
+  Heart,
+  ArrowRight,
+} from "lucide-react";
 import programPlaceholder from "../../assets/images/program1.png";
 import { Link } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
@@ -30,6 +36,7 @@ export default function AllUniversityPrograms() {
     isLoading,
     error,
   } = useGetDiscoveryProgramsQuery(queryParams);
+
   const handleFilterChange = (name, value) => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
@@ -64,7 +71,7 @@ export default function AllUniversityPrograms() {
         </div>
       </div>
 
-      {/* Search and Sort Bar */}
+      {/* Search Bar */}
       <div className="bg-white border-b border-gray-200 py-4 px-8">
         <div className="max-w-7xl flex mx-auto">
           <input
@@ -88,11 +95,9 @@ export default function AllUniversityPrograms() {
             >
               Filters
             </button>
-            <div>
-              <p className="text-sm text-gray-600">
-                Showing {programs.length} programs
-              </p>
-            </div>
+            <p className="text-sm text-gray-600">
+              Showing {programs.length} programs
+            </p>
           </div>
 
           {/* Desktop sidebar */}
@@ -126,12 +131,33 @@ export default function AllUniversityPrograms() {
             </>
           )}
 
-          {/* Program Grid */}
+          {/* Program List */}
           <div className="flex-1 p-4 md:p-7 bg-[#ECF5FF]">
-            <div className="mb-4">
-              <p className="text-sm text-gray-600">
-                Showing {programs.length} programs
+            {/* Top bar: count + sort */}
+            <div className="flex items-center justify-between mb-5">
+              <p className="text-sm text-gray-600 font-medium">
+                Showing{" "}
+                <span className="text-blue-600 font-semibold">
+                  {programs.length.toLocaleString("en-US")}
+                </span>{" "}
+                programs
               </p>
+              <div className="relative inline-flex items-center">
+                <select
+                  className="appearance-none bg-white border border-gray-200 text-sm text-gray-700 rounded-md pl-3 pr-8 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                  defaultValue="recommended"
+                >
+                  <option value="recommended">Sort by: Recommended</option>
+                  <option value="tuition_asc">Tuition: Low to High</option>
+                  <option value="tuition_desc">Tuition: High to Low</option>
+                  <option value="duration">Duration</option>
+                  <option value="name">Name A-Z</option>
+                </select>
+                <ChevronDown
+                  size={14}
+                  className="pointer-events-none absolute right-2 text-gray-500"
+                />
+              </div>
             </div>
 
             {isLoading ? (
@@ -143,77 +169,9 @@ export default function AllUniversityPrograms() {
                 No programs found.
               </div>
             ) : (
-              <div className="border p-6 bg-white rounded-xl">
-                {/* Program Cards */}
+              <div className="space-y-4">
                 {programs.map((p) => (
-                  <div
-                    key={p.id}
-                    className="bg-white rounded-lg shadow-sm mb-4 border overflow-hidden"
-                  >
-                    <div className="flex justify-between items-start bg-gradient-to-r from-[#F5E7E4] to-[#DEF0EC] p-4">
-                      <h3 className="text-xl font-bold">{p.title}</h3>
-                      <span className="bg-sky text-[#1E40AF] text-sm px-3 py-1 rounded-full whitespace-nowrap">
-                        {p.level}
-                      </span>
-                    </div>
-                    <div className="flex flex-col md:flex-row gap-6 p-6">
-                      <div className="w-full md:w-1/3 flex-shrink-0">
-                        <img
-                          className="rounded-lg w-full h-48 object-cover"
-                          src={getFullUrl(p.image)}
-                          alt={p.title}
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-gray-700 mb-6 line-clamp-3">
-                          {p.description}
-                        </p>
-
-                        <div className="grid grid-cols-2 gap-4 md:gap-6 mb-6">
-                          <div>
-                            <p className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                              Duration
-                            </p>
-                            <p className="font-semibold text-sm">
-                              {p.duration}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                              Language
-                            </p>
-                            <p className="font-semibold text-sm">
-                              {p.language}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                              Start Date
-                            </p>
-                            <p className="font-semibold text-sm">
-                              {p.start_date}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-gray-500 text-xs uppercase font-semibold mb-1">
-                              International Tuition
-                            </p>
-                            <p className="font-semibold text-sm text-green-600">
-                              ${p.international_tuition}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-end">
-                          <Link to={`/program-details/${p.id}`}>
-                            <button className="bg-blue hover:shadow-lg hover:scale-105 transition-transform text-white px-6 py-2 rounded-lg font-medium">
-                              View Details
-                            </button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ProgramCard key={p.id} program={p} getFullUrl={getFullUrl} />
                 ))}
               </div>
             )}
@@ -221,13 +179,130 @@ export default function AllUniversityPrograms() {
             {/* Load More Button */}
             {!isLoading && programs.length > 0 && (
               <div className="mt-8 text-center">
-                <button className="px-6 py-3 text-lg border-2 border-blue text-blue rounded-md font-medium hover:bg-blue-50 transition-colors inline-flex items-center">
+                <button className="px-6 py-3 text-lg border-2 border-blue text-blue rounded-md font-medium hover:bg-blue-50 transition-colors inline-flex items-center gap-2">
                   Load More
-                  <ChevronDown size={16} className="ml-2" />
+                  <ChevronDown size={16} />
                 </button>
               </div>
             )}
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProgramCard({ program: p, getFullUrl }) {
+  const [saved, setSaved] = React.useState(false);
+
+  const formatTuition = (value) => {
+    if (!value) return null;
+    const num = parseFloat(value);
+    if (isNaN(num)) return value;
+    return `$${num.toLocaleString("en-US")} / year`;
+  };
+
+  const tags = [p.study_mode || "Full-time", p.delivery_mode || "On campus"].filter(Boolean);
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
+      <div className="flex flex-col sm:flex-row">
+        {/* Left: Image */}
+        <div className="sm:w-52 md:w-60 flex-shrink-0">
+          <img
+            src={getFullUrl(p.image)}
+            alt={p.title}
+            className="w-full h-48 sm:h-full object-cover"
+          />
+        </div>
+
+        {/* Center: Info */}
+        <div className="flex-1 p-5 flex flex-col justify-between">
+          <div className="mb-2">
+            <span className="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+              {p.level || "Bachelor"}
+            </span>
+          </div>
+
+          <h3 className="text-lg font-bold text-gray-900 mb-1 leading-snug">
+            {p.title}
+          </h3>
+
+          {p.university_name && (
+            <div className="flex items-center gap-2 mb-2">
+              {p.university_logo ? (
+                <img
+                  src={getFullUrl(p.university_logo)}
+                  alt={p.university_name}
+                  className="w-5 h-5 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-white text-[8px] font-bold flex-shrink-0">
+                  {p.university_name?.[0] ?? "U"}
+                </div>
+              )}
+              <span className="text-sm text-gray-600">{p.university_name}</span>
+            </div>
+          )}
+
+          <p className="text-sm text-gray-500 line-clamp-2 mb-3">
+            {p.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs border border-gray-300 text-gray-600 px-3 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Stats + CTA */}
+        <div className="sm:w-44 md:w-48 flex-shrink-0 border-l border-gray-100 p-5 flex flex-col justify-between">
+          <div className="flex justify-end mb-3">
+            <button
+              onClick={() => setSaved((s) => !s)}
+              className={`p-1.5 rounded-full transition-colors ${
+                saved
+                  ? "text-red-500 bg-red-50"
+                  : "text-gray-300 hover:text-red-400 hover:bg-red-50"
+              }`}
+              aria-label="Save program"
+            >
+              <Heart size={18} fill={saved ? "currentColor" : "none"} />
+            </button>
+          </div>
+
+          <div className="flex items-start gap-2 mb-4">
+            <Clock size={16} className="text-gray-400 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="font-semibold text-sm text-gray-800 leading-tight">
+                {p.duration || "N/A"}
+              </p>
+              <p className="text-xs text-gray-400">Duration</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-2 mb-5">
+            <DollarSign size={16} className="text-gray-400 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="font-semibold text-sm text-gray-800 leading-tight">
+                {formatTuition(p.international_tuition) || "N/A"}
+              </p>
+              <p className="text-xs text-gray-400">Tuition</p>
+            </div>
+          </div>
+
+          <Link to={`/program-details/${p.id}`}>
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+              View program
+              <ArrowRight size={14} />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
