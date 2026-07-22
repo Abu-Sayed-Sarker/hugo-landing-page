@@ -7,16 +7,25 @@ import {
   ShieldPlus,
   MessageCircleMore,
   Bot,
+  GraduationCap,
+  ArrowRight,
+  Sparkles,
+  Columns3,
+  Star,
+  UserCheck,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function Hero() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState("universities");
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
   console.log(isAuthenticated);
+
   const handleSearch = () => {
     if (searchQuery.trim()) {
       navigate(`/universities?search=${encodeURIComponent(searchQuery.trim())}`);
@@ -29,6 +38,11 @@ export default function Hero() {
     if (e.key === "Enter") {
       handleSearch();
     }
+  };
+
+  const handleQuickSearch = (tag) => {
+    setSearchQuery(tag);
+    navigate(`/universities?search=${encodeURIComponent(tag)}`);
   };
 
   const handleCompare = () => {
@@ -45,9 +59,25 @@ export default function Hero() {
     });
   };
 
+  const handleTalkToAI = () => {
+    if (isAuthenticated) {
+      navigate("/ai-assistant");
+    } else {
+      toast.error("Please login to continue", {
+        icon: "❌",
+        position: "bottom-center",
+        style: {
+          borderRadius: "10px",
+          background: "#002B5B",
+          color: "#fff",
+        },
+      });
+    }
+  };
+
   return (
     <div className="relative overflow-hidden h-screen">
-      {/* Video Background Container */}
+      {/* Video Background Container (unchanged) */}
       <div className="absolute inset-0 w-full h-full">
         <video
           autoPlay
@@ -62,68 +92,131 @@ export default function Hero() {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
-      {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-start w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-3xl border border-white border-opacity-40 bg-primary p-4 md:p-6 lg:p-10 rounded-lg transition-colors backdrop-blur-md">
-          {/* Heading */}
-          <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-8 leading-tight text-balance">
-            Find Your Perfect University & Program
-          </h1>
 
-          {/* Search Bar */}
-          <div className="bg-white rounded-lg p-2 mb-6 flex flex-col sm:flex-row gap-3 shadow-lg">
-            <div className="flex-1 flex items-center gap-2 rounded px-3 py-3">
-              <Search className="w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search universities..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent outline-none text-black"
-              />
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col">
+        <div className="flex-1 flex items-center justify-start w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-2xl bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-8 lg:p-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-sky/50 text-blue text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
+              <GraduationCap className="w-4  h-4 " />
+              Your Future. Our Platform.
             </div>
 
-            {/* <div className="text-black my-auto px-4 h-full border-l border-[#CCCCCC] py-3">
-              University
-            </div> */}
+            {/* Heading */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 lg:leading-tight text-balance">
+              Find the Right University for{" "}
+              <span className="text-blue">Your Future</span>
+            </h1>
 
-            <button
-              onClick={handleSearch}
-              className="bg-blue text-white px-6 rounded transition-colors"
-            >
-              Search
-            </button>
-          </div>
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-gray-100 mb-4 leading-relaxed">
-            Do you have doubts or want to make sure you choose your future well?
-            Check out these tools.
-          </p>
-          {/* Action Buttons */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
-            <button
-              onClick={handleCompare}
-              className="flex items-center justify-center gap-2 bg-white/10 text-white font-medium py-3 rounded-lg transition-colors backdrop-blur-sm text-sm sm:text-base"
-            >
-              <BookOpen className="w-5 h-5" />
-              <span>Compare centers</span>
-            </button>
-            <button
-              onClick={handleCompare}
-              className="flex items-center justify-center gap-2 bg-white/10 text-white font-medium py-3 rounded-lg transition-colors backdrop-blur-sm text-sm sm:text-base"
-            >
-              <MessageCircleMore className="w-5 h-5" />
-              <span>Vocational orientator</span>
-            </button>
-            <Link>
-              <button onClick={() => isAuthenticated ? navigate("/ai-assistant") : toast.error("Please login to continue", { icon: "❌", position: "bottom-center", style: { borderRadius: "10px", background: "#002B5B", color: "#fff" } }) } className="flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 text-white font-medium w-full py-3 rounded-lg transition-colors backdrop-blur-sm text-sm sm:text-base">
-                <Bot className="w-6 h-6" />
-                <span>Talk to Robot Hugo</span>
+            {/* Subtitle */}
+            <p className="text-slate-600 mb-6 leading-relaxed">
+              Do you have doubts or want to make sure you choose your future
+              well? Check out these tools.
+            </p>
+
+            {/* Tabs */}
+            <div className="flex gap-6 border-b border-slate-200 mb-4 text-sm font-semibold">
+              <button
+                onClick={() => setActiveTab("universities")}
+                className={`pb-2.5 border-b-2 transition-colors ${activeTab === "universities"
+                  ? "border-blue text-blue"
+                  : "border-transparent text-slate-400 hover:text-slate-600"
+                  }`}
+              >
+                Search Universities
               </button>
-            </Link>
+              <button
+                onClick={() => setActiveTab("programs")}
+                className={`pb-2.5 border-b-2 transition-colors ${activeTab === "programs"
+                  ? "border-blue text-blue"
+                  : "border-transparent text-slate-400 hover:text-slate-600"
+                  }`}
+              >
+                Search Programs
+              </button>
+            </div>
+
+            {/* Search Bar */}
+            <div className="flex gap-2 mb-4">
+              <div className="flex-1 flex items-center gap-2 border border-slate-200 bg-slate-50 rounded-lg px-3 py-3">
+                <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                <input
+                  type="text"
+                  placeholder={
+                    activeTab === "universities"
+                      ? "Search by university, program or country"
+                      : "Search by program name"
+                  }
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="flex-1 bg-transparent outline-none text-black text-sm"
+                />
+              </div>
+              <button
+                onClick={handleSearch}
+                className="bg-blue hover:bg-blue text-white px-5 rounded-lg transition-colors flex items-center justify-center flex-shrink-0"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Popular Searches */}
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm mb-6">
+              <span className="text-slate-500">Popular searches:</span>
+              {["Computer Science", "MBA", "Engineering", "Business"].map(
+                (tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => handleQuickSearch(tag)}
+                    className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
+                  >
+                    {tag}
+                  </button>
+                )
+              )}
+            </div>
+
+            {/* Main Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
+              <button
+                onClick={() => navigate("/universities")}
+                className="flex-1 bg-blue hover:bg-blue text-blue font-semibold py-3 rounded-lg flex items-center justify-center gap-4 text-sm sm:text-base"
+              >
+                Explore Universities
+                <FaArrowRightLong className="" />
+              </button>
+              <button
+                onClick={handleTalkToAI}
+                className="flex-1 border border-blue text-blue font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-4 text-sm sm:text-[16px]"
+              >
+                Talk with AI bot
+                <Bot className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Secondary Tools (preserved from original) */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              <button
+                onClick={handleCompare}
+                className="flex items-center gap-1.5 text-slate-500 hover:text-blue transition-colors"
+              >
+                <BookOpen className="w-4 h-4" />
+                Compare centers
+              </button>
+              <button
+                onClick={handleCompare}
+                className="flex items-center gap-1.5 text-slate-500 hover:text-blue transition-colors"
+              >
+                <MessageCircleMore className="w-4 h-4" />
+                Vocational orientator
+              </button>
+            </div>
           </div>
         </div>
+
+        
       </div>
     </div>
   );

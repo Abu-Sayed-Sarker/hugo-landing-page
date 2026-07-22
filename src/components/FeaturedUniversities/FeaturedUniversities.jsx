@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Columns3, Sparkles, Star, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import uni_default from "../../assets/images/uni_default.jpg";
 import { useGetAllUniversitiesQuery } from "../../Api/universityApi";
@@ -22,7 +22,7 @@ export default function FeaturedUniversities() {
   const [itemsPerPage, setItemsPerPage] = useState(() => getItemsPerPage());
   const getFullUrl = (path) => {
     if (!path) return "";
-       if (path.startsWith("https") || path.startsWith("blob:")) {
+    if (path.startsWith("https") || path.startsWith("blob:")) {
       return path;
     }
     return `https://api.clasia.io${path}`;
@@ -63,10 +63,74 @@ export default function FeaturedUniversities() {
   );
 
   return (
-    <section className="w-full bg-[#F3F4F6] pt-10 lg:pt-16 rounded-t-3xl relative -top-6">
-      <div className="w-11/12 mx-auto px-0 sm:px-6 lg:px-8">
+    <section className="w-full bg-[#F3F4F6] rounded-t-3xl relative -top-6">
+      {/* Bottom Feature Bar (floating over the video, like the reference image) */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative -top-6">
+        <div className="max-w-6xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-lg px-6 py-5 lg:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Smart Matching */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <h4 className="font-bold text-slate-800 text-sm">
+                Smart Matching
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">
+                AI-powered recommendations personalized for you
+              </p>
+            </div>
+          </div>
+
+          {/* Compare Easily */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-sky/50 flex items-center justify-center text-blue flex-shrink-0">
+              <Columns3 className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <h4 className="font-bold text-slate-800 text-sm">
+                Compare Easily
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Side-by-side university and program comparisons
+              </p>
+            </div>
+          </div>
+
+          {/* Scholarships Finder */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 flex-shrink-0">
+              <Star className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <h4 className="font-bold text-slate-800 text-sm">
+                Scholarships Finder
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Find and apply for scholarships worldwide
+              </p>
+            </div>
+          </div>
+
+          {/* Expert Support */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-violet-50 flex items-center justify-center text-violet-600 flex-shrink-0">
+              <UserCheck className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <h4 className="font-bold text-slate-800 text-sm">
+                Expert Support
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Get help from our education experts anytime
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="w-11/12 mx-auto px-0 sm:px-6 lg:px-8 pt-6">
         {/* Header with Navigation */}
-        <div className="flex items-center justify-between mb-6 lg:mb-12">
+        <div className="flex items-center justify-between mb-6 lg:mb-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
             Featured Universities
           </h2>
