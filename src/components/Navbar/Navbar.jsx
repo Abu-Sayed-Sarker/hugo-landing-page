@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Search, User, Menu, X, LogOut, MessageSquareMore } from "lucide-react";
 
 import logo from "../../assets/images/logo.png";
@@ -23,6 +23,7 @@ export default function Navbar() {
     { label: "Events", href: "/events" },
     { label: "Jobs", href: "/jobs" },
     { label: "About us", href: "/about" },
+    { label: "Hugo AI", href: data.isAuthenticated ? "/ai-assistant" : "/login-page" },
   ];
 
   const handleLogin = () => {
@@ -42,10 +43,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full fixed top-0 bg-[#F3F4F5]
+      className={`w-full fixed top-0 bg-white
      z-[9999]`}
     >
-      <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <Link to={"/"}>
@@ -62,7 +63,7 @@ export default function Navbar() {
                 to={link.href}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-[#002B5B] text-lg font-semibold xl:font-bold transition-colors"
+                    ? "relative text-blue py-6 text-lg font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[4px] after:bg-blue after:rounded-t"
                     : "text-gray-700 text-lg hover:text-gray-900 xl:font-medium transition-colors"
                 }
               >

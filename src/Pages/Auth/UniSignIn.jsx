@@ -21,7 +21,7 @@ export default function UniSignIn() {
         navigate("/university/dashboard");
       } catch (err) {
         console.error("Failed to login:", err.data.error[0]);
-        toast.error( err.data?.error[0], {
+        toast.error(err.data?.error[0], {
           position: "bottom-center",
         });
       }
@@ -72,7 +72,7 @@ export default function UniSignIn() {
             />
           </div>
 
-       
+
 
           <button
             onClick={handleSubmit}
