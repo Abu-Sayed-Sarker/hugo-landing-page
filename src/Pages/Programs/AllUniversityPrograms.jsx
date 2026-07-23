@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Star, ChevronDown, X, Search, MapPin } from "lucide-react";
+import { Star, ChevronDown, X, Search, MapPin, Heart, Clock, DollarSign, ArrowRight } from "lucide-react";
 import programPlaceholder from "../../assets/images/program1.png";
 import { Link } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
@@ -82,8 +82,8 @@ export default function AllUniversityPrograms() {
             match.
           </p>
 
-      {/* Search and Sort Bar */}
-     <div className="bg-white rounded-lg shadow-lg p-2 flex flex-col sm:flex-row gap-2 max-w-3xl">
+          {/* Search and Sort Bar */}
+          <div className="bg-white rounded-lg shadow-lg p-2 flex flex-col sm:flex-row gap-2 max-w-3xl">
             <div className="flex-1 flex items-center gap-2 px-3">
               <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
               <input
@@ -157,26 +157,24 @@ export default function AllUniversityPrograms() {
           )}
 
           {/* Program List */}
-          <div className="flex-1 p-4 md:p-7 bg-[#ECF5FF]">
+          <div className="flex-1 px-4 md:px-7">
             {/* Top bar: count + sort */}
             <div className="flex items-center justify-between mb-5">
               <p className="text-sm text-gray-600 font-medium">
                 Showing{" "}
-                <span className="text-blue-600 font-semibold">
+                <span className="text-blue font-semibold">
                   {programs.length.toLocaleString("en-US")}
                 </span>{" "}
                 programs
               </p>
               <div className="relative inline-flex items-center">
                 <select
-                  className="appearance-none bg-white border border-gray-200 text-sm text-gray-700 rounded-md pl-3 pr-8 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                  className="appearance-none bg-white border border-gray-200 text-sm text-gray-700 rounded-md pl-3 pr-8 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue cursor-pointer"
                   defaultValue="recommended"
                 >
                   <option value="recommended">Sort by: Recommended</option>
                   <option value="tuition_asc">Tuition: Low to High</option>
                   <option value="tuition_desc">Tuition: High to Low</option>
-                  <option value="duration">Duration</option>
-                  <option value="name">Name A-Z</option>
                 </select>
                 <ChevronDown
                   size={14}
@@ -204,7 +202,7 @@ export default function AllUniversityPrograms() {
             {/* Load More Button */}
             {!isLoading && programs.length > 0 && (
               <div className="mt-8 text-center">
-                <button className="px-6 py-3 text-lg border-2 border-blue text-blue rounded-md font-medium hover:bg-blue-50 transition-colors inline-flex items-center gap-2">
+                <button className="px-6 py-3 text-lg border-2 border-blue text-blue rounded-md font-medium transition-colors inline-flex items-center gap-2">
                   Load More
                   <ChevronDown size={16} />
                 </button>
@@ -231,20 +229,20 @@ function ProgramCard({ program: p, getFullUrl }) {
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
-      <div className="flex flex-col sm:flex-row">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* Left: Image */}
-        <div className="sm:w-52 md:w-60 flex-shrink-0">
+        <div className="lg:col-span-1 p-2 flex-shrink-0 h-52">
           <img
             src={getFullUrl(p.image)}
             alt={p.title}
-            className="w-full h-48 sm:h-full object-cover"
+            className="w-full rounded-lg h-full object-cover"
           />
         </div>
 
         {/* Center: Info */}
-        <div className="flex-1 p-5 flex flex-col justify-between">
+        <div className="flex-1 p-5 lg:col-span-2 flex flex-col justify-between">
           <div className="mb-2">
-            <span className="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+            <span className="inline-block bg-blue/10 text-blue text-xs font-semibold px-3 py-1 rounded-full">
               {p.level || "Bachelor"}
             </span>
           </div>
@@ -278,7 +276,7 @@ function ProgramCard({ program: p, getFullUrl }) {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs border border-gray-300 text-gray-600 px-3 py-1 rounded-full"
+                className="text-xs border bg-sky/40 text-blue px-3 py-1 rounded-full"
               >
                 {tag}
               </span>
@@ -287,15 +285,14 @@ function ProgramCard({ program: p, getFullUrl }) {
         </div>
 
         {/* Right: Stats + CTA */}
-        <div className="sm:w-44 md:w-48 flex-shrink-0 border-l border-gray-100 p-5 flex flex-col justify-between">
+        <div className="flex-shrink-0 border-l border-gray-100 p-5 flex flex-col justify-between">
           <div className="flex justify-end mb-3">
             <button
               onClick={() => setSaved((s) => !s)}
-              className={`p-1.5 rounded-full transition-colors ${
-                saved
+              className={`p-1.5 rounded-full transition-colors ${saved
                   ? "text-red-500 bg-red-50"
                   : "text-gray-300 hover:text-red-400 hover:bg-red-50"
-              }`}
+                }`}
               aria-label="Save program"
             >
               <Heart size={18} fill={saved ? "currentColor" : "none"} />
@@ -323,7 +320,7 @@ function ProgramCard({ program: p, getFullUrl }) {
           </div>
 
           <Link to={`/program-details/${p.id}`}>
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors">
+            <button className="w-fit ml-auto bg-blue hover:bg-blue text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors">
               View program
               <ArrowRight size={14} />
             </button>
