@@ -1,11 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { Star, ChevronDown, X } from "lucide-react";
-import { PiBookOpenBold, PiGlobeSimpleBold } from "react-icons/pi";
+import { Star, ChevronDown, X, Search, MapPin } from "lucide-react";
 import programPlaceholder from "../../assets/images/program1.png";
 import { Link } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
 import { useGetDiscoveryProgramsQuery } from "../../Api/universityApi";
-
+import background from "../../assets/images/background.jpg"
 export default function AllUniversityPrograms() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -52,28 +51,60 @@ export default function AllUniversityPrograms() {
   return (
     <div className="min-h-screen bg-[#F2F2F2] font-inter">
       {/* Header Section */}
-      <div className="text-white flex items-center justify-center relative overflow-hidden bg-primary h-[50vh]">
-        <div className="w-11/12 mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl md:text-4xl font-bold mb-8">
-            University Directory
-          </h1>
-          <p className="text-[#BFDBFE] max-w-3xl md:text-xl">
-            Explore our comprehensive directory of top universities worldwide.
-            Filter by location, programs, and more to find your perfect match.
-          </p>
-        </div>
-      </div>
-
-      {/* Search and Sort Bar */}
-      <div className="bg-white border-b border-gray-200 py-4 px-8">
-        <div className="max-w-7xl flex mx-auto">
-          <input
-            type="text"
-            placeholder="Search programs..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <div className="relative overflow-hidden bg-primary">
+        {/* Background image on the right, matching the reference */}
+        <div className="absolute inset-0">
+          <img
+            src={background}
+            alt="University campus"
+            className="w-full h-full object-cover "
           />
+          {/* Navy gradient overlay so text stays readable on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] via-[#002B5B] to-[#0B1E4D]/10"></div>
+        </div>
+
+        <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          {/* Badge */}
+          <span className="inline-block bg-blue text-white text-[11px] mt-10 font-semibold tracking-wide px-3 py-1 rounded mb-4">
+            UNIVERSITY DIRECTORY
+          </span>
+
+          {/* Heading */}
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
+            Discover top universities worldwide
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-[#BFDBFE] max-w-xl mb-8">
+            Explore our comprehensive directory of universities. Filter by
+            location, programs, academic level, and more to find your perfect
+            match.
+          </p>
+
+          {/* Search Bar */}
+          <div className="bg-white rounded-lg shadow-lg p-2 flex flex-col sm:flex-row gap-2 max-w-3xl">
+            <div className="flex-1 flex items-center gap-2 px-3">
+              <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Search universities, locations, or programs..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full py-2.5 outline-none text-sm text-slate-800"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 px-3 sm:border-l sm:border-gray-200">
+              <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
+              <select className="py-2.5 outline-none text-sm text-slate-600 bg-transparent">
+                <option>All locations</option>
+              </select>
+            </div>
+
+            <button className="bg-blue text-white font-medium px-6 py-2.5 rounded transition-colors text-sm">
+              Search
+            </button>
+          </div>
         </div>
       </div>
 
