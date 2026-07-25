@@ -1,6 +1,4 @@
 import EnrollmentChart from "./University/Dashboard/EnrollmentChart";
-import QuickActions from "./University/Dashboard/QuickActions";
-import RecentActivity from "./University/Dashboard/RecentActivity";
 import StatCard from "./University/Dashboard/StatCard";
 import events from "../assets/icons/events.png"
 import testimonials from "../assets/icons/testimonials.png"

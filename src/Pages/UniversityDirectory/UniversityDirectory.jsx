@@ -1,12 +1,12 @@
-import { Star, ChevronDown, X } from "lucide-react";
-import { PiBookOpenBold, PiGlobeSimpleBold } from "react-icons/pi";
+import { Star, ChevronDown, X, Search, MapPin, Heart, Landmark, ArrowRight, GraduationCap, Users } from "lucide-react";
 import { Link, ScrollRestoration, useSearchParams } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
 import { useGetAllUniversitiesQuery } from "../../Api/universityApi";
 import { useState, useEffect } from "react";
 import uni_default from "../../assets/images/uni_default.jpg";
-
+import background from "../../assets/images/backgrounds.png"
 export default function UniversityDirectory() {
+  const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get("search") || "";
@@ -51,28 +51,60 @@ export default function UniversityDirectory() {
     <div className="min-h-screen bg-[#F2F2F2] font-inter">
       <ScrollRestoration />
       {/* Header Section */}
-      <div className="text-white flex items-center justify-center relative overflow-hidden bg-primary h-[50vh]">
-        <div className="w-11/12 mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl md:text-4xl font-bold mb-8">
-            University Directory
-          </h1>
-          <p className="text-[#BFDBFE] max-w-3xl md:text-xl">
-            Explore our comprehensive directory of top universities worldwide.
-            Filter by location, programs, and more to find your perfect match.
-          </p>
-        </div>
-      </div>
-
-      {/* Search and Sort Bar */}
-      <div className="bg-white border-b border-gray-200 py-4 px-8">
-        <div className="max-w-7xl flex mx-auto">
-          <input
-            type="text"
-            placeholder="Search universities, locations, or programs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <div className="relative overflow-hidden bg-primary">
+        {/* Background image on the right, matching the reference */}
+        <div className="absolute inset-0">
+          <img
+            src={background}
+            alt="University campus"
+            className="w-full h-full object-cover object-top"
           />
+          {/* Navy gradient overlay so text stays readable on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] via-[#002B5B]/90 to-[#0B1E4D]/10"></div>
+        </div>
+
+        <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+          {/* Badge */}
+          <span className="inline-block bg-blue text-white text-[11px] mt-10 font-semibold tracking-wide px-3 py-1 rounded mb-4">
+            UNIVERSITY DIRECTORY
+          </span>
+
+          {/* Heading */}
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
+            Discover top universities worldwide
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-[#BFDBFE] max-w-xl mb-8">
+            Explore our comprehensive directory of universities. Filter by
+            location, programs, academic level, and more to find your perfect
+            match.
+          </p>
+
+          {/* Search and Sort Bar */}
+          <div className="bg-white rounded-lg shadow-lg p-2 flex flex-col sm:flex-row gap-2 max-w-3xl">
+            <div className="flex-1 flex items-center gap-2 px-3">
+              <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Search universities, locations, or programs..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full py-2.5 outline-none text-sm text-slate-800"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 px-3 sm:border-l sm:border-gray-200">
+              <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
+              <select className="py-2.5 outline-none text-sm text-slate-600 bg-transparent">
+                <option>All locations</option>
+              </select>
+            </div>
+
+            <button className="bg-blue text-white font-medium px-6 py-2.5 rounded transition-colors text-sm">
+              Search
+            </button>
+          </div>
         </div>
       </div>
 
@@ -125,7 +157,11 @@ export default function UniversityDirectory() {
           )}
 
           {/* University Grid */}
-          <div className="flex-1 p-4 md:p-7 bg-[#ECF5FF]">
+
+
+          {/* ...inside your component, replace the listing block with this... */}
+
+          <div className="flex-1 px-4 md:px-7">
             <div className="mb-4">
               <p className="text-sm text-gray-600">
                 Showing {universities.length} universities
@@ -137,67 +173,144 @@ export default function UniversityDirectory() {
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="flex flex-col gap-5">
                 {universities.map((uni) => (
                   <div
                     key={uni.id}
-                    className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                    className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
                   >
-                    {/* Image Placeholder */}
-                    <div className="">
-                      <div>
-                        <img
-                          src={getFullUrl(uni?.picture) || uni_default}
-                          className="w-full h-[200px] object-cover"
-                          alt=""
-                        />
+                    {/* Image with save button + ranking badge */}
+                    <div className="relative w-full md:w-56 flex-shrink-0">
+                      <img
+                        src={getFullUrl(uni?.picture) || uni_default}
+                        className="w-full h-44 md:h-full rounded-lg object-cover"
+                        alt={uni.univ_name}
+                      />
+                      <button
+                        aria-label="Save university"
+                        className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow hover:bg-white transition-colors"
+                      >
+                        <Heart className="w-4 h-4 text-slate-500" />
+                      </button>
+                      {uni.world_ranking && (
+                        <span className="absolute bottom-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded">
+                          #{uni.world_ranking} World Ranking
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Main info */}
+                    <div className="flex-1 col-span-2 min-w-0">
+                      <div className="flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden flex-shrink-0">
+                          {uni.logo && (
+                            <img
+                              src={getFullUrl(uni?.logo)}
+                              alt={uni.univ_name}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-bold text-slate-900 truncate">
+                            {uni.univ_name}
+                          </h3>
+                          <p className="text-xs text-slate-500 truncate">
+                            {uni.address || "Location not specified"}
+                          </p>
+                        </div>
+                      </div>
+
+                      {uni.about && (
+                        <p className="text-sm text-slate-500 mt-3 leading-relaxed line-clamp-2">
+                          {uni.about}
+                        </p>
+                      )}
+
+                      {Array.isArray(uni.tags) && uni.tags.length > 0 ? (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {uni.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {uni.univ_type && (
+                            <span className="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full capitalize">
+                              {uni.univ_type}
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        uni.univ_type && (
+                          <span className="inline-block text-xs bg-sky/50 text-blue px-3 py-1 rounded-full capitalize mt-3">
+                            {uni.univ_type}
+                          </span>
+                        )
+                      )}
+                    </div>
+
+                    {/* Stats column */}
+                    <div className="flex md:flex-col justify-between md:justify-center gap-3 md:gap-4 md:w-40 flex-shrink-0 md:border-l md:border-gray md:pl-5">
+                      {uni.total_students && (
+                        <div className="flex items-center gap-4 text-sm text-slate-700">
+                          <GraduationCap className="text-slate-400 flex-shrink-0" />
+                          <div>
+                            <p className="font-semibold">{uni.total_students}</p>
+                            <p>
+                              Students
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      {uni.total_faculty && (
+                        <div className="flex items-center gap-4 text-sm text-slate-700">
+                          <Users className="text-slate-400 flex-shrink-0" />
+                          <div>
+                            <p className="font-semibold">{uni.total_faculty}</p>
+                            <p>
+                              Faculty
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-4 text-sm text-slate-700">
+                        <Landmark className="text-slate-400 flex-shrink-0" />
+                        <div>
+                          <p className="font-semibold">{uni.programs_count}</p> Programs
+                        </div>
                       </div>
                     </div>
-                    <div className="flex bg-[#374151] items-center gap-4 px-4 py-2">
-                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
-                        {uni.logo && (
-                          <img
-                            src={getFullUrl(uni?.logo)}
-                            alt={uni.univ_name}
-                            className="w-full h-full object-contain"
-                          />
+
+                    {/* Rating + CTAs */}
+                    <div className="flex flex-row md:flex-col items-center justify-between md:justify-center gap-3 flex-shrink-0 md:border-l md:border-gray md:pl-5">
+                      <div className="flex items-center gap-1">
+                        <Star size={16} className="text-yellow-500 fill-current" />
+                        <span className="text-slate-900 font-semibold">
+                          {uni.average_rating || 0}
+                        </span>
+                        {uni.reviews_count && (
+                          <span className="text-xs text-slate-400">
+                            ({uni.reviews_count} reviews)
+                          </span>
                         )}
                       </div>
-                      <h3 className="font-semibold text-white truncate">
-                        {uni.univ_name}
-                      </h3>
-                    </div>
 
-                    {/* Card Content */}
-                    <div className="p-4">
-                      <div className="flex items-center text-sm text-[#374151] mb-2">
-                        <PiGlobeSimpleBold className="mr-1 text-2xl" />
-                        <span>{uni.address || "Location not specified"}</span>
-                      </div>
+                      <Link to={`/universities/${uni.id}`} className="w-full">
+                        <button className="w-full bg-blue text-white text-sm font-medium px-4 py-2.5 rounded-md transition-colors">
+                          View Profile
+                        </button>
+                      </Link>
 
-                      <div className="flex items-center justify-between text-sm mb-3">
-                        <div className="flex items-center text-[#374151]">
-                          <PiBookOpenBold className="mr-1 text-2xl" />
-                          <span>{uni.programs_count} Programs</span>
-                        </div>
-                        <div className="flex items-center text-yellow-500">
-                          <Star size={14} className="mr-1 fill-current" />
-                          <span className="text-gray-900 font-medium">
-                            {uni.average_rating || 0}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs bg-[#BFDBFE] text-[#1E40AF] px-3 py-1 rounded-[4px] capitalize">
-                          {uni.univ_type}
-                        </span>
-                        <Link to={`/universities/${uni.id}`}>
-                          <button className="text-[#002B5B] text-sm hover:scale-105 transition-transform font-medium">
-                            View Details
-                          </button>
-                        </Link>
-                      </div>
+                      <Link
+                        to={`/universities/${uni.id}`}
+                        className="flex items-center gap-1 text-sm text-blue hover:text-blue-700 font-medium"
+                      >
+                        See Programs
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
                     </div>
                   </div>
                 ))}

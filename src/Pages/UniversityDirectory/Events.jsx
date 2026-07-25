@@ -38,7 +38,7 @@ export default function Events({ data: universityData, onViewDetails }) {
       <div className="mb-5">
         <p className="text-sm text-gray-600 font-medium">
           Showing{" "}
-          <span className="text-blue-600 font-semibold">
+          <span className="text-blue font-semibold">
             {eventsData.length}
           </span>{" "}
           events

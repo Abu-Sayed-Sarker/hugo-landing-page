@@ -278,14 +278,35 @@ export default function UniversityEvents() {
 
   return (
     <div className="min-h-screen bg-base">
-      {/* Header */}
-      <div className="bg-primary h-[50vh] text-white py-12 px-8 relative overflow-hidden flex items-center justify-center font-inter">
-        <div className="w-11/12 mx-auto relative z-10 px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-          <h1 className="text-4xl xl:text-6xl mb-4">University Events</h1>
-          <p className="text-sky xl:text-xl max-w-2xl font-light">
+  
+
+      <div className="relative overflow-hidden h-[50vh] bg-primary">
+        {/* Background image on the right, matching the reference */}
+        <div className="absolute inset-0">
+          <img
+            src={background}
+            alt="University campus"
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Navy gradient overlay so text stays readable on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+
+
+          {/* Heading */}
+          <h1 className="text-white mt-20 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
+            University Events
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-[#BFDBFE] max-w-xl mb-8">
             Stay updated with the latest webinars, open days, and workshops from
             top universities around the globe.
           </p>
+
+
         </div>
       </div>
 
@@ -376,7 +397,7 @@ export default function UniversityEvents() {
             <div className="flex justify-between items-center mb-4">
               <p className="text-sm text-gray-600 font-medium">
                 Showing{" "}
-                <span className="text-blue-600 font-semibold">
+                <span className="text-blue font-semibold">
                   {events.length.toLocaleString("en-US")}
                 </span>{" "}
                 events
@@ -440,8 +461,8 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
           {event.event_type && (
             <span
               className={`absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full ${isInPerson
-                  ? "bg-blue-600 text-white"
-                  : "bg-green-500 text-white"
+                ? "bg-blue text-white"
+                : "bg-green-500 text-white"
                 }`}
             >
               {isInPerson ? "In-Person" : "Online"}
@@ -450,10 +471,10 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
           {/* Date badge bottom-left */}
           {month && (
             <div className="absolute bottom-3 left-3 bg-white rounded-md px-2 py-1 text-center shadow min-w-[44px]">
-              <p className="text-[10px] font-bold text-blue-600 uppercase leading-none">
+              <p className="text-[10px] font-bold text-blue uppercase leading-none">
                 {month}
               </p>
-              <p className="text-lg font-bold text-gray-900 leading-tight">{day}</p>
+              <p className="text-lg font-bold text-blue leading-tight">{day}</p>
             </div>
           )}
         </div>
@@ -467,7 +488,7 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
                 <img
                   src={getFullUrl(event.univ_logo)}
                   alt={event.univ_name}
-                  className="w-5 h-5 rounded-full object-cover"
+                  className="w-12 h-12 rounded-full object-cover"
                 />
               ) : (
                 <div className="w-5 h-5 rounded-full bg-blue-700 flex items-center justify-center text-white text-[8px] font-bold flex-shrink-0">
@@ -479,12 +500,12 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
             <button
               onClick={() => setSaved((s) => !s)}
               className={`p-1.5 rounded-full transition-colors ${saved
-                  ? "text-blue-600 bg-blue-50"
-                  : "text-gray-300 hover:text-blue-500 hover:bg-blue-50"
+                ? "text-blue-600 bg-blue-50"
+                : "text-gray-300 hover:text-blue-500 hover:bg-blue-50"
                 }`}
               aria-label="Save event"
             >
-              <Bookmark size={16} fill={saved ? "currentColor" : "none"} />
+              <Bookmark size={22} fill={saved ? "currentColor" : "none"} />
             </button>
           </div>
 
@@ -496,18 +517,18 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
           {/* Date · Time · Location row */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500 mb-2">
             <span className="flex items-center gap-1">
-              <Calendar size={13} className="text-blue-500" />
+              <Calendar size={13} className="text-blue" />
               {event.date}
             </span>
             {event.time && (
               <span className="flex items-center gap-1">
-                <Clock size={13} className="text-blue-500" />
+                <Clock size={13} className="text-blue" />
                 {event.time}
               </span>
             )}
             {event.address && (
               <span className="flex items-center gap-1">
-                <MapPin size={13} className="text-blue-500" />
+                <MapPin size={13} className="text-blue" />
                 {event.address}
               </span>
             )}

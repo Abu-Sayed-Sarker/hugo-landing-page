@@ -1,5 +1,4 @@
 import banner from "../../assets/video/banner.mp4";
-
 import { useState } from "react";
 import {
   Search,

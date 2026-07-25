@@ -1,16 +1,20 @@
-import { GraduationCap } from "lucide-react";
+import { Bookmark, GraduationCap } from "lucide-react";
 import { useState, useMemo } from "react";
 import { BiDollarCircle } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
 import { MdOutlineWatchLater } from "react-icons/md";
-import { useGetDiscoveryJobsQuery } from "../../Api/universityApi";
+import { useGetDiscoveryJobsQuery, useGetJobDetailsQuery } from "../../Api/universityApi";
 import logoPlaceholder from "../../assets/icons/uni_logo.png";
+import background from "../../assets/images/uniBanner.png";
+import ApplyJobModal from "../../Layouts/University/Modal/ApplyJobModal";
 
 export default function JobList({ onViewDetails }) {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedType, setSelectedType] = useState("All Types");
   const [searchTerm, setSearchTerm] = useState("");
   const [postedWithin, setPostedWithin] = useState("Any Time");
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const queryParams = useMemo(() => {
     const params = {};
@@ -64,19 +68,36 @@ export default function JobList({ onViewDetails }) {
 
   return (
     <div className="min-h-screen bg-base">
-      <div className="text-white flex items-center justify-center relative overflow-hidden bg-primary h-[50vh] px-8">
-        <div className="w-11/12 mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl md:text-4xl font-bold mb-8">
+      <div className="relative overflow-hidden h-[50vh] bg-primary">
+        {/* Background image on the right, matching the reference */}
+        <div className="absolute inset-0">
+          <img
+            src={background}
+            alt="University campus"
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Navy gradient overlay so text stays readable on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+
+
+          {/* Heading */}
+          <h1 className="text-white mt-20 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-2xl">
             Jobs & Internships
           </h1>
-          <p className="text-[#BFDBFE] max-w-5xl md:text-xl">
+
+          {/* Subtitle */}
+          <p className="text-[#BFDBFE] max-w-xl lg:text-lg mb-8">
             Find career opportunities and internships from top universities and
             partner companies. Kickstart your career with positions tailored for
             students and graduates.
           </p>
+
+
         </div>
       </div>
-
       {/* Search Header */}
       <div className="bg-white border-b border-gray-200 py-4 px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -235,46 +256,54 @@ export default function JobList({ onViewDetails }) {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-lg flex-shrink-0 bg-base p-1 border">
+                      <div className="w-20 h-20 rounded-lg flex-shrink-0 bg-base border">
                         <img
                           src={getFullUrl(job.univ_logo) || logoPlaceholder}
                           alt="logo"
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-cover rounded-lg"
                         />
                       </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
+                        <span
+                          className={`px-3 py-1 rounded-md text-sm font-medium ${getBadgeColor(
+                            job.job_type,
+                          )}`}
+                        >
+                          {job.job_type}
+                        </span>
+                        <div className="flex items-center gap-2 mt-1">
                           <h3 className="text-lg font-semibold">{job.title}</h3>
                         </div>
-                        <p className=" text-gray-600 flex items-center gap-2">
-                          <GraduationCap size={22} strokeWidth={3} />
+                        <p className=" text-gray-600 font-medium flex items-center gap-2">
+                          {/* <GraduationCap size={22} strokeWidth={3} /> */}
                           {job.company_name}
                         </p>
+
+                        <div className="flex items-center gap-6 text-gray-600 my-1">
+                          <span className="flex items-center">
+                            <GrLocation className="mr-1.5 text-dark" />
+                            {job.location}
+                          </span>
+
+                          <span className="flex items-center">
+                            <BiDollarCircle className="mr-1.5 text-dark text-lg" />
+                            {job.salary}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <span
-                      className={` px-3 py-1 rounded-md text-sm font-medium ${getBadgeColor(
-                        job.job_type,
-                      )}`}
-                    >
-                      {job.job_type}
-                    </span>
+ <button
+              onClick={() => setSaved((s) => !s)}
+              className={`p-1.5 rounded-full transition-colors ${saved
+                ? "text-blue-600 bg-blue-50"
+                : "text-gray-300 hover:text-blue-500 hover:bg-blue-50"
+                }`}
+              aria-label="Save event"
+            >
+              <Bookmark size={22} fill={saved ? "currentColor" : "none"} />
+            </button>
                   </div>
 
-                  <div className="flex items-center gap-6  text-gray-600 mb-4">
-                    <span className="flex items-center">
-                      <GrLocation className="mr-1.5 text-dark" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center">
-                      <MdOutlineWatchLater className="mr-1.5 text-dark" />
-                      {job.job_type}
-                    </span>
-                    <span className="flex items-center">
-                      <BiDollarCircle className="mr-1.5 text-dark text-lg" />
-                      {job.salary}
-                    </span>
-                  </div>
 
                   <p className=" text-gray-700 mb-6 line-clamp-2 leading-relaxed">
                     {job.description}
@@ -290,9 +319,12 @@ export default function JobList({ onViewDetails }) {
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="text-gray-500">
-                        Apply by: {job.deadline}
-                      </span>
+                      <button
+                        onClick={() => setIsApplyModalOpen(true)}
+                        className="py-2 px-6 bg-blue text-white rounded-lg font-medium shadow-lg hover:shadow-blue-200 hover:bg-blue-600 transition-all text-sm "
+                      >
+                        Apply Now
+                      </button>
                       <button
                         onClick={() => onViewDetails && onViewDetails(job)}
                         className="bg-blue text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:bg-blue-700 shadow-sm"
@@ -301,12 +333,16 @@ export default function JobList({ onViewDetails }) {
                       </button>
                     </div>
                   </div>
+                  {isApplyModalOpen && (
+                    <ApplyJobModal job={job} onClose={() => setIsApplyModalOpen(false)} />
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 }

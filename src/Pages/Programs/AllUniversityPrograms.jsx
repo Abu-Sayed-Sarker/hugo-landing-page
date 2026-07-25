@@ -4,7 +4,7 @@ import programPlaceholder from "../../assets/images/program1.png";
 import { Link } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
 import { useGetDiscoveryProgramsQuery } from "../../Api/universityApi";
-import background from "../../assets/images/background.jpg"
+import background from "../../assets/images/backgrounds.png"
 export default function AllUniversityPrograms() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -58,10 +58,10 @@ export default function AllUniversityPrograms() {
           <img
             src={background}
             alt="University campus"
-            className="w-full h-full object-cover "
+            className="w-full h-full object-cover object-top"
           />
           {/* Navy gradient overlay so text stays readable on the left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] via-[#002B5B] to-[#0B1E4D]/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002B5B] via-[#002B5B]/90 to-[#0B1E4D]/10"></div>
         </div>
 
         <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
