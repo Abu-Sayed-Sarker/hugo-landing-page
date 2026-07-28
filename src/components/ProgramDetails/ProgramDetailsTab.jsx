@@ -43,7 +43,7 @@ export default function ProgramDetailsTab({ program }) {
 
       {/* Main Content */}
       <div className="py-8 max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Content */}
           <div className="col-span-2 space-y-6">
             {activeTab === "overview" && (
@@ -80,16 +80,16 @@ export default function ProgramDetailsTab({ program }) {
                   {program?.faculties?.length > 0 && (
                     <>
                       <h3 className="text-lg font-bold mb-4">Key Faculty</h3>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {program.faculties.map((faculty, index) => (
                           <div key={index} className="flex items-center gap-3">
-                            <div className="bg-blue/10 rounded-full w-16 h-16 flex items-center justify-center text-blue font-bold text-xl uppercase">
+                            <div className="bg-blue/10 rounded-full w-10 h-10 lg:w-16 lg:h-16 flex items-center justify-center text-blue font-bold text-xl uppercase">
                               {faculty.name?.charAt(0)}
                             </div>
-                            <div>
+                            <div className="w-full">
                               <p className="font-semibold">{faculty.name}</p>
-                              <p className=" text-gray-600">{faculty.department}</p>
-                              <p className=" text-gray-500 mt-1">
+                              <p className="text-gray-600">{faculty.department}</p>
+                              <p className="text-gray-500 mt-1">
                                 {faculty.expertise}
                               </p>
                             </div>

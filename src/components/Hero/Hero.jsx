@@ -155,7 +155,7 @@ export default function Hero() {
               </div>
               <button
                 onClick={handleSearch}
-                className="bg-blue hover:bg-blue text-white px-5 rounded-lg transition-colors flex items-center justify-center flex-shrink-0"
+                className="bg-blue hidden hover:bg-blue text-white px-5 rounded-lg transition-colors md:flex items-center justify-center flex-shrink-0"
               >
                 <Search className="w-4 h-4" />
               </button>
@@ -181,7 +181,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-3 mb-4">
               <button
                 onClick={() => navigate("/universities")}
-                className="flex-1 bg-blue hover:bg-blue text-blue font-semibold py-3 rounded-lg flex items-center justify-center gap-4 text-sm sm:text-base"
+                className="flex-1 bg-blue hover:bg-blue text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-4 text-sm sm:text-base"
               >
                 Explore Universities
                 <FaArrowRightLong className="" />

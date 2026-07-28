@@ -1,10 +1,20 @@
 import React, { useState, useMemo } from "react";
-import { Star, ChevronDown, X, Search, MapPin, Heart, Clock, DollarSign, ArrowRight } from "lucide-react";
+import {
+  Star,
+  ChevronDown,
+  X,
+  Search,
+  MapPin,
+  Heart,
+  Clock,
+  DollarSign,
+  ArrowRight,
+} from "lucide-react";
 import programPlaceholder from "../../assets/images/program1.png";
 import { Link } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
 import { useGetDiscoveryProgramsQuery } from "../../Api/universityApi";
-import background from "../../assets/images/backgrounds.png"
+import background from "../../assets/images/backgrounds.png";
 export default function AllUniversityPrograms() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -110,8 +120,8 @@ export default function AllUniversityPrograms() {
       </div>
 
       {/* Main Content */}
-      <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="w-11/12 mx-auto lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row lg:gap-8">
           {/* Mobile: filter toggle */}
           <div className="lg:hidden w-full mb-4 flex items-center justify-between">
             <button
@@ -157,10 +167,10 @@ export default function AllUniversityPrograms() {
           )}
 
           {/* Program List */}
-          <div className="flex-1 px-4 md:px-7">
+          <div className="flex-1">
             {/* Top bar: count + sort */}
             <div className="flex items-center justify-between mb-5">
-              <p className="text-sm text-gray-600 font-medium">
+              <p className="text-sm text-gray-600 font-medium hidden md:block">
                 Showing{" "}
                 <span className="text-blue font-semibold">
                   {programs.length.toLocaleString("en-US")}
@@ -225,13 +235,16 @@ function ProgramCard({ program: p, getFullUrl }) {
     return `$${num.toLocaleString("en-US")} / year`;
   };
 
-  const tags = [p.study_mode || "Full-time", p.delivery_mode || "On campus"].filter(Boolean);
+  const tags = [
+    p.study_mode || "Full-time",
+    p.delivery_mode || "On campus",
+  ].filter(Boolean);
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center">
         {/* Left: Image */}
-        <div className="lg:col-span-1 p-2 flex-shrink-0 h-52">
+        <div className="lg:col-span-1 p-2 flex-shrink-0 h-48">
           <img
             src={getFullUrl(p.image)}
             alt={p.title}
@@ -240,11 +253,24 @@ function ProgramCard({ program: p, getFullUrl }) {
         </div>
 
         {/* Center: Info */}
-        <div className="flex-1 p-5 lg:col-span-2 flex flex-col justify-between">
-          <div className="mb-2">
+        <div className="flex-1 p-5 py-0 sm:py-5 lg:col-span-2 flex flex-col justify-between">
+          <div className="mb-2 flex items-center justify-between">
             <span className="inline-block bg-blue/10 text-blue text-xs font-semibold px-3 py-1 rounded-full">
               {p.level || "Bachelor"}
             </span>
+            <div className="flex justify-end lg:hidden">
+              <button
+                onClick={() => setSaved((s) => !s)}
+                className={`p-1.5 rounded-full transition-colors ${
+                  saved
+                    ? "text-red-500 bg-red-50"
+                    : "text-gray-300 hover:text-red-400 hover:bg-red-50"
+                }`}
+                aria-label="Save program"
+              >
+                <Heart size={18} fill={saved ? "currentColor" : "none"} />
+              </button>
+            </div>
           </div>
 
           <h3 className="text-lg font-bold text-gray-900 mb-1 leading-snug">
@@ -285,37 +311,41 @@ function ProgramCard({ program: p, getFullUrl }) {
         </div>
 
         {/* Right: Stats + CTA */}
-        <div className="flex-shrink-0 border-l border-gray-100 p-5 flex flex-col justify-between">
-          <div className="flex justify-end mb-3">
+        <div className="flex-shrink-0 border-l border-gray p-5 flex flex-col justify-between relative">
+          <div className="lg:flex justify-end hidden absolute right-2 top-2">
             <button
               onClick={() => setSaved((s) => !s)}
-              className={`p-1.5 rounded-full transition-colors ${saved
+              className={`p-1.5 rounded-full transition-colors ${
+                saved
                   ? "text-red-500 bg-red-50"
                   : "text-gray-300 hover:text-red-400 hover:bg-red-50"
-                }`}
+              }`}
               aria-label="Save program"
             >
               <Heart size={18} fill={saved ? "currentColor" : "none"} />
             </button>
           </div>
 
-          <div className="flex items-start gap-2 mb-4">
-            <Clock size={16} className="text-gray-400 mt-0.5 flex-shrink-0" />
+          <div className="flex items-start gap-2 mb-2 md:mb-4">
+            <Clock size={16} className="text-gray-400 flex-shrink-0" />
             <div>
               <p className="font-semibold text-sm text-gray-800 leading-tight">
                 {p.duration || "N/A"}
               </p>
-              <p className="text-xs text-gray-400">Duration</p>
+              <p className="text-xs lg:text-sm text-gray-400">Duration</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-2 mb-5">
-            <DollarSign size={16} className="text-gray-400 mt-0.5 flex-shrink-0" />
+          <div className="flex items-start gap-2 mb-3">
+            <DollarSign
+              size={16}
+              className="text-gray-400 flex-shrink-0"
+            />
             <div>
               <p className="font-semibold text-sm text-gray-800 leading-tight">
                 {formatTuition(p.international_tuition) || "N/A"}
               </p>
-              <p className="text-xs text-gray-400">Tuition</p>
+              <p className="text-xs lg:text-sm text-gray-400">Tuition</p>
             </div>
           </div>
 

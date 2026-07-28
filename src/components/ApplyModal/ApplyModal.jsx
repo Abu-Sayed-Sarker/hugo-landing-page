@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 
 export default function ApplyModal({ open, onClose, uniName, uniId, programTitle = "" }) {
   const [applyToUni, { isLoading }] = useApplyToUniversityMutation();
-  const [step, setStep] = useState("form"); // form | summary | chat
+  const [step, setStep] = useState("form");
   const [form, setForm] = useState({
     fullName: "",
     dob: "",

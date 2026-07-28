@@ -31,13 +31,13 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
   };
 
   return (
-    <div className="bg-white text-black p-6 rounded-xl shadow-sm z-[10000] w-72 max-w-72 shrink-0">
+    <div className="bg-white text-black p-3 md:p-6 rounded-xl shadow-sm z-[10000] md:w-72 shrink-0">
       {/* Header */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between mb-2 md:mb-5">
         <h3 className="font-bold text-xl">Filters</h3>
         <button
           onClick={handleClearAll}
-          className="flex items-center gap-1.5 text-sm font-medium text-blue hover:text-blue-700 transition-colors"
+          className="flex items-center md:gap-1.5 text-sm font-medium text-blue hover:text-blue-700 transition-colors"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           Clear all
@@ -45,13 +45,13 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
       </div>
 
       {/* Level Filter */}
-      <div className="border-b border-gray-100 py-4">
+      <div className="border-b border-gray-100 py-2 md:py-4">
         <button
           onClick={() => toggleSection("level")}
-          className="w-full flex items-center justify-between text-left"
+          className="w-full flex items-center justify-between text-left text-sm"
         >
           <span className="flex items-center gap-2 font-semibold">
-            <GraduationCap className="w-4 h-4 text-blue-600" />
+            <GraduationCap className="w-4 h-4 text-blue" />
             Academic Level
           </span>
           {openSections.level ? (
@@ -93,8 +93,8 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
           onClick={() => toggleSection("field")}
           className="w-full flex items-center justify-between text-left"
         >
-          <span className="flex items-center gap-2 font-semibold">
-            <BookOpen className="w-4 h-4 text-blue-600" />
+          <span className="flex items-center gap-2 font-semibold text-sm">
+            <BookOpen className="w-4 h-4 text-blue" />
             Field of Study
           </span>
           {openSections.field ? (
@@ -160,8 +160,8 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
             onClick={() => toggleSection("location")}
             className="w-full flex items-center justify-between text-left"
           >
-            <span className="flex items-center gap-2 font-semibold">
-              <MapPin className="w-4 h-4 text-blue-600" />
+            <span className="flex items-center gap-2 font-semibold text-sm">
+              <MapPin className="w-4 h-4 text-blue" />
               Location
             </span>
             {openSections.location ? (
@@ -210,8 +210,8 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
           onClick={() => toggleSection("univ_type")}
           className="w-full flex items-center justify-between text-left"
         >
-          <span className="flex items-center gap-2 font-semibold">
-            <Building2 className="w-4 h-4 text-blue-600" />
+          <span className="flex items-center gap-2 font-semibold text-sm">
+            <Building2 className="w-4 h-4 text-blue" />
             Condition
           </span>
           {openSections.univ_type ? (

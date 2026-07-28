@@ -1,10 +1,21 @@
-import { Star, ChevronDown, X, Search, MapPin, Heart, Landmark, ArrowRight, GraduationCap, Users } from "lucide-react";
+import {
+  Star,
+  ChevronDown,
+  X,
+  Search,
+  MapPin,
+  Heart,
+  Landmark,
+  ArrowRight,
+  GraduationCap,
+  Users,
+} from "lucide-react";
 import { Link, ScrollRestoration, useSearchParams } from "react-router-dom";
 import FiltersContent from "../../components/Shared/FiltersContent";
 import { useGetAllUniversitiesQuery } from "../../Api/universityApi";
 import { useState, useEffect } from "react";
 import uni_default from "../../assets/images/uni_default.jpg";
-import background from "../../assets/images/backgrounds.png"
+import background from "../../assets/images/backgrounds.png";
 export default function UniversityDirectory() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -109,8 +120,8 @@ export default function UniversityDirectory() {
       </div>
 
       {/* Main Content */}
-      <div className="w-11/12 mx-auto px-0 md:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row gap-4 lg:gap-8">
+      <div className="w-11/12 mx-auto px-0 md:px-6 lg:px-8 py-4 md:py-8">
+        <div className="flex flex-col md:flex-row gap-0 md:gap-4 xl:gap-8">
           {/* Mobile: filter toggle (visible on small screens) */}
           <div className="md:hidden w-full mb-4 flex items-center justify-between">
             <button
@@ -141,8 +152,8 @@ export default function UniversityDirectory() {
                 className="fixed inset-0 bg-black/40 z-40"
                 onClick={() => setShowFilters(false)}
               />
-              <div className="fixed left-0 top-0 bottom-0 w-72 z-50 overflow-auto bg-[#ECF5FF] p-4">
-                <div className="flex items-center justify-between mb-4">
+              <div className="fixed left-0 pt-10 top-0 bottom-0 w-72 z-50 overflow-auto bg-[#ECF5FF] px-2">
+                <div className="flex items-center justify-between mb-2 md:mb-4">
                   <h3 className="font-semibold">Filters</h3>
                   <button onClick={() => setShowFilters(false)} className="p-2">
                     <X />
@@ -158,11 +169,8 @@ export default function UniversityDirectory() {
 
           {/* University Grid */}
 
-
-          {/* ...inside your component, replace the listing block with this... */}
-
-          <div className="flex-1 px-4 md:px-7">
-            <div className="mb-4">
+          <div className="flex-1 xl:px-7">
+            <div className="mb-4 hidden md:block">
               <p className="text-sm text-gray-600">
                 Showing {universities.length} universities
               </p>
@@ -177,13 +185,13 @@ export default function UniversityDirectory() {
                 {universities.map((uni) => (
                   <div
                     key={uni.id}
-                    className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+                    className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 lg:gap-6"
                   >
                     {/* Image with save button + ranking badge */}
-                    <div className="relative w-full md:w-56 flex-shrink-0">
+                    <div className="relative w-full col-span-2 xl:col-span-1">
                       <img
                         src={getFullUrl(uni?.picture) || uni_default}
-                        className="w-full h-44 md:h-full rounded-lg object-cover"
+                        className="w-full md:h-full rounded-lg object-cover"
                         alt={uni.univ_name}
                       />
                       <button
@@ -222,13 +230,13 @@ export default function UniversityDirectory() {
                       </div>
 
                       {uni.about && (
-                        <p className="text-sm text-slate-500 mt-3 leading-relaxed line-clamp-2">
+                        <p className="text-sm text-slate-500 mt-1 md:mt-3 leading-relaxed line-clamp-2">
                           {uni.about}
                         </p>
                       )}
 
                       {Array.isArray(uni.tags) && uni.tags.length > 0 ? (
-                        <div className="flex flex-wrap gap-2 mt-3">
+                        <div className="flex flex-wrap gap-2 mt-1 md:mt-3">
                           {uni.tags.map((tag) => (
                             <span
                               key={tag}
@@ -245,7 +253,7 @@ export default function UniversityDirectory() {
                         </div>
                       ) : (
                         uni.univ_type && (
-                          <span className="inline-block text-xs bg-sky/50 text-blue px-3 py-1 rounded-full capitalize mt-3">
+                          <span className="inline-block text-xs bg-sky/50 text-blue px-3 py-1 rounded-full capitalize my-2 md:mt-3 md:mb-0">
                             {uni.univ_type}
                           </span>
                         )
@@ -253,41 +261,45 @@ export default function UniversityDirectory() {
                     </div>
 
                     {/* Stats column */}
-                    <div className="flex md:flex-col justify-between md:justify-center gap-3 md:gap-4 md:w-40 flex-shrink-0 md:border-l md:border-gray md:pl-5">
+                    <div className="flex flex-col justify-between md:justify-center gap-3 md:gap-4 md:w-40 flex-shrink-0 md:border-l md:border-gray md:pl-5">
                       {uni.total_students && (
                         <div className="flex items-center gap-4 text-sm text-slate-700">
                           <GraduationCap className="text-slate-400 flex-shrink-0" />
                           <div>
-                            <p className="font-semibold">{uni.total_students}</p>
-                            <p>
-                              Students
+                            <p className="font-semibold">
+                              {uni.total_students}
                             </p>
+                            <p>Students</p>
                           </div>
                         </div>
                       )}
+
                       {uni.total_faculty && (
                         <div className="flex items-center gap-4 text-sm text-slate-700">
                           <Users className="text-slate-400 flex-shrink-0" />
                           <div>
                             <p className="font-semibold">{uni.total_faculty}</p>
-                            <p>
-                              Faculty
-                            </p>
+                            <p>Faculty</p>
                           </div>
                         </div>
                       )}
+
                       <div className="flex items-center gap-4 text-sm text-slate-700">
                         <Landmark className="text-slate-400 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold">{uni.programs_count}</p> Programs
+                          <p className="font-semibold">{uni.programs_count}</p>{" "}
+                          Programs
                         </div>
                       </div>
                     </div>
 
                     {/* Rating + CTAs */}
-                    <div className="flex flex-row md:flex-col items-center justify-between md:justify-center gap-3 flex-shrink-0 md:border-l md:border-gray md:pl-5">
+                    <div className="flex flex-col items-center justify-between md:justify-center gap-3 flex-shrink-0 md:border-l md:border-gray md:pl-5">
                       <div className="flex items-center gap-1">
-                        <Star size={16} className="text-yellow-500 fill-current" />
+                        <Star
+                          size={16}
+                          className="text-yellow-500 fill-current"
+                        />
                         <span className="text-slate-900 font-semibold">
                           {uni.average_rating || 0}
                         </span>
