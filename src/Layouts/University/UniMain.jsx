@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 export default function UniMain() {
   return (
-    <div className="flex h-screen bg-base font-rubik">
+    <div className="flex h-screen bg-base">
       <Sidebar />
 
       <div className="flex-1 flex flex-col">

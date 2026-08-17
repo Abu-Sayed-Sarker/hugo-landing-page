@@ -6,7 +6,7 @@ import UniNavbar from "../University/UniNavbar";
 
 export default function AdminMain() {
   return (
-    <div className="flex h-screen bg-base font-rubik">
+    <div className="flex h-screen bg-base">
       <AdminSidebar />
 
       <div className="flex-1 flex flex-col">

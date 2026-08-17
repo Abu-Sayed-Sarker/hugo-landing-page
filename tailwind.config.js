@@ -4,8 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        rubik: ["Rubik", "serif"],
-        inter: ["Inter", "serif"],
+        sans: ["Inter", "sans-serif"],
+        title: ["DM Sans", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
       colors: {
         primary: "#002B5B",
