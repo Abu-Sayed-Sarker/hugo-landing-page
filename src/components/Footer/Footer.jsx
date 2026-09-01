@@ -78,7 +78,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-[#B9C2D0] mb-1">Links</h3>
+            <h3 className="font-semibold text-[#B9C2D0] mb-1">Enlaces</h3>
             <div className="w-8 h-0.5 bg-blue mb-4"></div>
             <ul className="space-y-3">
               <li>
@@ -87,7 +87,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-[#B9C2D0]/80 hover:text-white transition-colors"
                 >
                   <Home size={15} />
-                  Home
+                  Inicio
                 </Link>
               </li>
               <li>
@@ -207,8 +207,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[#B9C2D0]/80 text-sm">
-            © 2025 <span className="text-blue/90">Clasia</span>. All rights
-            reserved.
+            © 2025 <span className="text-blue/90">Clasia</span>. Todos los derechos reservados.
           </p>
 
           <div className="relative">
@@ -216,7 +215,7 @@ export default function Footer() {
               onClick={() => setShowLangMsg((prev) => !prev)}
               className="flex items-center gap-1 text-[#B9C2D0]/80 hover:text-white text-sm transition-colors"
             >
-              English
+              Inglés
               <ChevronDown size={14} />
             </button>
 

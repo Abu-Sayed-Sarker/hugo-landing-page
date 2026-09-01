@@ -21,13 +21,13 @@ export default function Newsletter() {
         <div className="text-center">
           {/* Title */}
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-            Stay Updated with Educational Opportunities
+            Mantente al día con Oportunidades Educativas
           </h2>
 
           {/* Subtitle */}
           <p className="text-[#BFDBFE] text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto">
-            Subscribe to our newsletter and receive the latest news about universities, scholarships, and exclusive
-            events directly to your inbox.
+            Suscríbete a nuestro boletín y recibe las últimas noticias sobre universidades, becas y
+            eventos exclusivos directamente en tu bandeja de entrada.
           </p>
 
           {/* Email Input and Subscribe Button */}
@@ -36,7 +36,7 @@ export default function Newsletter() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email address"
+              placeholder="Tu correo electrónico"
               className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-[#CCCCCC] focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
@@ -44,16 +44,16 @@ export default function Newsletter() {
               type="submit"
               className="px-6 py-3 bg-[#0047E9] hover:shadow-lg hover:scale-105 transition-transform text-white font-semibold rounded-lg duration-200"
             >
-              Subscribe
+              Suscribirse
             </button>
           </form>
 
           {/* Success Message */}
-          {subscribed && <p className="text-green-300 text-sm mb-4">Thank you for subscribing!</p>}
+          {subscribed && <p className="text-green-300 text-sm mb-4">¡Gracias por suscribirte!</p>}
 
           {/* Privacy Notice */}
           <p className="text-[#BFDBFE] text-sm">
-            We respect your privacy and will never share your information. You can unsubscribe at any time.
+            Respetamos tu privacidad y nunca compartiremos tu información. Puedes darte de baja en cualquier momento.
           </p>
         </div>
       </div>

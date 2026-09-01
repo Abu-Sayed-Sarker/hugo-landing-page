@@ -18,11 +18,11 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const navLinks = [
-    { label: "Universities", href: "/universities" },
-    { label: "Programs", href: "/programs" },
-    { label: "Events", href: "/events" },
-    { label: "Jobs", href: "/jobs" },
-    { label: "About us", href: "/about" },
+    { label: "Universidades", href: "/universities" },
+    { label: "Programas", href: "/programs" },
+    { label: "Eventos", href: "/events" },
+    { label: "Trabajos", href: "/jobs" },
+    { label: "Sobre Nosotros", href: "/about" },
     { label: "Hugo AI", href: data.isAuthenticated ? "/ai-assistant" : "/login-page" },
   ];
 
@@ -79,7 +79,7 @@ export default function Navbar() {
                 <Link to={"/user"}>
                   <button className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform bg-primary text-white px-4 py-2 rounded-lg whitespace-nowrap hover:bg-blue-700">
                     <User size={18} />
-                    <span className="hidden sm:inline">Dashboard</span>
+                    <span className="hidden sm:inline">Panel</span>
                   </button>
                 </Link>
                 <Link to={"/message"}>
@@ -102,7 +102,7 @@ export default function Navbar() {
                 className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform border border-blue text-blue px-4 sm:px-6 py-2 rounded-lg whitespace-nowrap font-medium"
               >
                 <User size={18} strokeWidth={2.5} />
-                <span className="hidden sm:inline">Login</span>
+                <span className="hidden sm:inline">Iniciar sesión</span>
               </button>
             )}
 
@@ -125,7 +125,7 @@ export default function Navbar() {
               <Search size={18} className="text-gray-400" />
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Buscar..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 className="bg-transparent outline-none text-gray-700 placeholder-gray-400 flex-1"

@@ -39,7 +39,7 @@ export default function Testimonial() {
   if (isLoading)
     return (
       <div className="py-20 text-center text-gray-500">
-        Loading success stories...
+        Cargando historias de éxito...
       </div>
     );
   if (stories.length === 0) return null;
@@ -48,17 +48,17 @@ export default function Testimonial() {
 
   return (
     <section
-      className="w-full pt-6 pb-2 md:pt-10 md:pb-0 lg:py-10 lg:py-20 bg-contain bg-center relative -top-6 z-40 rounded-t-3xl bg-[#F3F4F6]"
+      className="w-full pt-6 pb-2 md:pt-10 md:pb-0 lg:py-10 bg-contain bg-center relative -top-6 z-40 rounded-t-3xl bg-[#F3F4F6]"
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="text-center mb-6 lg:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 md:mb-3">
-            Student Success Stories
+            Historias de Éxito de Estudiantes
           </h2>
           <p className="text-gray-600 text-lg">
-            Hear from students who found their path to academic success through
+            Escucha a los estudiantes que encontraron su camino hacia el éxito académico a través de
             EduConnect
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function Testimonial() {
                     <button
                       onClick={goToPrevious}
                       className="w-10 h-10 rounded-full border-2 border-gray-100 flex items-center justify-center hover:border-blue hover:text-blue transition-colors bg-base"
-                      aria-label="Previous story"
+                      aria-label="Historia anterior"
                     >
                       <svg
                         className="w-5 h-5"
@@ -120,7 +120,7 @@ export default function Testimonial() {
                     <button
                       onClick={goToNext}
                       className="w-10 h-10 rounded-full border-2 border-gray-100 flex items-center justify-center hover:border-blue hover:text-blue transition-colors bg-base"
-                      aria-label="Next story"
+                      aria-label="Siguiente historia"
                     >
                       <svg
                         className="w-5 h-5"
@@ -149,9 +149,8 @@ export default function Testimonial() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentSlide ? "bg-blue w-8" : "bg-gray-300"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-blue w-8" : "bg-gray-300"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

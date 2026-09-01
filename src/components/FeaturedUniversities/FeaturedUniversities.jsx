@@ -74,10 +74,10 @@ export default function FeaturedUniversities() {
             </div>
             <div className="text-left">
               <h4 className="font-bold text-slate-800 text-sm">
-                Smart Matching
+                Búsqueda Inteligente
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                AI-powered recommendations personalized for you
+                Recomendaciones impulsadas por IA personalizadas para ti
               </p>
             </div>
           </div>
@@ -89,10 +89,10 @@ export default function FeaturedUniversities() {
             </div>
             <div className="text-left">
               <h4 className="font-bold text-slate-800 text-sm">
-                Compare Easily
+                Compara Fácilmente
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                Side-by-side university and program comparisons
+                Comparaciones detalladas de universidades y programas
               </p>
             </div>
           </div>
@@ -104,10 +104,10 @@ export default function FeaturedUniversities() {
             </div>
             <div className="text-left">
               <h4 className="font-bold text-slate-800 text-sm">
-                Scholarships Finder
+                Buscador de Becas
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                Find and apply for scholarships worldwide
+                Encuentra y solicita becas en todo el mundo
               </p>
             </div>
           </div>
@@ -119,10 +119,10 @@ export default function FeaturedUniversities() {
             </div>
             <div className="text-left">
               <h4 className="font-bold text-slate-800 text-sm">
-                Expert Support
+                Soporte Experto
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                Get help from our education experts anytime
+                Obtén ayuda de nuestros expertos en educación en cualquier momento
               </p>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function FeaturedUniversities() {
         {/* Header with Navigation */}
         <div className="flex items-center justify-between mb-6 lg:mb-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
-            Featured Universities
+            Universidades Destacadas
           </h2>
 
           {/* Navigation Arrows */}
@@ -140,24 +140,24 @@ export default function FeaturedUniversities() {
           <div className="flex items-center gap-4 lg:gap-8">
             <Link
               to={"/universities"}
-              className="flex justify-center hidden md:block"
+              className="justify-center hidden md:flex"
             >
               <button className="px-4 lg:px-8 py-2 md:py-3 hover:shadow-lg hover:scale-105 transition-transform border-2 border-blue text-blue font-semibold rounded-lg duration-200">
-                View All Universities
+                Ver Todas las Universidades
               </button>
             </Link>
             <div className="flex gap-1 md:gap-2">
               <button
                 onClick={handlePrevious}
                 className="p-2 rounded-full border border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
-                aria-label="Previous universities"
+                aria-label="Universidades anteriores"
               >
                 <ChevronLeft className="md:w-5 md:h-5 w-4 h-4 text-gray-600 hover:text-blue-600" />
               </button>
               <button
                 onClick={handleNext}
                 className="p-2 rounded-full border border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
-                aria-label="Next universities"
+                aria-label="Siguientes universidades"
               >
                 <ChevronRight className="md:w-5 md:h-5 w-4 h-4 text-gray-600 hover:text-blue-600" />
               </button>
@@ -194,7 +194,7 @@ export default function FeaturedUniversities() {
                         {uni.univ_name}
                       </h3>
                       <p className="text-sm text-[#374151] mb-3 truncate">
-                        {uni.address || "Location not specified"}
+                        {uni.address || "Ubicación no especificada"}
                       </p>
                     </div>
                     <img
@@ -206,7 +206,7 @@ export default function FeaturedUniversities() {
                   {/* Programs and Rating */}
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-[#6B7280]">
-                      {uni.programs_count} Programs
+                      {uni.programs_count} Programas
                     </span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -222,7 +222,7 @@ export default function FeaturedUniversities() {
         </div>
         <Link to={"/universities"} className="flex justify-center md:hidden">
           <button className="px-4 md:px-8 py-1 md:py-3 hover:shadow-lg hover:scale-105 transition-transform border-2 border-blue text-blue font-semibold rounded-lg duration-200">
-            View All Universities
+            Ver Todas las Universidades
           </button>
         </Link>
       </div>

@@ -12,10 +12,10 @@ export default function OurServices() {
         {/* Header */}
         <div className="text-center mb-6 lg:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 lg:mb-4">
-            Our Services
+            Nuestros Servicios
           </h2>
           <p className="text-lg text-[#374151] max-w-2xl mx-auto">
-            Comprehensive support for your educational journey
+            Apoyo integral para tu viaje educativo
           </p>
         </div>
 
@@ -27,11 +27,11 @@ export default function OurServices() {
               <img src={service1} alt="" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
-              Program Matching
+              Búsqueda de Programas
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Find the perfect academic program that aligns with your career
-              goals and interests.
+              Encuentra el programa académico perfecto que se alinee con tus
+              metas profesionales e intereses.
             </p>
           </div>
 
@@ -41,11 +41,11 @@ export default function OurServices() {
               <img src={service2} alt="" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
-              Scholarship Finder
+              Buscador de Becas
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Discover scholarships and financial aid opportunities tailored to
-              your profile.
+              Descubre becas y oportunidades de ayuda financiera adaptadas a
+              tu perfil.
             </p>
           </div>
 
@@ -54,12 +54,12 @@ export default function OurServices() {
             <div className="mb-4 md:mb-6 inline-flex">
               <img src={service3} alt="" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-1 md:mb-3">
-              Events & Webinars
+            <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-1">
+              Eventos y Seminarios web
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Attend virtual and in-person events to connect with university
-              representatives.
+              Asiste a eventos virtuales y presenciales para conectarte con
+              representantes de las universidades.
             </p>
           </div>
 
@@ -69,11 +69,11 @@ export default function OurServices() {
               <img src={service4} alt="" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
-              Career Resources
+              Recursos Profesionales
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Access internships, job opportunities, and career development
-              resources.
+              Accede a pasantías, oportunidades laborales y recursos de
+              desarrollo profesional.
             </p>
           </div>
         </div>

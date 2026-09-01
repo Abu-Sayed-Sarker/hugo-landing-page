@@ -47,7 +47,7 @@ export default function Hero() {
   const handleCompare = () => {
     // ... existing handleCompare ...
     // Logic to navigate to compare centers page
-    toast("It will be available soon", {
+    toast("Estará disponible pronto", {
       icon: <ShieldPlus />,
       position: "bottom-center",
       style: {
@@ -62,7 +62,7 @@ export default function Hero() {
     if (isAuthenticated) {
       navigate("/ai-assistant");
     } else {
-      toast.error("Please login to continue", {
+      toast.error("Por favor, inicia sesión para continuar", {
         icon: "❌",
         position: "bottom-center",
         style: {
@@ -99,19 +99,19 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 bg-sky/50 text-blue text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
               <GraduationCap className="w-4  h-4 " />
-              Your Future. Our Platform.
+              Tu futuro. Nuestra plataforma.
             </div>
 
             {/* Heading */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 lg:leading-tight text-balance">
-              Find the Right University for{" "}
-              <span className="text-blue">Your Future</span>
+              Encuentra la universidad ideal para{" "}
+              <span className="text-blue">tu futuro</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-slate-600 mb-6 leading-relaxed">
-              Do you have doubts or want to make sure you choose your future
-              well? Check out these tools.
+              ¿Tienes dudas o quieres asegurarte de elegir bien tu futuro?
+              Echa un vistazo a estas herramientas.
             </p>
 
             {/* Tabs */}
@@ -123,7 +123,7 @@ export default function Hero() {
                   : "border-transparent text-slate-400 hover:text-slate-600"
                   }`}
               >
-                Search Universities
+                Buscar Universidades
               </button>
               <button
                 onClick={() => setActiveTab("programs")}
@@ -132,7 +132,7 @@ export default function Hero() {
                   : "border-transparent text-slate-400 hover:text-slate-600"
                   }`}
               >
-                Search Programs
+                Buscar Programas
               </button>
             </div>
 
@@ -144,8 +144,8 @@ export default function Hero() {
                   type="text"
                   placeholder={
                     activeTab === "universities"
-                      ? "Search by university, program or country"
-                      : "Search by program name"
+                      ? "Buscar por universidad, programa o país"
+                      : "Buscar por nombre del programa"
                   }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -163,8 +163,8 @@ export default function Hero() {
 
             {/* Popular Searches */}
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm mb-6">
-              <span className="text-slate-500">Popular searches:</span>
-              {["Computer Science", "MBA", "Engineering", "Business"].map(
+              <span className="text-slate-500">Búsquedas populares:</span>
+              {["Informática", "MBA", "Ingeniería", "Negocios"].map(
                 (tag) => (
                   <button
                     key={tag}
@@ -183,14 +183,14 @@ export default function Hero() {
                 onClick={() => navigate("/universities")}
                 className="flex-1 bg-blue hover:bg-blue text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-4 text-sm sm:text-base"
               >
-                Explore Universities
+                Explorar Universidades
                 <FaArrowRightLong className="" />
               </button>
               <button
                 onClick={handleTalkToAI}
                 className="flex-1 border border-blue text-blue font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-4 text-sm sm:text-[16px]"
               >
-                Talk with AI bot
+                Hablar con bot de IA
                 <Bot className="w-5 h-5" />
               </button>
             </div>
@@ -202,14 +202,14 @@ export default function Hero() {
                 className="flex items-center gap-1.5 text-slate-500 hover:text-blue transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
-                Compare centers
+                Comparar centros
               </button>
               <button
                 onClick={handleCompare}
                 className="flex items-center gap-1.5 text-slate-500 hover:text-blue transition-colors"
               >
                 <MessageCircleMore className="w-4 h-4" />
-                Vocational orientator
+                Orientador vocacional
               </button>
             </div>
           </div>
