@@ -14,19 +14,19 @@ export default function JobApplicationsTable({ applications }) {
         <thead className="bg-gray-50 border-b border-gray-200">
           <tr>
             <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-              Student Name
+              Nombre del Estudiante
             </th>
             <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-              Contact Info
+              Información de Contacto
             </th>
             <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-              Job ID
+              ID del Trabajo
             </th>
             <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-              Resume
+              Currículum
             </th>
             <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-              Cover Letter
+              Carta de Presentación
             </th>
           </tr>
         </thead>
@@ -56,7 +56,7 @@ export default function JobApplicationsTable({ applications }) {
               </td>
               <td className="px-6 py-4 text-sm text-gray-600">
                 <span className="bg-gray-100 px-2 py-1 rounded text-xs font-medium border border-gray-200">
-                  Job #{app.job}
+                  Trabajo #{app.job}
                 </span>
               </td>
               <td className="px-6 py-4 text-sm">
@@ -67,10 +67,10 @@ export default function JobApplicationsTable({ applications }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue/5 text-blue rounded-md hover:bg-blue/10 transition-colors font-medium border border-blue/10"
                   >
-                    <Download size={14} /> Resume
+                    <Download size={14} /> Currículum
                   </a>
                 ) : (
-                  <span className="text-gray-400 italic">No Resume</span>
+                  <span className="text-gray-400 italic">Sin Currículum</span>
                 )}
               </td>
               <td className="px-6 py-4 text-sm">
@@ -81,26 +81,28 @@ export default function JobApplicationsTable({ applications }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-600 rounded-md hover:bg-gray-100 transition-colors font-medium border border-gray-200"
                   >
-                    <Download size={14} /> Download
+                    <Download size={14} /> Descargar
                   </a>
-                ) : (
-                  <span className="text-gray-400 italic">No Cover Letter</span>
+          ) : (
+          <span className="text-gray-400 italic">Sin Carta de Presentación</span>
                 )}
-              </td>
-            </tr>
-          ))}
-          {applications.length === 0 && (
-            <tr>
-              <td
-                colSpan="5"
-                className="px-6 py-12 text-center text-gray-500 italic"
-              >
-                No applications found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+        </td>
+      </tr>
+      ))
+}
+      {
+        applications.length === 0 && (
+          <tr>
+            <td
+              colSpan="5"
+              className="px-6 py-12 text-center text-gray-500 italic"
+            >
+              No se encontraron solicitudes.
+            </td>
+          </tr>
+        )}
+          </tbody>
+      </table >
+    </div >
   );
 }

@@ -13,7 +13,7 @@ export default function DeleteJobModal({ job, onConfirm, onCancel, isDeleting })
                         <div className="p-2 bg-red-50 rounded-lg">
                             <AlertTriangle className="w-5 h-5 text-red-600" />
                         </div>
-                        <h2 className="text-xl font-bold text-gray-900">Delete Job</h2>
+                        <h2 className="text-xl font-bold text-gray-900">Eliminar Trabajo</h2>
                     </div>
                     <button
                         onClick={onCancel}
@@ -25,9 +25,9 @@ export default function DeleteJobModal({ job, onConfirm, onCancel, isDeleting })
 
                 <div className="p-8">
                     <p className="text-gray-600 leading-relaxed mb-6">
-                        Are you sure you want to delete{" "}
+                        ¿Estás seguro de que deseas eliminar{" "}
                         <span className="font-bold text-gray-900">"{job.title}"</span>?
-                        This action will permanently remove the job posting and cannot be undone.
+                        Esta acción eliminará permanentemente la publicación del trabajo y no se puede deshacer.
                     </p>
 
                     <div className="flex gap-3 justify-end">
@@ -36,14 +36,14 @@ export default function DeleteJobModal({ job, onConfirm, onCancel, isDeleting })
                             disabled={isDeleting}
                             className="px-6 py-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 font-bold text-gray-700 transition-all disabled:opacity-50"
                         >
-                            Cancel
+                            Cancelar
                         </button>
                         <button
                             onClick={onConfirm}
                             disabled={isDeleting}
                             className="px-6 py-2.5 bg-red text-white rounded-xl hover:bg-red-700 font-bold shadow-lg shadow-red-100 transition-all flex items-center gap-2 disabled:opacity-50"
                         >
-                            {isDeleting ? "Deleting..." : "Delete Job"}
+                            {isDeleting ? "Eliminando..." : "Eliminar Trabajo"}
                         </button>
                     </div>
                 </div>

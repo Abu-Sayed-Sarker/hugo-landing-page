@@ -35,16 +35,16 @@ export default function JobsAndInternships() {
     try {
       if (editingJob) {
         await updateJob(jobData).unwrap();
-        toast.success("Job updated successfully");
+        toast.success("Trabajo actualizado con éxito");
       } else {
         await createJob(jobData).unwrap();
-        toast.success("Job posted successfully");
+        toast.success("Trabajo publicado con éxito");
       }
       setShowPostJobModal(false);
       setEditingJob(null);
     } catch (err) {
       console.error("Failed to save job:", err);
-      toast.error(err?.data?.detail || "An error occurred while saving the job.");
+      toast.error(err?.data?.detail || "Ocurrió un error al guardar el trabajo.");
     }
   };
 
@@ -62,11 +62,11 @@ export default function JobsAndInternships() {
     if (!deletingJob) return;
     try {
       await deleteJob(deletingJob.id).unwrap();
-      toast.success("Job deleted successfully");
+      toast.success("Trabajo eliminado con éxito");
       setDeletingJob(null);
     } catch (err) {
       console.error("Failed to delete job:", err);
-      toast.error(err?.data?.message || "Failed to delete job");
+      toast.error(err?.data?.message || "Error al eliminar el trabajo");
     }
   };
 
@@ -80,14 +80,14 @@ export default function JobsAndInternships() {
 
   const applications = applicationsData?.results || [];
 
-  if (jobsLoading || appsLoading) return <div className="p-8">Loading...</div>;
-  if (jobsError || appsError) return <div className="p-8 text-red-500">Error loading data.</div>;
+  if (jobsLoading || appsLoading) return <div className="p-8">Cargando...</div>;
+  if (jobsError || appsError) return <div className="p-8 text-red-500">Error al cargar los datos.</div>;
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-end mb-8 border-b border-gray-200">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Jobs & Internships</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-6">Trabajos y Pasantías</h1>
           <div className="flex gap-8">
             <button
               onClick={() => setActiveTab("all-jobs")}
@@ -96,7 +96,7 @@ export default function JobsAndInternships() {
                 : "text-gray-500 hover:text-gray-700"
                 }`}
             >
-              All Open Jobs
+              Todos los Trabajos Abiertos
             </button>
             <button
               onClick={() => setActiveTab("applications")}
@@ -105,7 +105,7 @@ export default function JobsAndInternships() {
                 : "text-gray-500 hover:text-gray-700"
                 }`}
             >
-              Recent Applications
+              Solicitudes Recientes
             </button>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function JobsAndInternships() {
             }}
             className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium shadow-sm transition-all"
           >
-            + Post New Job
+            + Publicar Nuevo Trabajo
           </button>
         </div>
       </div>

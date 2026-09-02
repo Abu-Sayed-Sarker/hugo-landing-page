@@ -8,7 +8,7 @@ export default function JobsTable({ jobs, onView, onEdit, onDelete, searchTerm, 
       <div className="mb-6 flex gap-4">
         <input
           type="text"
-          placeholder="Search jobs..."
+          placeholder="Buscar trabajos..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -20,28 +20,28 @@ export default function JobsTable({ jobs, onView, onEdit, onDelete, searchTerm, 
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
               <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">
-                Job ID
+                ID del Trabajo
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Job Title
+                Título del Trabajo
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Department
+                Departamento
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Type
+                Tipo
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Location
+                Ubicación
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Applications
+                Solicitudes
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Status
+                Estado
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                Actions
+                Acciones
               </th>
             </tr>
           </thead>
@@ -52,7 +52,7 @@ export default function JobsTable({ jobs, onView, onEdit, onDelete, searchTerm, 
                 <td className="px-6 py-4 text-sm flex flex-col gap-1">
                   <span className="font-medium">{job.title}</span>
                   <span className="text-gray-500 flex items-center gap-1">
-                    <Calendar size={14} /> Posted: {job.posted_date}
+                    <Calendar size={14} /> Publicado: {job.posted_date}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-600">
@@ -71,7 +71,7 @@ export default function JobsTable({ jobs, onView, onEdit, onDelete, searchTerm, 
                       }`}>
                       {job.status}
                     </span>
-                    <span className="text-gray-500 text-xs font-medium">Expires: {job?.deadline}</span>
+                    <span className="text-gray-500 text-xs font-medium">Vence: {job?.deadline}</span>
                   </div>
                 </td>
                 <td className="px-6 py-4 text-sm">
@@ -79,23 +79,23 @@ export default function JobsTable({ jobs, onView, onEdit, onDelete, searchTerm, 
                     <button
                       onClick={() => onView(job)}
                       className="text-blue hover:underline"
-                      title="View"
+                      title="Ver"
                     >
-                      View
+                      Ver
                     </button>
                     <button
                       onClick={() => onEdit(job)}
                       className="text-blue hover:underline"
-                      title="Edit"
+                      title="Editar"
                     >
-                      Edit
+                      Editar
                     </button>
                     <button
                       onClick={() => onDelete && onDelete(job.id)}
                       className="text-red hover:underline font-medium"
-                      title="Delete"
+                      title="Eliminar"
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </div>
                 </td>

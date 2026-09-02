@@ -93,7 +93,7 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-gradient-to-r from-[#F5E6E3] to-[#DEF0EC] border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
           <h2 className="text-xl font-bold text-gray-900">
-            {job ? "Edit Job" : "Post New Job"}
+            {job ? "Editar Trabajo" : "Publicar Nuevo Trabajo"}
           </h2>
           <button
             onClick={onClose}
@@ -107,23 +107,23 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
           {/* Title and Company */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Job Title</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Título del Trabajo</label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleInputChange("title", e.target.value)}
-                placeholder="e.g., Research Assistant"
+                placeholder="ej., Asistente de Investigación"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
                 required
               />
             </div>
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Company Name</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Nombre de la Empresa</label>
               <input
                 type="text"
                 value={formData.company_name}
                 onChange={(e) => handleInputChange("company_name", e.target.value)}
-                placeholder="e.g., University of Dhaka"
+                placeholder="ej., Universidad de Dhaka"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
                 required
               />
@@ -133,25 +133,25 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
           {/* Department and Type */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Department</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Departamento</label>
               <input
                 type="text"
                 value={formData.department}
                 onChange={(e) => handleInputChange("department", e.target.value)}
-                placeholder="e.g., Computer Science"
+                placeholder="ej., Ciencias de la Computación"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
               />
             </div>
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Job Type</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Tipo de Trabajo</label>
               <select
                 value={formData.job_type}
                 onChange={(e) => handleInputChange("job_type", e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue appearance-none bg-white"
               >
-                <option value="Full Time">Full Time</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Internship">Internship</option>
+                <option value="Full Time">Tiempo Completo</option>
+                <option value="Part Time">Medio Tiempo</option>
+                <option value="Internship">Pasantía</option>
               </select>
             </div>
           </div>
@@ -159,22 +159,22 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
           {/* Location and Salary */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Location</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Ubicación</label>
               <input
                 type="text"
                 value={formData.location}
                 onChange={(e) => handleInputChange("location", e.target.value)}
-                placeholder="e.g., Remote / Dhaka, BD"
+                placeholder="ej., Remoto / Madrid, ES"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
               />
             </div>
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Contact Email</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Correo de Contacto</label>
               <input
                 type="email"
                 value={formData.contact_email}
                 onChange={(e) => handleInputChange("contact_email", e.target.value)}
-                placeholder="e.g., recruitment@dhaka.edu"
+                placeholder="ej., reclutamiento@dhaka.edu"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
                 required
               />
@@ -183,17 +183,17 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Salary / Range</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Salario / Rango</label>
               <input
                 type="text"
                 value={formData.salary}
                 onChange={(e) => handleInputChange("salary", e.target.value)}
-                placeholder="e.g., $40 per hour"
+                placeholder="ej., $40 por hora"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
               />
             </div>
             <div>
-              <label className="block font-semibold text-gray-700 mb-1.5">Posted Date</label>
+              <label className="block font-semibold text-gray-700 mb-1.5">Fecha de Publicación</label>
               <input
                 type="date"
                 value={formData.posted_date}
@@ -204,7 +204,7 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
           </div>
 
           <div>
-            <label className="block font-semibold text-gray-700 mb-1.5">Application Deadline</label>
+            <label className="block font-semibold text-gray-700 mb-1.5">Fecha Límite de Solicitud</label>
             <input
               type="date"
               value={formData.deadline}
@@ -216,11 +216,11 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
 
           {/* Description */}
           <div>
-            <label className="block font-semibold text-gray-700 mb-1.5">Job Description</label>
+            <label className="block font-semibold text-gray-700 mb-1.5">Descripción del Trabajo</label>
             <textarea
               value={formData.description}
               onChange={(e) => handleInputChange("description", e.target.value)}
-              placeholder="Detailed job description..."
+              placeholder="Descripción detallada del trabajo..."
               rows="4"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue"
               required
@@ -229,11 +229,11 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
 
           {/* List Fields Helper */}
           {[
-            { id: "responsibilities", label: "Responsibilities", placeholder: "e.g., Managing project timelines" },
-            { id: "requirements", label: "Requirements", placeholder: "e.g., 3+ years experience" },
-            { id: "qualifications", label: "Preferred Qualifications", placeholder: "e.g., PMP certification" },
-            { id: "benefits", label: "Benefits", placeholder: "e.g., Flexible working hours" },
-            { id: "application_process", label: "Application Process", placeholder: "e.g., Send your resume" },
+            { id: "responsibilities", label: "Responsabilidades", placeholder: "ej., Gestionar plazos de proyectos" },
+            { id: "requirements", label: "Requisitos", placeholder: "ej., más de 3 años de experiencia" },
+            { id: "qualifications", label: "Cualificaciones Preferidas", placeholder: "ej., certificación PMP" },
+            { id: "benefits", label: "Beneficios", placeholder: "ej., horario de trabajo flexible" },
+            { id: "application_process", label: "Proceso de Solicitud", placeholder: "ej., envíe su currículum" },
           ].map((listField) => (
             <div key={listField.id}>
               <label className="block font-semibold text-gray-700 mb-1.5">{listField.label}</label>
@@ -251,7 +251,7 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
                   onClick={() => addToList(listField.id)}
                   className="bg-blue text-white px-5 py-2 rounded-lg hover:bg-blue-600 font-bold shadow-sm transition-colors"
                 >
-                  Add
+                  Agregar
                 </button>
               </div>
               <div className="space-y-2">
@@ -278,13 +278,13 @@ export default function PostNewJobModal({ job, onSave, onClose }) {
               onClick={onClose}
               className="px-6 py-2.5 border border-gray-300 rounded-lg font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
               className="px-8 py-2.5 bg-blue text-white rounded-lg font-bold shadow-md hover:bg-blue-600 transition-all"
             >
-              {job ? "Update Job" : "Post Job"}
+              {job ? "Actualizar Trabajo" : "Publicar Trabajo"}
             </button>
           </div>
         </form>
