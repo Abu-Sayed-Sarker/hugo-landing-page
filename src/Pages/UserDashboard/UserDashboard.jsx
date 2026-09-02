@@ -42,7 +42,7 @@ export default function UserDashboard() {
                         ?.split(" ")
                         .map((n) => n[0])
                         .join("")
-                        .toUpperCase() || "JD"}
+                        .toUpperCase() || "AS"}
                     </span>
                   )}
                 </div>
@@ -125,10 +125,10 @@ export default function UserDashboard() {
                     </div>
                     <span
                       className={`text-xs px-3 py-1 rounded font-medium ${app.status?.toLowerCase() === "accepted"
-                          ? "bg-green-100 text-green-700"
-                          : app.status?.toLowerCase() === "rejected"
-                            ? "bg-red-100 text-red-700"
-                            : "bg-yellow-100 text-yellow-700"
+                        ? "bg-green-100 text-green-700"
+                        : app.status?.toLowerCase() === "rejected"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-yellow-100 text-yellow-700"
                         }`}
                     >
                       {app.status}
