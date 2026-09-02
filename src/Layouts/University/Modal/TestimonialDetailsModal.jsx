@@ -12,9 +12,9 @@ export default function TestimonialDetailsModal({ testimonial, onClose }) {
   };
 
   const getStatusText = (status) => {
-    if (status === "approved") return "Approved";
-    if (status === "rejected") return "Rejected";
-    return "Pending";
+    if (status === "approved") return "Aprobado";
+    if (status === "rejected") return "Rechazado";
+    return "Pendiente";
   };
 
   return (
@@ -23,7 +23,7 @@ export default function TestimonialDetailsModal({ testimonial, onClose }) {
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-gray-200">
           <h2 className="text-lg font-bold text-gray-900">
-            Testimonial Details
+            Detalles del Testimonio
           </h2>
           <button
             onClick={onClose}
@@ -46,7 +46,7 @@ export default function TestimonialDetailsModal({ testimonial, onClose }) {
             <div className="space-x-3 text-sm mb-2">
               {" "}
               <span className="text-sm">{renderStars(testimonial.rating)}</span>
-              <span>Submitted on: {testimonial.date}</span>
+              <span>Enviado el: {testimonial.date}</span>
             </div>
             <span
               className={`px-3 py-1.5 rounded-full text-sm ${getStatusColor(

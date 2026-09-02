@@ -49,24 +49,24 @@ export default function Testimonials() {
     try {
       await updateStatus({ id, action }).unwrap();
       toast.success(
-        `Testimonial ${action === "approve" ? "approved" : "rejected"} successfully!`,
+        `Testimonio ${action === "approve" ? "aprobado" : "rechazado"} con éxito!`,
       );
     } catch (err) {
       console.error(err);
-      toast.error(err?.data?.error || `Failed to ${action} testimonial`);
+      toast.error(err?.data?.error || `Error al ${action === "approve" ? "aprobar" : "rechazar"} el testimonio`);
     }
   };
 
   if (isLoading)
     return (
       <div className="p-8 text-center text-gray-500">
-        Loading testimonials...
+        Cargando testimonios...
       </div>
     );
   if (error)
     return (
       <div className="p-8 text-center text-red-500">
-        Error loading testimonials.
+        Error al cargar los testimonios.
       </div>
     );
 
@@ -100,9 +100,9 @@ export default function Testimonials() {
   };
 
   const getStatusText = (status) => {
-    if (status === "approved") return "Approved";
-    if (status === "rejected") return "Rejected";
-    return "Pending";
+    if (status === "approved") return "Aprobado";
+    if (status === "rejected") return "Rechazado";
+    return "Pendiente";
   };
 
   if (showAllTestimonials) {
@@ -114,10 +114,10 @@ export default function Testimonials() {
               onClick={() => setShowAllTestimonials(false)}
               className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2"
             >
-              <ArrowLeft size={18} /> Back
+              <ArrowLeft size={18} /> Volver
             </button>
             <h1 className="text-3xl font-bold text-gray-900">
-              All Testimonials
+              Todos los Testimonios
             </h1>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Testimonials() {
                   onClick={() => setViewingTestimonial(testimonial)}
                   className="text-blue hover:text-blue-700 font-medium"
                 >
-                  View Details
+                  Ver Detalles
                 </button>
               </div>
             </div>
@@ -188,20 +188,20 @@ export default function Testimonials() {
     <div className="p-6 font-inter">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold text-gray-900">
-          Testimonial Moderation
+          Moderación de Testimonios
         </h1>
         <button
           onClick={() => setShowAllTestimonials(true)}
           className="text-blue hover:text-blue-700 font-medium"
         >
-          All Testimonials
+          Todos los Testimonios
         </button>
       </div>
 
       {/* Pending Review Section */}
       <div className="mb-12 border p-6 bg-white rounded-xl shadow-sm">
         <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-          Pending Review{" "}
+          Revisión Pendiente{" "}
           <span className="bg-blue/10 text-blue px-2 py-0.5 rounded text-sm">
             {pendingTestimonials.length}
           </span>
@@ -233,7 +233,7 @@ export default function Testimonials() {
                       <div className="flex items-center gap-3">
                         {renderStars(testimonial.rating)}
                         <span className="text-xs text-gray-400 font-medium">
-                          Submitted: {testimonial.date}
+                          Enviado: {testimonial.date}
                         </span>
                       </div>
                     </div>
@@ -246,7 +246,7 @@ export default function Testimonials() {
                       disabled={isUpdating}
                       className="bg-[#DCFCE7] text-[#15803D] px-4 py-2 rounded-lg transition-all flex items-center gap-2 hover:bg-[#bbf7d0] disabled:opacity-50"
                     >
-                      <CircleCheckBig size={18} strokeWidth={2.75} /> Approve
+                      <CircleCheckBig size={18} strokeWidth={2.75} /> Aprobar
                     </button>
                     <button
                       onClick={() =>
@@ -260,7 +260,7 @@ export default function Testimonials() {
                         strokeWidth={2.75}
                         className="rotate-45"
                       />{" "}
-                      Reject
+                      Rechazar
                     </button>
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function Testimonials() {
                     onClick={() => setViewingTestimonial(testimonial)}
                     className="text-blue hover:text-blue-800 font-medium flex items-center gap-1"
                   >
-                    View Details
+                    Ver Detalles
                   </button>
                 </div>
               </div>
@@ -282,7 +282,7 @@ export default function Testimonials() {
           ) : (
             <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed">
               <p className="text-gray-400 font-medium">
-                No pending testimonials to review.
+                No hay testimonios pendientes para revisar.
               </p>
             </div>
           )}
@@ -292,7 +292,7 @@ export default function Testimonials() {
       {/* Recently Processed Section */}
       <div className="bg-white p-6 rounded-xl border shadow-sm">
         <h2 className="text-xl font-bold text-gray-900 mb-6">
-          Recently Processed
+          Procesados Recientemente
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -345,14 +345,14 @@ export default function Testimonials() {
                     onClick={() => setViewingTestimonial(testimonial)}
                     className="text-blue hover:underline"
                   >
-                    View Full Details
+                    Ver Detalles Completos
                   </button>
                 </div>
               </div>
             ))
           ) : (
             <div className="col-span-full text-center py-12 bg-gray-50 rounded-lg">
-              <p className="text-gray-400">No processed testimonials yet.</p>
+              <p className="text-gray-400">Aún no hay testimonios procesados.</p>
             </div>
           )}
         </div>
