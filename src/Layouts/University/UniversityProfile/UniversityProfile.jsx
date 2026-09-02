@@ -243,7 +243,7 @@ export default function UniversityProfile() {
 
     try {
       await setupProfile(fd).unwrap();
-      toast.success("Profile updated successfully!");
+      toast.success("¡Perfil actualizado exitosamente!");
 
       // Clear all form data after successful update
       setBasicInfo({
@@ -277,12 +277,12 @@ export default function UniversityProfile() {
       const errorMessage =
         err?.data?.message ||
         err?.data?.detail ||
-        "Server Error (500). Please check console for payload data.";
+        "Error del servidor (500). Por favor revise la consola para más detalles.";
       toast.error(errorMessage);
     }
   };
 
-  if (profileLoading) return <div className="p-8">Loading profile...</div>;
+  if (profileLoading) return <div className="p-8">Cargando perfil...</div>;
 
   const getFullUrl = (path) => {
     if (!path) return "";
@@ -296,183 +296,197 @@ export default function UniversityProfile() {
     <div className=" p-8">
       {/* Header with Save Changes Button */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">University Profile</h1>
+        <h1 className="text-3xl font-bold text-gray-800">Perfil de la Universidad</h1>
         <button
           type="button"
           onClick={handleSave}
           disabled={isUpdating}
           className="bg-blue text-white px-6 py-2 rounded-lg transition-colors disabled:opacity-50"
         >
-          {isUpdating ? "Saving..." : "Save Changes"}
+          {isUpdating ? "Guardando..." : "Guardar Cambios"}
         </button>
       </div>
 
       <form onSubmit={(e) => e.preventDefault()}>
         {/* Branding Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-6">Branding</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Logo Upload */}
+          <h2 className="text-xl font-bold text-gray-800 mb-6">Marca y Medios Visuales</h2>
+          <div className="space-y-8">
             <div>
-              {logo.preview ? (
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden group">
-                  <img
-                    src={getFullUrl(logo.preview)}
-                    alt="Logo"
-                    className="w-full h-full object-cover"
+              <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">Imágenes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Logo Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Logotipo de la Universidad</label>
+                  {logo.preview ? (
+                    <div className="relative w-full h-48 bg-white border border-gray-200 rounded-lg overflow-hidden group flex items-center justify-center">
+                      <img
+                        src={getFullUrl(logo.preview)}
+                        alt="Logo"
+                        className="max-w-full max-h-full object-contain"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveLogo}
+                        className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => logoInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
+                    >
+                      <Upload size={24} className="text-gray-400 mb-2" />
+                      <span className="text-sm text-gray-600">Subir Logotipo</span>
+                      <span className="text-xs text-gray-400 mt-1">
+                        Recomendado: 400x400px
+                      </span>
+                    </div>
+                  )}
+                  <input
+                    ref={logoInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoUpload}
+                    className="hidden"
                   />
-                  <button
-                    type="button"
-                    onClick={handleRemoveLogo}
-                    className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X size={20} />
-                  </button>
                 </div>
-              ) : (
-                <div
-                  onClick={() => logoInputRef.current?.click()}
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
-                >
-                  <Upload size={24} className="text-gray-400 mb-2" />
-                  <span className="text-sm text-gray-600">Upload Logo</span>
-                  <span className="text-xs text-gray-400 mt-1">
-                    Recommended: 400x400px
-                  </span>
-                </div>
-              )}
-              <input
-                ref={logoInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleLogoUpload}
-                className="hidden"
-              />
-            </div>
-            {/* Banner Upload */}
-            <div>
-              {banner.preview ? (
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden group">
-                  <img
-                    src={getFullUrl(banner.preview)}
-                    alt="Banner"
-                    className="w-full h-full object-cover"
+                {/* Banner Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Imagen de Portada (Banner)</label>
+                  {banner.preview ? (
+                    <div className="relative w-full h-48 bg-white border border-gray-200 rounded-lg overflow-hidden group flex items-center justify-center">
+                      <img
+                        src={getFullUrl(banner.preview)}
+                        alt="Banner"
+                        className="max-w-full max-h-full object-contain"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveBanner}
+                        className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => bannerInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
+                    >
+                      <Upload size={24} className="text-gray-400 mb-2" />
+                      <span className="text-sm text-gray-600">Subir Banner</span>
+                      <span className="text-xs text-gray-400 mt-1">
+                        Recomendado: 400x400px
+                      </span>
+                    </div>
+                  )}
+                  <input
+                    ref={bannerInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleBannerUpload}
+                    className="hidden"
                   />
-                  <button
-                    type="button"
-                    onClick={handleRemoveBanner}
-                    className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X size={20} />
-                  </button>
                 </div>
-              ) : (
-                <div
-                  onClick={() => bannerInputRef.current?.click()}
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
-                >
-                  <Upload size={24} className="text-gray-400 mb-2" />
-                  <span className="text-sm text-gray-600">Upload Banner</span>
-                  <span className="text-xs text-gray-400 mt-1">
-                    Recommended: 400x400px
-                  </span>
-                </div>
-              )}
-              <input
-                ref={bannerInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleBannerUpload}
-                className="hidden"
-              />
-            </div>
-
-            {/* Section Video Upload */}
-            <div>
-              {sectionVideo.preview ? (
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden group">
-                  <video
-                    src={getFullUrl(sectionVideo.preview)}
-                    className="w-full h-full object-cover"
-                    controls
-                  />
-                  <button
-                    type="button"
-                    onClick={handleRemoveSectionVideo}
-                    className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-              ) : (
-                <div
-                  onClick={() => sectionVideoInputRef.current?.click()}
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
-                >
-                  <Upload size={24} className="text-gray-400 mb-2" />
-                  <span className="text-sm text-gray-600">Section Video</span>
-                  <span className="text-xs text-gray-400 mt-1">
-                    Recommended: 400x400px
-                  </span>
-                </div>
-              )}
-              <input
-                ref={sectionVideoInputRef}
-                type="file"
-                accept="video/*"
-                onChange={handleSectionVideoUpload}
-                className="hidden"
-              />
+              </div>
             </div>
 
-            {/* Banner Video Upload */}
             <div>
-              {bannerVideo.preview ? (
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden group">
-                  <video
-                    src={getFullUrl(bannerVideo.preview)}
-                    className="w-full h-full object-cover"
-                    controls
+              <h3 className="text-lg font-semibold text-gray-700 mb-4 border-b pb-2">Videos</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Section Video Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Video Promocional (Sección)</label>
+                  {sectionVideo.preview ? (
+                    <div className="relative w-full h-48 bg-black rounded-lg overflow-hidden group flex items-center justify-center">
+                      <video
+                        src={getFullUrl(sectionVideo.preview)}
+                        className="w-full h-full object-contain"
+                        controls
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveSectionVideo}
+                        className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => sectionVideoInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
+                    >
+                      <Upload size={24} className="text-gray-400 mb-2" />
+                      <span className="text-sm text-gray-600">Video de Sección</span>
+                      <span className="text-xs text-gray-400 mt-1">
+                        Recomendado: 400x400px
+                      </span>
+                    </div>
+                  )}
+                  <input
+                    ref={sectionVideoInputRef}
+                    type="file"
+                    accept="video/*"
+                    onChange={handleSectionVideoUpload}
+                    className="hidden"
                   />
-                  <button
-                    type="button"
-                    onClick={handleRemoveBannerVideo}
-                    className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X size={20} />
-                  </button>
                 </div>
-              ) : (
-                <div
-                  onClick={() => bannerVideoInputRef.current?.click()}
-                  className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
-                >
-                  <Upload size={24} className="text-gray-400 mb-2" />
-                  <span className="text-sm text-gray-600">Banner Video</span>
-                  <span className="text-xs text-gray-400 mt-1">
-                    Recommended: 1200x400px
-                  </span>
+
+                {/* Banner Video Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Video de Portada (Banner)</label>
+                  {bannerVideo.preview ? (
+                    <div className="relative w-full h-48 bg-black rounded-lg overflow-hidden group flex items-center justify-center">
+                      <video
+                        src={getFullUrl(bannerVideo.preview)}
+                        className="w-full h-full object-contain"
+                        controls
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveBannerVideo}
+                        className="absolute top-2 right-2 bg-red text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => bannerVideoInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-500 transition-colors cursor-pointer h-48"
+                    >
+                      <Upload size={24} className="text-gray-400 mb-2" />
+                      <span className="text-sm text-gray-600">Video del Banner</span>
+                      <span className="text-xs text-gray-400 mt-1">
+                        Recomendado: 1200x400px
+                      </span>
+                    </div>
+                  )}
+                  <input
+                    ref={bannerVideoInputRef}
+                    type="file"
+                    accept="video/*"
+                    onChange={handleBannerVideoUpload}
+                    className="hidden"
+                  />
                 </div>
-              )}
-              <input
-                ref={bannerVideoInputRef}
-                type="file"
-                accept="video/*"
-                onChange={handleBannerVideoUpload}
-                className="hidden"
-              />
+              </div>
             </div>
           </div>
         </div>
         {/* University Information Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-xl font-bold text-gray-800 mb-6">
-            University Information
+            Información de la Universidad
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                University Name
+                Nombre de la Universidad
               </label>
               <input
                 type="text"
@@ -485,20 +499,20 @@ export default function UniversityProfile() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tagline
+                Eslogan
               </label>
               <input
                 type="text"
                 name="tagline"
                 value={basicInfo.tagline}
                 onChange={handleInputChange}
-                placeholder="The Future starts Here"
+                placeholder="El futuro comienza aquí"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                University Type
+                Tipo de Universidad
               </label>
               <select
                 name="univ_type"
@@ -506,13 +520,13 @@ export default function UniversityProfile() {
                 onChange={handleInputChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="private">Private</option>
-                <option value="public">Public</option>
+                <option value="private">Privada</option>
+                <option value="public">Pública</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Total Campuses
+                Total de Campus
               </label>
               <input
                 type="number"
@@ -525,7 +539,7 @@ export default function UniversityProfile() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Year Founded
+                Año de Fundación
               </label>
               <input
                 type="number"
@@ -538,7 +552,7 @@ export default function UniversityProfile() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Total Faculty
+                Total de Profesores
               </label>
               <input
                 type="number"
@@ -551,7 +565,7 @@ export default function UniversityProfile() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Total Students
+                Total de Estudiantes
               </label>
               <input
                 type="number"
@@ -564,7 +578,7 @@ export default function UniversityProfile() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Total Programs
+                Total de Programas
               </label>
               <input
                 type="number"
@@ -577,13 +591,13 @@ export default function UniversityProfile() {
             </div>
             <div className="col-span-1 md:col-span-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                About
+                Acerca de
               </label>
               <textarea
                 name="about"
                 value={basicInfo.about}
                 onChange={handleInputChange}
-                placeholder="Description about your university..."
+                placeholder="Descripción de su universidad..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 rows="4"
               />
@@ -593,14 +607,14 @@ export default function UniversityProfile() {
         {/* Accreditations Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-gray-800">Accreditations</h2>
+            <h2 className="text-xl font-bold text-gray-800">Acreditaciones</h2>
             <button
               type="button"
               onClick={() => setActiveModal("accreditation")}
               className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <Plus size={18} />
-              Add Accreditation
+              Agregar Acreditación
             </button>
           </div>
           <div className="space-y-3">
@@ -612,7 +626,7 @@ export default function UniversityProfile() {
                 <div>
                   <p className="font-medium text-gray-800">{acc.name}</p>
                   <p className="text-sm text-grey">
-                    Valid until {acc.valid_until || "N/A"}
+                    Válido hasta {acc.valid_until || "N/A"}
                   </p>
                 </div>
                 <div>
@@ -621,7 +635,7 @@ export default function UniversityProfile() {
                     onClick={() => handleDeleteAccreditation(acc.id)}
                     className="text-red"
                   >
-                    Remove
+                    Eliminar
                   </button>
                 </div>
               </div>
@@ -630,7 +644,7 @@ export default function UniversityProfile() {
         </div>
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-xl font-bold text-gray-800 mb-4">
-            What makes us different
+            Qué nos hace diferentes
           </h2>
 
           <div className="col-span-2">
@@ -645,14 +659,14 @@ export default function UniversityProfile() {
         {/* Rankings Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-gray-800">Rankings</h2>
+            <h2 className="text-xl font-bold text-gray-800">Clasificaciones</h2>
             <button
               type="button"
               onClick={() => setActiveModal("ranking")}
               className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <Plus size={18} />
-              Add Ranking
+              Agregar Clasificación
             </button>
           </div>
           <div className="space-y-3">
@@ -666,7 +680,7 @@ export default function UniversityProfile() {
                     {rank.org || rank.title}
                   </p>
                   <p className="text-sm text-gray-600">
-                    Rank: {rank.rank} ({rank.year})
+                    Rango: {rank.rank} ({rank.year})
                   </p>
                 </div>
                 <div>
@@ -675,7 +689,7 @@ export default function UniversityProfile() {
                     onClick={() => handleDeleteRanking(rank.id)}
                     className="text-red"
                   >
-                    Remove
+                    Eliminar
                   </button>
                 </div>
               </div>
@@ -685,14 +699,14 @@ export default function UniversityProfile() {
         {/* Location Section */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold text-gray-800">Location</h2>
+            <h2 className="text-xl font-bold text-gray-800">Ubicación</h2>
             <button
               type="button"
               onClick={() => setActiveModal("location")}
               className="bg-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <Plus size={18} />
-              Add Location
+              Agregar Ubicación
             </button>
           </div>
           <div className="space-y-3">
@@ -711,7 +725,7 @@ export default function UniversityProfile() {
                     onClick={() => handleDeleteLocation(loc.id)}
                     className="text-red"
                   >
-                    Remove
+                    Eliminar
                   </button>
                 </div>
               </div>

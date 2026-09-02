@@ -18,30 +18,30 @@ export default function UniversityDashboard() {
 
     return [
       {
-        label: "Active Events",
+        label: "Eventos Activos",
         value: active_events.value,
-        change: `+${active_events.growth} from last month`,
+        change: `+${active_events.growth} del mes pasado`,
         color: "bg-green-500",
         icon: events,
       },
       {
-        label: "Job Postings",
+        label: "Ofertas de Empleo",
         value: job_postings.value,
-        change: `+${job_postings.growth} from last month`,
+        change: `+${job_postings.growth} del mes pasado`,
         color: "bg-purple-500",
         icon: posting,
       },
       {
-        label: "Student Applications",
+        label: "Solicitudes de Estudiantes",
         value: student_applications.value,
-        change: `+${student_applications.growth} from last month`,
+        change: `+${student_applications.growth} del mes pasado`,
         color: "bg-orange-500",
         icon: applications,
       },
       {
-        label: "Pending Testimonials",
+        label: "Testimonios Pendientes",
         value: pending_testimonials.value,
-        change: `+${pending_testimonials.growth} from last month`,
+        change: `+${pending_testimonials.growth} del mes pasado`,
         color: "bg-pink-500",
         icon: testimonials,
       },
@@ -60,12 +60,12 @@ export default function UniversityDashboard() {
     }));
   }, [dashboardData]);
 
-  if (isStatsLoading) return <div className="p-8 text-center text-gray-500">Loading dashboard stats...</div>;
-  if (statsError) return <div className="p-8 text-center text-red-500">Error loading dashboard stats.</div>;
+  if (isStatsLoading) return <div className="p-8 text-center text-gray-500">Cargando estadísticas del panel...</div>;
+  if (statsError) return <div className="p-8 text-center text-red-500">Error al cargar las estadísticas.</div>;
 
   return (
     <div className="p-8 min-h-screen bg-base">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Panel</h1>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-4 gap-6 mb-8">
@@ -77,27 +77,27 @@ export default function UniversityDashboard() {
       {/* Enrollment Chart */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-lg font-bold text-gray-900 mb-6">
-          Student Enrollment & Applications
+          Inscripciones y Solicitudes de Estudiantes
         </h2>
         <EnrollmentChart data={chartData} />
       </div>
 
       {/* Request Information Table */}
       <div className="bg-white rounded-lg shadow-md p-6 overflow-hidden">
-        <h2 className="text-lg font-bold text-gray-900 mb-6">Request Information</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-6">Solicitudes de Información</h2>
         {isRequestsLoading ? (
-          <div className="py-4 text-center text-gray-500">Loading requests...</div>
+          <div className="py-4 text-center text-gray-500">Cargando solicitudes...</div>
         ) : requestInfo?.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-gray-50 border-b">
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Full Name</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Email</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Phone</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Program</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Message</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Date</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Nombre Completo</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Correo Electrónico</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Teléfono</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Programa</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Mensaje</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-gray-600">Fecha</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -119,7 +119,7 @@ export default function UniversityDashboard() {
             </table>
           </div>
         ) : (
-          <div className="py-8 text-center text-gray-500">No information requests found.</div>
+          <div className="py-8 text-center text-gray-500">No se encontraron solicitudes de información.</div>
         )}
       </div>
     </div>
