@@ -74,11 +74,11 @@ export default function UniGallery() {
 
     try {
       await uploadMedia(formData).unwrap();
-      toast.success("Media uploaded successfully");
+      toast.success("Medio subido con éxito");
       setShowUploadModal(false);
     } catch (err) {
       console.error(err);
-      toast.error(err?.data?.detail || "Failed to upload media");
+      toast.error(err?.data?.detail || "Error al subir el medio");
     }
   };
 
@@ -86,11 +86,11 @@ export default function UniGallery() {
     if (!deletingMedia) return;
     try {
       await deleteMedia(deletingMedia.id).unwrap();
-      toast.success("Media file deleted successfully");
+      toast.success("Archivo multimedia eliminado con éxito");
       setDeletingMedia(null);
     } catch (err) {
       console.error(err);
-      toast.error(err?.data?.message || "Failed to delete media");
+      toast.error(err?.data?.message || "Error al eliminar el archivo multimedia");
     }
   };
 
@@ -111,24 +111,24 @@ export default function UniGallery() {
 
   if (isLoading)
     return (
-      <div className="p-8 text-center text-gray-500">Loading gallery...</div>
+      <div className="p-8 text-center text-gray-500">Cargando galería...</div>
     );
   if (error)
     return (
       <div className="p-8 text-center text-red-500">
-        Error loading media gallery.
+        Error al cargar la galería de medios.
       </div>
     );
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Gallery</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Galería</h1>
         <button
           onClick={() => setShowUploadModal(true)}
           className="bg-blue text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors"
         >
-          <Upload size={18} strokeWidth={2.5} /> Upload Media
+          <Upload size={18} strokeWidth={2.5} /> Subir Medio
         </button>
       </div>
 
@@ -136,7 +136,7 @@ export default function UniGallery() {
       <div className="flex justify-between items-center mb-6">
         <input
           type="text"
-          placeholder="Search media by title..."
+          placeholder="Buscar medio por título..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -145,22 +145,26 @@ export default function UniGallery() {
 
       {/* Tabs */}
       <div className="flex gap-4 mb-6 overflow-x-auto pb-2">
-        {["all", "images", "videos", "documents"].map((tab) => (
+        {[
+          { id: "all", label: "Todos los Medios" },
+          { id: "images", label: "Imágenes" },
+          { id: "videos", label: "Videos" },
+          { id: "documents", label: "Documentos" }
+        ].map(({ id: tab, label }) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 transition-all whitespace-nowrap font-medium flex items-center gap-2 rounded-lg ${
-              activeTab === tab
+            className={`px-4 py-2 transition-all whitespace-nowrap font-medium flex items-center gap-2 rounded-lg ${activeTab === tab
                 ? "text-blue bg-blue/10 shadow-sm"
                 : "text-gray-600 hover:bg-gray-100"
-            }`}
+              }`}
           >
             {tab === "all" && <Folder className="w-4 h-4" />}
             {tab === "images" && <Image className="w-4 h-4" />}
             {tab === "videos" && <Video className="w-4 h-4" />}
             {tab === "documents" && <FileText className="w-4 h-4" />}
             <span className="capitalize">
-              {tab === "all" ? "All Media" : tab}
+              {label}
             </span>
           </button>
         ))}
@@ -172,7 +176,7 @@ export default function UniGallery() {
           <div className="col-span-full py-20 text-center bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
             <Layers className="w-12 h-12 text-gray-300 mx-auto mb-3" />
             <p className="text-gray-500">
-              No media files found in this category.
+              No se encontraron archivos multimedia en esta categoría.
             </p>
           </div>
         ) : (
@@ -215,14 +219,14 @@ export default function UniGallery() {
                   <button
                     onClick={() => setViewingMedia(media)}
                     className="bg-white text-gray-900 p-3 rounded-xl hover:bg-blue hover:text-white transition-all transform hover:scale-110"
-                    title="View"
+                    title="Ver"
                   >
                     <Eye className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => setDeletingMedia(media)}
                     className="bg-white text-red-600 p-3 rounded-xl hover:bg-red-600 hover:text-white transition-all transform hover:scale-110"
-                    title="Delete"
+                    title="Eliminar"
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>

@@ -19,7 +19,7 @@ export default function ViewMediaModal({ media, onClose, getFullUrl }) {
         <div className="w-full bg-black rounded-lg overflow-hidden shadow-2xl">
           <video controls className="w-full max-h-[60vh]">
             <source src={fileUrl} type="video/mp4" />
-            Your browser does not support the video tag.
+            Tu navegador no soporta la etiqueta de video.
           </video>
         </div>
       )
@@ -30,14 +30,14 @@ export default function ViewMediaModal({ media, onClose, getFullUrl }) {
             <FileText className="w-16 h-16 text-blue" strokeWidth={1.5} />
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">{media.title}</h3>
-          <p className="text-gray-500 mb-8">Document File (PDF/DOCX)</p>
+          <p className="text-gray-500 mb-8">Archivo de Documento (PDF/DOCX)</p>
           <a
             href={fileUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue text-white rounded-xl font-bold hover:bg-blue-700 transition-all"
           >
-            Open Document
+            Abrir Documento
           </a>
         </div>
       )
@@ -82,7 +82,7 @@ export default function ViewMediaModal({ media, onClose, getFullUrl }) {
                 <Type size={16} />
               </div>
               <div>
-                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">File Type</p>
+                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Tipo de Archivo</p>
                 <p className="font-bold text-gray-900 capitalize">{media.media_type}</p>
               </div>
             </div>
@@ -91,7 +91,7 @@ export default function ViewMediaModal({ media, onClose, getFullUrl }) {
                 <Calendar size={16} />
               </div>
               <div>
-                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Uploaded Date</p>
+                <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Fecha de Subida</p>
                 <p className="font-bold text-gray-900">{formatDate(media.created_at)}</p>
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function ViewMediaModal({ media, onClose, getFullUrl }) {
                 onClick={onClose}
                 className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-all shadow-lg shadow-gray-200"
               >
-                Close
+                Cerrar
               </button>
             </div>
           </div>
