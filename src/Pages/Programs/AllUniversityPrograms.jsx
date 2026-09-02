@@ -22,6 +22,7 @@ export default function AllUniversityPrograms() {
     univ_type: "all",
     level: "all",
     field: "all",
+    location: "all",
   });
 
   const queryParams = useMemo(() => {
@@ -30,6 +31,7 @@ export default function AllUniversityPrograms() {
     if (filters.level !== "all") params.level = filters.level;
     const effectiveTitle =
       searchTerm || (filters.field !== "all" ? filters.field : "");
+    if (filters.location !== "all") params.location = filters.location;
     if (effectiveTitle) params.title = effectiveTitle;
     return params;
   }, [filters, searchTerm]);
@@ -77,19 +79,19 @@ export default function AllUniversityPrograms() {
         <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           {/* Badge */}
           <span className="inline-block bg-blue text-white text-[11px] mt-10 font-semibold tracking-wide px-3 py-1 rounded mb-4">
-            UNIVERSITY DIRECTORY
+            DIRECTORIO DE PROGRAMAS
           </span>
 
           {/* Heading */}
           <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
-            Discover top universities worldwide
+            Descubre los mejores programas del mundo
           </h1>
 
           {/* Subtitle */}
           <p className="text-[#BFDBFE] max-w-xl mb-8">
-            Explore our comprehensive directory of universities. Filter by
-            location, programs, academic level, and more to find your perfect
-            match.
+            Explora nuestro completo directorio de programas. Filtra por
+            ubicación, área de estudio, nivel académico y más para encontrar tu opción
+            ideal.
           </p>
 
           {/* Search and Sort Bar */}
@@ -98,7 +100,7 @@ export default function AllUniversityPrograms() {
               <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search universities, locations, or programs..."
+                placeholder="Buscar universidades, ubicaciones o programas..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full py-2.5 outline-none text-sm text-slate-800"
@@ -107,13 +109,29 @@ export default function AllUniversityPrograms() {
 
             <div className="flex items-center gap-2 px-3 sm:border-l sm:border-gray-200">
               <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
-              <select className="py-2.5 outline-none text-sm text-slate-600 bg-transparent">
-                <option>All locations</option>
+              <select
+                value={filters.location}
+                onChange={(e) => handleFilterChange("location", e.target.value)}
+                className="py-2.5 outline-none text-sm text-slate-600 bg-transparent"
+              >
+                <option value="all">Todas las ubicaciones</option>
+                <option value="madrid">Comunidad de Madrid</option>
+                <option value="barcelona">Barcelona</option>
+                <option value="valencia">Valencia</option>
+                <option value="alicante">Alicante</option>
+                <option value="sevilla">Sevilla</option>
+                <option value="salamanca">Salamanca</option>
+                <option value="málaga">Málaga</option>
+                <option value="murcia">Murcia</option>
+                <option value="cádiz">Cádiz</option>
+                <option value="vizcaya">Vizcaya</option>
+                <option value="asturias">Asturias</option>
+                <option value="zaragoza">Zaragoza</option>
               </select>
             </div>
 
             <button className="bg-blue text-white font-medium px-6 py-2.5 rounded transition-colors text-sm">
-              Search
+              Buscar
             </button>
           </div>
         </div>
@@ -128,10 +146,10 @@ export default function AllUniversityPrograms() {
               onClick={() => setShowFilters(true)}
               className="px-4 py-2 bg-white border border-gray-300 rounded shadow-sm text-sm"
             >
-              Filters
+              Filtros
             </button>
             <p className="text-sm text-gray-600">
-              Showing {programs.length} programs
+              Mostrando {programs.length} programas
             </p>
           </div>
 
@@ -171,20 +189,20 @@ export default function AllUniversityPrograms() {
             {/* Top bar: count + sort */}
             <div className="flex items-center justify-between mb-5">
               <p className="text-sm text-gray-600 font-medium hidden md:block">
-                Showing{" "}
+                Mostrando{" "}
                 <span className="text-blue font-semibold">
                   {programs.length.toLocaleString("en-US")}
                 </span>{" "}
-                programs
+                programas
               </p>
               <div className="relative inline-flex items-center">
                 <select
                   className="appearance-none bg-white border border-gray-200 text-sm text-gray-700 rounded-md pl-3 pr-8 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue cursor-pointer"
                   defaultValue="recommended"
                 >
-                  <option value="recommended">Sort by: Recommended</option>
-                  <option value="tuition_asc">Tuition: Low to High</option>
-                  <option value="tuition_desc">Tuition: High to Low</option>
+                  <option value="recommended">Ordenar por: Recomendado</option>
+                  <option value="tuition_asc">Matrícula: Menor a Mayor</option>
+                  <option value="tuition_desc">Matrícula: Mayor a Menor</option>
                 </select>
                 <ChevronDown
                   size={14}
@@ -195,11 +213,11 @@ export default function AllUniversityPrograms() {
 
             {isLoading ? (
               <div className="p-8 text-center text-gray-500">
-                Loading programs...
+                Cargando programas...
               </div>
             ) : programs.length === 0 ? (
               <div className="p-8 text-center text-gray-500">
-                No programs found.
+                No se encontraron programas.
               </div>
             ) : (
               <div className="space-y-4">
@@ -213,7 +231,7 @@ export default function AllUniversityPrograms() {
             {!isLoading && programs.length > 0 && (
               <div className="mt-8 text-center">
                 <button className="px-6 py-3 text-lg border-2 border-blue text-blue rounded-md font-medium transition-colors inline-flex items-center gap-2">
-                  Load More
+                  Cargar Más
                   <ChevronDown size={16} />
                 </button>
               </div>
@@ -232,12 +250,12 @@ function ProgramCard({ program: p, getFullUrl }) {
     if (!value) return null;
     const num = parseFloat(value);
     if (isNaN(num)) return value;
-    return `$${num.toLocaleString("en-US")} / year`;
+    return `$${num.toLocaleString("en-US")} / año`;
   };
 
   const tags = [
-    p.study_mode || "Full-time",
-    p.delivery_mode || "On campus",
+    p.study_mode || "Tiempo completo",
+    p.delivery_mode || "Presencial",
   ].filter(Boolean);
 
   return (
@@ -261,11 +279,10 @@ function ProgramCard({ program: p, getFullUrl }) {
             <div className="flex justify-end lg:hidden">
               <button
                 onClick={() => setSaved((s) => !s)}
-                className={`p-1.5 rounded-full transition-colors ${
-                  saved
-                    ? "text-red-500 bg-red-50"
-                    : "text-gray-300 hover:text-red-400 hover:bg-red-50"
-                }`}
+                className={`p-1.5 rounded-full transition-colors ${saved
+                  ? "text-red-500 bg-red-50"
+                  : "text-gray-300 hover:text-red-400 hover:bg-red-50"
+                  }`}
                 aria-label="Save program"
               >
                 <Heart size={18} fill={saved ? "currentColor" : "none"} />
@@ -315,11 +332,10 @@ function ProgramCard({ program: p, getFullUrl }) {
           <div className="lg:flex justify-end hidden absolute right-2 top-2">
             <button
               onClick={() => setSaved((s) => !s)}
-              className={`p-1.5 rounded-full transition-colors ${
-                saved
-                  ? "text-red-500 bg-red-50"
-                  : "text-gray-300 hover:text-red-400 hover:bg-red-50"
-              }`}
+              className={`p-1.5 rounded-full transition-colors ${saved
+                ? "text-red-500 bg-red-50"
+                : "text-gray-300 hover:text-red-400 hover:bg-red-50"
+                }`}
               aria-label="Save program"
             >
               <Heart size={18} fill={saved ? "currentColor" : "none"} />
@@ -332,7 +348,7 @@ function ProgramCard({ program: p, getFullUrl }) {
               <p className="font-semibold text-sm text-gray-800 leading-tight">
                 {p.duration || "N/A"}
               </p>
-              <p className="text-xs lg:text-sm text-gray-400">Duration</p>
+              <p className="text-xs lg:text-sm text-gray-400">Duración</p>
             </div>
           </div>
 
@@ -345,13 +361,13 @@ function ProgramCard({ program: p, getFullUrl }) {
               <p className="font-semibold text-sm text-gray-800 leading-tight">
                 {formatTuition(p.international_tuition) || "N/A"}
               </p>
-              <p className="text-xs lg:text-sm text-gray-400">Tuition</p>
+              <p className="text-xs lg:text-sm text-gray-400">Matrícula</p>
             </div>
           </div>
 
           <Link to={`/program-details/${p.id}`}>
             <button className="w-fit ml-auto bg-blue hover:bg-blue text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 transition-colors">
-              View program
+              Ver programa
               <ArrowRight size={14} />
             </button>
           </Link>

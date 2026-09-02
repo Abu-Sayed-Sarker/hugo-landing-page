@@ -77,19 +77,19 @@ export default function UniversityDirectory() {
         <div className="relative z-10 w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           {/* Badge */}
           <span className="inline-block bg-blue text-white text-[11px] mt-10 font-semibold tracking-wide px-3 py-1 rounded mb-4">
-            UNIVERSITY DIRECTORY
+            DIRECTORIO DE UNIVERSIDADES
           </span>
 
           {/* Heading */}
           <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
-            Discover top universities worldwide
+            Descubre las mejores universidades del mundo
           </h1>
 
           {/* Subtitle */}
           <p className="text-[#BFDBFE] max-w-xl mb-8">
-            Explore our comprehensive directory of universities. Filter by
-            location, programs, academic level, and more to find your perfect
-            match.
+            Explora nuestro completo directorio de universidades. Filtra por
+            ubicación, programas, nivel académico y más para encontrar tu opción
+            ideal.
           </p>
 
           {/* Search and Sort Bar */}
@@ -98,22 +98,38 @@ export default function UniversityDirectory() {
               <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search universities, locations, or programs..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar universidades, ubicaciones o programas..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full py-2.5 outline-none text-sm text-slate-800"
               />
             </div>
 
             <div className="flex items-center gap-2 px-3 sm:border-l sm:border-gray-200">
               <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0" />
-              <select className="py-2.5 outline-none text-sm text-slate-600 bg-transparent">
-                <option>All locations</option>
+              <select
+                value={filters.location}
+                onChange={(e) => handleFilterChange("location", e.target.value)}
+                className="py-2.5 outline-none text-sm text-slate-600 bg-transparent"
+              >
+                <option value="all">Todas las ubicaciones</option>
+                <option value="madrid">Comunidad de Madrid</option>
+                <option value="barcelona">Barcelona</option>
+                <option value="valencia">Valencia</option>
+                <option value="alicante">Alicante</option>
+                <option value="sevilla">Sevilla</option>
+                <option value="salamanca">Salamanca</option>
+                <option value="málaga">Málaga</option>
+                <option value="murcia">Murcia</option>
+                <option value="cádiz">Cádiz</option>
+                <option value="vizcaya">Vizcaya</option>
+                <option value="asturias">Asturias</option>
+                <option value="zaragoza">Zaragoza</option>
               </select>
             </div>
 
             <button className="bg-blue text-white font-medium px-6 py-2.5 rounded transition-colors text-sm">
-              Search
+              Buscar
             </button>
           </div>
         </div>
@@ -128,11 +144,11 @@ export default function UniversityDirectory() {
               onClick={() => setShowFilters(true)}
               className="px-4 py-2 bg-white border border-gray-300 rounded shadow-sm text-sm"
             >
-              Filters
+              Filtros
             </button>
             <div>
               <p className="text-sm text-gray-600">
-                Showing {universities.length} universities
+                Mostrando {universities.length} universidades
               </p>
             </div>
           </div>
@@ -154,7 +170,7 @@ export default function UniversityDirectory() {
               />
               <div className="fixed left-0 pt-10 top-0 bottom-0 w-72 z-50 overflow-auto bg-[#ECF5FF] px-2">
                 <div className="flex items-center justify-between mb-2 md:mb-4">
-                  <h3 className="font-semibold">Filters</h3>
+                  <h3 className="font-semibold">Filtros</h3>
                   <button onClick={() => setShowFilters(false)} className="p-2">
                     <X />
                   </button>
@@ -172,7 +188,7 @@ export default function UniversityDirectory() {
           <div className="flex-1 xl:px-7">
             <div className="mb-4 hidden md:block">
               <p className="text-sm text-gray-600">
-                Showing {universities.length} universities
+                Mostrando {universities.length} universidades
               </p>
             </div>
 
@@ -202,7 +218,7 @@ export default function UniversityDirectory() {
                       </button>
                       {uni.world_ranking && (
                         <span className="absolute bottom-2 left-2 bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded">
-                          #{uni.world_ranking} World Ranking
+                          #{uni.world_ranking} Ranking Mundial
                         </span>
                       )}
                     </div>
@@ -224,7 +240,7 @@ export default function UniversityDirectory() {
                             {uni.univ_name}
                           </h3>
                           <p className="text-xs text-slate-500 truncate">
-                            {uni.address || "Location not specified"}
+                            {uni.address || "Ubicación no especificada"}
                           </p>
                         </div>
                       </div>
@@ -269,7 +285,7 @@ export default function UniversityDirectory() {
                             <p className="font-semibold">
                               {uni.total_students}
                             </p>
-                            <p>Students</p>
+                            <p>Estudiantes</p>
                           </div>
                         </div>
                       )}
@@ -279,7 +295,7 @@ export default function UniversityDirectory() {
                           <Users className="text-slate-400 flex-shrink-0" />
                           <div>
                             <p className="font-semibold">{uni.total_faculty}</p>
-                            <p>Faculty</p>
+                            <p>Profesores</p>
                           </div>
                         </div>
                       )}
@@ -288,7 +304,7 @@ export default function UniversityDirectory() {
                         <Landmark className="text-slate-400 flex-shrink-0" />
                         <div>
                           <p className="font-semibold">{uni.programs_count}</p>{" "}
-                          Programs
+                          Programas
                         </div>
                       </div>
                     </div>
@@ -305,14 +321,14 @@ export default function UniversityDirectory() {
                         </span>
                         {uni.reviews_count && (
                           <span className="text-xs text-slate-400">
-                            ({uni.reviews_count} reviews)
+                            ({uni.reviews_count} reseñas)
                           </span>
                         )}
                       </div>
 
                       <Link to={`/universities/${uni.id}`} className="w-full">
                         <button className="w-full bg-blue text-white text-sm font-medium px-4 py-2.5 rounded-md transition-colors">
-                          View Profile
+                          Ver Perfil
                         </button>
                       </Link>
 
@@ -320,7 +336,7 @@ export default function UniversityDirectory() {
                         to={`/universities/${uni.id}`}
                         className="flex items-center gap-1 text-sm text-blue hover:text-blue-700 font-medium"
                       >
-                        See Programs
+                        Ver Programas
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
@@ -332,7 +348,7 @@ export default function UniversityDirectory() {
             {/* Load More Button */}
             <div className="mt-8 text-center">
               <button className="px-6 py-1 md:py-3 md:text-lg text-sm border-2 border-blue text-blue rounded-md font-medium hover:bg-blue-50 transition-colors inline-flex items-center">
-                Load More
+                Cargar Más
                 <ChevronDown size={16} className="ml-2" />
               </button>
             </div>

@@ -1,4 +1,4 @@
-﻿import { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import eventPlaceholder from "../../assets/icons/event.png";
 import uni_logo_placeholder from "../../assets/icons/uni_logo.png";
 import {
@@ -84,13 +84,13 @@ export default function UniversityEvents() {
   if (isLoading)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-gray-500">
-        Loading events...
+        Cargando eventos...
       </div>
     );
   if (error)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-red-500">
-        Error loading events.
+        Error al cargar los eventos.
       </div>
     );
 
@@ -112,7 +112,7 @@ export default function UniversityEvents() {
               onClick={handleBackToList}
               className="mb-10 text-white/80 hover:text-white flex items-center gap-2"
             >
-              ← Back to Events
+              ← Volver a Eventos
             </button>
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 bg-white rounded-full flex-shrink-0 flex items-center justify-center p-2">
@@ -138,7 +138,7 @@ export default function UniversityEvents() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h2 className="text-xl mb-4">About This Event</h2>
+                <h2 className="text-xl mb-4">Acerca de este evento</h2>
                 <p className="text-gray-700 mb-6 whitespace-pre-line">
                   {selectedEvent.description}
                 </p>
@@ -146,23 +146,23 @@ export default function UniversityEvents() {
                   <div className="flex items-start gap-3 bg-[#EFF6FF] p-4 rounded-lg">
                     <Calendar className="text-blue mt-1" size={20} />
                     <div>
-                      <p className="text-grey text-xs">Date</p>
+                      <p className="text-grey text-xs">Fecha</p>
                       <p className="font-medium text-sm">{selectedEvent.date}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 bg-[#EFF6FF] p-4 rounded-lg">
                     <Clock className="text-blue mt-1" size={20} />
                     <div>
-                      <p className="text-grey text-xs">Time</p>
+                      <p className="text-grey text-xs">Hora</p>
                       <p className="font-medium text-sm">{selectedEvent.time}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 bg-[#EFF6FF] p-4 rounded-lg">
                     <Users className="text-blue mt-1" size={20} />
                     <div>
-                      <p className="text-grey text-xs">Category</p>
+                      <p className="text-grey text-xs">Categoría</p>
                       <p className="font-medium text-sm">
-                        {selectedEvent.category || "General Event"}
+                        {selectedEvent.category || "Evento General"}
                       </p>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ export default function UniversityEvents() {
 
               {selectedEvent.agendas && selectedEvent.agendas.length > 0 && (
                 <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h2 className="text-xl font-medium mb-4">Event Agenda</h2>
+                  <h2 className="text-xl font-medium mb-4">Agenda del Evento</h2>
                   <div className="space-y-6">
                     {selectedEvent.agendas.map((item, index) => (
                       <div key={index} className="flex gap-4">
@@ -196,7 +196,7 @@ export default function UniversityEvents() {
 
               {selectedEvent.additional_info && (
                 <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h2 className="text-xl mb-4">Additional Information</h2>
+                  <h2 className="text-xl mb-4">Información Adicional</h2>
                   <p className="text-gray-700 leading-relaxed italic">
                     {selectedEvent.additional_info}
                   </p>
@@ -209,46 +209,46 @@ export default function UniversityEvents() {
                 {!isPastEvent(selectedEvent.date) ? (
                   <>
                     <h3 className="mb-4 tracking-widest text-gray-500 text-sm uppercase">
-                      Status
+                      Estado
                     </h3>
                     <div className="inline-block px-4 py-2 bg-blue/10 text-blue rounded-full mb-4">
                       {selectedEvent.status}
                     </div>
                     <p className="text-gray-600 text-sm mb-6">
-                      {selectedEvent.registration_count} Students Registered
+                      {selectedEvent.registration_count} Estudiantes Inscritos
                     </p>
                     <button
                       disabled={selectedEvent.status === "Cancelled" || isRegistering}
                       onClick={() => handleRegister(selectedEvent.id)}
                       className="w-full bg-blue text-white py-3 rounded-lg shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isRegistering ? "Registering..." : "Register For Event"}
+                      {isRegistering ? "Inscribiendo..." : "Inscribirse al Evento"}
                     </button>
                   </>
                 ) : (
                   <div className="text-center">
                     <h3 className="text-lg font-semibold mb-6 text-left">
-                      Event Registration
+                      Inscripción al Evento
                     </h3>
                     <div className="w-16 h-16 bg-[#F3F4F6] rounded-full flex items-center justify-center mx-auto mb-4">
                       <Calendar size={24} className="text-[#1F2937]" />
                     </div>
-                    <p className="font-medium text-lg mb-2">Event Ended</p>
+                    <p className="font-medium text-lg mb-2">Evento Finalizado</p>
                     <p className="text-gray-600 text-sm mb-6">
-                      This event has already taken place. Check out our upcoming events.
+                      Este evento ya se ha llevado a cabo. Echa un vistazo a nuestros próximos eventos.
                     </p>
                     <button
                       onClick={handleBackToList}
                       className="text-blue font-semibold hover:underline"
                     >
-                      Browse Events
+                      Explorar Eventos
                     </button>
                   </div>
                 )}
               </div>
 
               <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="mb-4">About the Host</h3>
+                <h3 className="mb-4">Acerca del Anfitrión</h3>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 flex-shrink-0 bg-base rounded-md p-1 border">
                     <img
@@ -262,11 +262,11 @@ export default function UniversityEvents() {
                   </div>
                 </div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                  Learn more about programs, admissions, and life as a student at{" "}
+                  Aprende más sobre programas, admisiones y la vida estudiantil en{" "}
                   {selectedEvent.univ_name}.
                 </p>
                 <button className="text-blue bg-base w-full py-3 rounded-lg hover:bg-gray-100 transition-colors">
-                  Visit University Profile
+                  Visitar Perfil de la Universidad
                 </button>
               </div>
             </div>
@@ -297,13 +297,12 @@ export default function UniversityEvents() {
 
           {/* Heading */}
           <h1 className="text-white mt-20 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">
-            University Events
+            Eventos Universitarios
           </h1>
 
           {/* Subtitle */}
           <p className="text-[#BFDBFE] max-w-xl mb-8">
-            Stay updated with the latest webinars, open days, and workshops from
-            top universities around the globe.
+            Mantente al día con los últimos seminarios web, jornadas de puertas abiertas y talleres de las mejores universidades de todo el mundo.
           </p>
 
 
@@ -316,17 +315,17 @@ export default function UniversityEvents() {
           {/* Filters Sidebar */}
           <div className="w-full lg:w-64 flex-shrink-0">
             <div className="bg-white rounded-xl p-6 shadow-sm sticky top-4">
-              <h3 className="mb-4 text-xl border-b pb-2">Filters</h3>
+              <h3 className="mb-4 text-xl border-b pb-2">Filtros</h3>
 
               <div className="mb-6">
                 <h4 className="mb-3 text-gray-900 text-sm tracking-wider">
-                  Event Format
+                  Formato del Evento
                 </h4>
                 <div className="space-y-2">
                   {[
-                    { id: "all", label: "All Events" },
-                    { id: "In-Person", label: "In-Person" },
-                    { id: "Online", label: "Online" },
+                    { id: "all", label: "Todos los Eventos" },
+                    { id: "In-Person", label: "Presencial" },
+                    { id: "Online", label: "En Línea" },
                   ].map((fm) => (
                     <label key={fm.id} className="flex items-center cursor-pointer group">
                       <input
@@ -349,7 +348,7 @@ export default function UniversityEvents() {
 
               <div className="mb-6">
                 <h4 className="mb-3 text-gray-900 text-sm tracking-wider">
-                  Event Type
+                  Tipo de Evento
                 </h4>
                 <div className="space-y-2">
                   {[
@@ -373,7 +372,7 @@ export default function UniversityEvents() {
                         onChange={() => setEventType(type)}
                       />
                       <span className="ml-2 text-sm text-gray-600 group-hover:text-blue transition-colors">
-                        {type === "all" ? "All Types" : type}
+                        {type === "all" ? "Todos los Tipos" : type}
                       </span>
                     </label>
                   ))}
@@ -381,7 +380,7 @@ export default function UniversityEvents() {
               </div>
 
               <div>
-                <h4 className="mb-3 text-gray-900 text-sm tracking-wider">Date</h4>
+                <h4 className="mb-3 text-gray-900 text-sm tracking-wider">Fecha</h4>
                 <input
                   type="date"
                   value={eventDate}
@@ -396,18 +395,18 @@ export default function UniversityEvents() {
           <div className="flex-1">
             <div className="flex justify-between items-center mb-4">
               <p className="text-sm text-gray-600 font-medium">
-                Showing{" "}
+                Mostrando{" "}
                 <span className="text-blue font-semibold">
                   {events.length.toLocaleString("en-US")}
                 </span>{" "}
-                events
+                eventos
               </p>
             </div>
 
             <div className="space-y-4">
               {events.length === 0 ? (
                 <div className="bg-white rounded-xl p-12 text-center text-gray-500 shadow-sm">
-                  No events found.
+                  No se encontraron eventos.
                 </div>
               ) : (
                 events.map((event) => (
@@ -465,7 +464,7 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
                 : "bg-green-500 text-white"
                 }`}
             >
-              {isInPerson ? "In-Person" : "Online"}
+              {isInPerson ? "Presencial" : "En Línea"}
             </span>
           )}
           {/* Date badge bottom-left */}
@@ -552,13 +551,13 @@ function EventCard({ event, getFullUrl, onViewDetails, onRegister, isRegistering
                 disabled={isRegistering}
                 className="border border-blue-600 text-blue-600 hover:bg-blue-50 text-sm font-medium px-4 py-2 rounded-lg transition-colors disabled:opacity-50"
               >
-                Register
+                Inscribirse
               </button>
               <button
                 onClick={() => onViewDetails(event)}
                 className="bg-primary hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 transition-colors"
               >
-                View Details
+                Ver Detalles
                 <ArrowRight size={14} />
               </button>
             </div>

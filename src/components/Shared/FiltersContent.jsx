@@ -34,13 +34,13 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
     <div className="bg-white text-black p-3 md:p-6 rounded-xl shadow-sm z-[10000] md:w-72 shrink-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-2 md:mb-5">
-        <h3 className="font-bold text-xl">Filters</h3>
+        <h3 className="font-bold text-xl">Filtros</h3>
         <button
           onClick={handleClearAll}
           className="flex items-center md:gap-1.5 text-sm font-medium text-blue hover:text-blue-700 transition-colors"
         >
           <RotateCcw className="w-3.5 h-3.5" />
-          Clear all
+          Borrar todo
         </button>
       </div>
 
@@ -52,7 +52,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
         >
           <span className="flex items-center gap-2 font-semibold">
             <GraduationCap className="w-4 h-4 text-blue" />
-            Academic Level
+            Nivel Académico
           </span>
           {openSections.level ? (
             <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -64,13 +64,13 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
         {openSections.level && (
           <div className="space-y-2.5 mt-4">
             {[
-              { id: "all", label: "All Levels" },
-              { id: "college", label: "College" },
-              { id: "Master", label: "Master" },
-              { id: "PhD", label: "PhD" },
-              { id: "degree", label: "Degree" },
-              { id: "online-courses", label: "Online Courses" },
-              { id: "professional-formation", label: "Professional Formation" },
+              { id: "all", label: "Todos los niveles" },
+              { id: "college", label: "Universidad" },
+              { id: "Master", label: "Máster" },
+              { id: "PhD", label: "Doctorado" },
+              { id: "degree", label: "Grado" },
+              { id: "online-courses", label: "Cursos en línea" },
+              { id: "professional-formation", label: "Formación Profesional" },
             ].map((opt) => (
               <label key={opt.id} className="flex items-start cursor-pointer select-none min-w-0">
                 <input
@@ -95,7 +95,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
         >
           <span className="flex items-center gap-2 font-semibold text-sm">
             <BookOpen className="w-4 h-4 text-blue" />
-            Field of Study
+            Área de Estudio
           </span>
           {openSections.field ? (
             <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -114,30 +114,30 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
                 checked={selectedField === "all"}
                 onChange={() => onFilterChange("field", "all")}
               />
-              <span className="text-sm cursor-pointer break-words">All Programs</span>
+              <span className="text-sm cursor-pointer break-words">Todos los Programas</span>
             </label>
             {[
-              { id: "Business Management and Administration", label: "Business Management and Administration" },
-              { id: "Legal and Social Sciences", label: "Legal and Social Sciences" },
-              { id: "Healthcare", label: "Healthcare" },
-              { id: "Natural Sciences and Mathematics", label: "Natural Sciences and Mathematics" },
-              { id: "Humanities and Letters", label: "Humanities and Letters" },
-              { id: "Education", label: "Education" },
-              { id: "Technology and Telecommunications", label: "Technology and Telecommunications" },
-              { id: "Economics and Finance", label: "Economics and Finance" },
-              { id: "Languages", label: "Languages" },
-              { id: "Commerce and Marketing", label: "Commerce and Marketing" },
-              { id: "Hospitality and Tourism", label: "Hospitality and Tourism" },
-              { id: "Sports and Physical Activity", label: "Sports and Physical Activity" },
-              { id: "Agriculture, Mining, and Gardening", label: "Agriculture, Mining, and Gardening" },
-              { id: "Image, Film, and Sound", label: "Image, Film, and Sound" },
-              { id: "Fine Arts", label: "Fine Arts" },
-              { id: "Security and Civil Protection", label: "Security and Civil Protection" },
-              { id: "Logistics and Transportation", label: "Logistics and Transportation" },
-              { id: "Graphic Arts", label: "Graphic Arts" },
-              { id: "Fashion and Textile Production", label: "Fashion and Textile Production" },
-              { id: "Music, Performing Arts, and Dance", label: "Music, Performing Arts, and Dance" },
-              { id: "Veterinary Medicine and Animals", label: "Veterinary Medicine and Animals" },
+              { id: "Business Management and Administration", label: "Administración y Dirección de Empresas" },
+              { id: "Legal and Social Sciences", label: "Ciencias Jurídicas y Sociales" },
+              { id: "Healthcare", label: "Salud" },
+              { id: "Natural Sciences and Mathematics", label: "Ciencias Naturales y Matemáticas" },
+              { id: "Humanities and Letters", label: "Humanidades y Letras" },
+              { id: "Education", label: "Educación" },
+              { id: "Technology and Telecommunications", label: "Tecnología y Telecomunicaciones" },
+              { id: "Economics and Finance", label: "Economía y Finanzas" },
+              { id: "Languages", label: "Idiomas" },
+              { id: "Commerce and Marketing", label: "Comercio y Marketing" },
+              { id: "Hospitality and Tourism", label: "Hostelería y Turismo" },
+              { id: "Sports and Physical Activity", label: "Deportes y Actividad Física" },
+              { id: "Agriculture, Mining, and Gardening", label: "Agricultura, Minería y Jardinería" },
+              { id: "Image, Film, and Sound", label: "Imagen, Cine y Sonido" },
+              { id: "Fine Arts", label: "Bellas Artes" },
+              { id: "Security and Civil Protection", label: "Seguridad y Protección Civil" },
+              { id: "Logistics and Transportation", label: "Logística y Transporte" },
+              { id: "Graphic Arts", label: "Artes Gráficas" },
+              { id: "Fashion and Textile Production", label: "Moda y Producción Textil" },
+              { id: "Music, Performing Arts, and Dance", label: "Música, Artes Escénicas y Danza" },
+              { id: "Veterinary Medicine and Animals", label: "Veterinaria y Animales" },
             ].map((item) => (
               <label key={item.id} className="flex items-start cursor-pointer select-none min-w-0">
                 <input
@@ -162,7 +162,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
           >
             <span className="flex items-center gap-2 font-semibold text-sm">
               <MapPin className="w-4 h-4 text-blue" />
-              Location
+              Ubicación
             </span>
             {openSections.location ? (
               <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -174,7 +174,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
           {openSections.location && (
             <div className="space-y-2.5 mt-4">
               {[
-                { id: "all", label: "All Locations" },
+                { id: "all", label: "Todas las Ubicaciones" },
                 { id: "madrid", label: "Comunidad de Madrid" },
                 { id: "barcelona", label: "Barcelona" },
                 { id: "valencia", label: "Valencia" },
@@ -212,7 +212,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
         >
           <span className="flex items-center gap-2 font-semibold text-sm">
             <Building2 className="w-4 h-4 text-blue" />
-            Condition
+            Condición
           </span>
           {openSections.univ_type ? (
             <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -231,7 +231,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
                 checked={univ_type === "all"}
                 onChange={() => onFilterChange("univ_type", "all")}
               />
-              <span className="text-sm cursor-pointer break-words">All Types</span>
+              <span className="text-sm cursor-pointer break-words">Todos los Tipos</span>
             </label>
             <label className="flex items-start cursor-pointer select-none min-w-0">
               <input
@@ -241,7 +241,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
                 checked={univ_type === "public"}
                 onChange={() => onFilterChange("univ_type", "public")}
               />
-              <span className="text-sm cursor-pointer break-words">Public</span>
+              <span className="text-sm cursor-pointer break-words">Pública</span>
             </label>
             <label className="flex items-start cursor-pointer select-none min-w-0">
               <input
@@ -251,7 +251,7 @@ export default function FiltersContent({ filters, onFilterChange, isLocation = t
                 checked={univ_type === "private"}
                 onChange={() => onFilterChange("univ_type", "private")}
               />
-              <span className="text-sm cursor-pointer break-words">Private</span>
+              <span className="text-sm cursor-pointer break-words">Privada</span>
             </label>
           </div>
         )}
