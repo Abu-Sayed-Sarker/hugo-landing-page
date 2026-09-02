@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MessageSquare, Send, Paperclip, Smile } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { MessageSquare, Send, ArrowLeft } from "lucide-react";
 import { useGetConversationsQuery, useGetChatHistoryQuery } from "../../Api/chatApi";
 import { useSelector } from "react-redux";
 
@@ -17,7 +17,7 @@ export default function MessageInterface() {
   useEffect(() => {
     if (conversationList) {
       const formattedConversations = conversationList.map((conv) => {
-        const uniName = conv.other_user?.univ_name || "Unknown University";
+        const uniName = conv.other_user?.univ_name || "Universidad Desconocida";
         const shortName = conv.other_user?.short_name;
 
         let avatarText = "U";
@@ -138,9 +138,9 @@ export default function MessageInterface() {
   return (
     <div className="flex h-screen bg-base pt-20">
       {/* Left Sidebar - Conversation List */}
-      <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+      <div className={`${selectedConversation ? "hidden md:flex" : "flex"} w-full md:w-80 bg-white border-r border-gray-200 flex-col`}>
         <div className="p-4 flex-1 overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Message</h2>
+          <h2 className="text-xl font-bold mb-4">Mensajes</h2>
 
           {/* Search Bar */}
           {/* <div className="relative mb-4">
@@ -206,7 +206,7 @@ export default function MessageInterface() {
       </div>
 
       {/* Right Side - Chat or Empty State */}
-      <div className="flex-1 flex flex-col">
+      <div className={`${!selectedConversation ? "hidden md:flex" : "flex"} flex-1 flex-col min-w-0`}>
         {!selectedConversation ? (
           // Empty State
           <div className="flex-1 flex items-center justify-center">
@@ -215,12 +215,12 @@ export default function MessageInterface() {
                 <MessageSquare className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-lg font-semibold mb-2">
-                Select a conversation
+                Selecciona una conversación
               </h3>
               <p className="text-gray-500 text-sm">
-                Choose a conversation from the list to view messages
+                Elige una conversación de la lista para ver los mensajes
                 <br />
-                and respond to student inquiries
+                y responder a las consultas
               </p>
             </div>
           </div>
@@ -228,8 +228,14 @@ export default function MessageInterface() {
           // Chat View
           <>
             {/* Chat Header */}
-            <div className="bg-white border-b border-gray-200 px-6 py-4">
+            <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-4">
               <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setSelectedConversation(null)}
+                  className="md:hidden p-2 -ml-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <ArrowLeft size={20} />
+                </button>
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-medium">
                   {
                     conversations.find((c) => c.id === selectedConversation)
@@ -248,7 +254,7 @@ export default function MessageInterface() {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
               <div className="space-y-4 max-w-3xl mx-auto">
                 {activeRoomMessages.map((msg) => (
                   <div
@@ -300,7 +306,7 @@ export default function MessageInterface() {
                   value={messageInput}
                   onChange={(e) => setMessageInput(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  placeholder="Type your message..."
+                  placeholder="Escribe tu mensaje..."
                   rows="1"
                   className="flex-1 px-4 py-2 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-y-auto min-h-10 max-h-56 leading-relaxed"
                 />

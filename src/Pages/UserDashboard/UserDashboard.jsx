@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetUserProfileQuery } from "../../Api/authapi";
 import ProfileEditModal from "../../Layouts/User/Modal/ProfileEditModal";
@@ -124,13 +124,12 @@ export default function UserDashboard() {
                       </p>
                     </div>
                     <span
-                      className={`text-xs px-3 py-1 rounded font-medium ${
-                        app.status?.toLowerCase() === "accepted"
+                      className={`text-xs px-3 py-1 rounded font-medium ${app.status?.toLowerCase() === "accepted"
                           ? "bg-green-100 text-green-700"
                           : app.status?.toLowerCase() === "rejected"
                             ? "bg-red-100 text-red-700"
                             : "bg-yellow-100 text-yellow-700"
-                      }`}
+                        }`}
                     >
                       {app.status}
                     </span>

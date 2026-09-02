@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <nav
       className={`w-full fixed top-0 bg-white
-     z-[9999]`}
+     z-[9999] md:py-0 py-4`}
     >
       <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
@@ -75,31 +75,31 @@ export default function Navbar() {
           {/* Dashboard Button */}
           <div className="flex items-center gap-2 sm:gap-4">
             {data.isAuthenticated ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <Link to={"/user"}>
-                  <button className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform bg-primary text-white px-4 py-2 rounded-lg whitespace-nowrap hover:bg-blue-700">
+                  <button className="flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-transform bg-primary text-white p-2 sm:px-4 sm:py-2 rounded-lg whitespace-nowrap hover:bg-blue-700">
                     <User size={18} />
                     <span className="hidden sm:inline">Panel</span>
                   </button>
                 </Link>
                 <Link to={"/message"}>
                   {" "}
-                  <button className="flex items-center gap-2 border px-2 border-primary hover:scale-105 transition-transform text-primary font-medium py-1.5 rounded-lg whitespace-nowrap hover:bg-red-700">
+                  <button className="flex items-center justify-center gap-2 border p-2 sm:px-3 sm:py-1.5 border-primary hover:scale-105 transition-transform text-primary font-medium rounded-lg whitespace-nowrap hover:bg-blue-50">
                     <MessageSquareMore size={20} />
-                    <span>Chat</span>
+                    <span className="hidden sm:inline">Chat</span>
                   </button>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 hover:scale-105 transition-transform text-red font-medium py-2 rounded-lg whitespace-nowrap hover:bg-red-700"
+                  className="flex items-center justify-center p-2 hover:scale-105 transition-transform text-red-500 font-medium rounded-lg whitespace-nowrap hover:bg-red-50"
                 >
-                  <LogOut size={22} />
+                  <LogOut size={20} />
                 </button>
               </div>
             ) : (
               <button
                 onClick={handleLogin}
-                className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform border border-blue text-blue px-4 sm:px-6 py-2 rounded-lg whitespace-nowrap font-medium"
+                className="flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-transform border border-blue text-blue p-2 sm:px-6 sm:py-2 rounded-lg whitespace-nowrap font-medium"
               >
                 <User size={18} strokeWidth={2.5} />
                 <span className="hidden sm:inline">Iniciar sesión</span>
@@ -118,10 +118,10 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+        <div className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${mobileMenuOpen ? "max-h-[500px] opacity-100 mt-4 pt-4 pb-4 border-t border-gray-200" : "max-h-0 opacity-0"}`}>
+          <div className={`${mobileMenuOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-4"} origin-top transition-all duration-300`}>
             {/* Mobile Search */}
-            <div className="mb-4 flex items-center bg-gray-50 border border-gray-300 rounded-full px-4 py-2 gap-2">
+            {/* <div className="mb-4 flex items-center bg-gray-50 border border-gray-300 rounded-full px-4 py-2 gap-2">
               <Search size={18} className="text-gray-400" />
               <input
                 type="text"
@@ -130,7 +130,7 @@ export default function Navbar() {
                 onChange={(e) => setSearchValue(e.target.value)}
                 className="bg-transparent outline-none text-gray-700 placeholder-gray-400 flex-1"
               />
-            </div>
+            </div> */}
 
             {/* Mobile Navigation Links */}
             <div className="flex flex-col gap-3">
@@ -150,7 +150,8 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-        )}
+
+        </div>
       </div>
     </nav>
   );
