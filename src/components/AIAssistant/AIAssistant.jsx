@@ -10,7 +10,7 @@ import {
   Trash2,
   Menu,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import robotLottie from "../../assets/lottie/robot.json";
 import { useChatWithAIMutation } from "../../Api/aiApi";
@@ -24,7 +24,8 @@ import {
 import toast from "react-hot-toast";
 
 export default function AIAssistant() {
-  const [currentChatId, setCurrentChatId] = useState(null);
+  const { id: currentChatId } = useParams();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [voiceStatus, setVoiceStatus] = useState("idle"); // idle | listening | error | unsupported
@@ -74,14 +75,25 @@ export default function AIAssistant() {
   }, []);
 
   const handleNewChat = () => {
-    setCurrentChatId(null);
-    setMessages([]);
+    navigate("/ai-assistant");
   };
 
-  const handleSelectChat = async (item) => {
-    setCurrentChatId(item.id);
+  const handleSelectChat = (item) => {
+    navigate(`/ai-assistant/${item.id}`);
+  };
+
+  // Load session when currentChatId changes from URL
+  useEffect(() => {
+    if (currentChatId) {
+      loadSession(currentChatId);
+    } else {
+      setMessages([]);
+    }
+  }, [currentChatId]);
+
+  const loadSession = async (sessionId) => {
     try {
-      const response = await triggerGetSessionHistory(item.id).unwrap();
+      const response = await triggerGetSessionHistory(sessionId).unwrap();
       if (response?.chat_history) {
         const fullHistory = response.chat_history.flatMap((msg) => [
           {
@@ -206,10 +218,13 @@ export default function AIAssistant() {
         };
 
         setMessages((prev) => [...prev, aiMessage]);
-        refetchHistory();
+        const historyUpdate = await refetchHistory();
 
-        if (!currentChatId && response.session_id) {
-          setCurrentChatId(response.session_id);
+        if (!currentChatId) {
+          const newSessionId = response.session_id || historyUpdate?.data?.sessions?.[0]?.id;
+          if (newSessionId) {
+            navigate(`/ai-assistant/${newSessionId}`, { replace: true });
+          }
         }
       } catch (error) {
         console.error("Failed to stream chat:", error);
@@ -410,8 +425,8 @@ export default function AIAssistant() {
                               <div
                                 key={item.id}
                                 onClick={() => { handleSelectChat(item); setSidebarOpen(false); }}
-                                className={`group relative flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors ${currentChatId === item.id
-                                  ? "bg-blue/10 text-blue font-semibold"
+                                className={`group relative flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors ${currentChatId === String(item.id)
+                                  ? "bg-blue-100 text-blue-600 font-semibold"
                                   : "text-[#374151] hover:bg-gray-50"
                                   }`}
                               >

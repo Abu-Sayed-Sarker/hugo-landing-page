@@ -160,7 +160,7 @@ export const router = createBrowserRouter([
     element: <AdminSignIn />,
   },
   {
-    path: "ai-assistant",
+    path: "/ai-assistant/:id?",
     element: <AIAssistant />,
   },
   {
