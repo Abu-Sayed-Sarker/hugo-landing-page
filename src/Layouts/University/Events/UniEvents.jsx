@@ -40,15 +40,15 @@ export default function UniEvents() {
     try {
       if (editingEvent) {
         await updateEvent(eventFormData).unwrap();
-        toast.success("Event updated successfully");
+        toast.success("Evento actualizado con éxito");
       } else {
         await createEvent(eventFormData).unwrap();
-        toast.success("Event created successfully");
+        toast.success("Evento creado con éxito");
       }
       setShowEventForm(false);
     } catch (err) {
       console.error("Failed to save event:", err);
-      toast.error(err?.data?.detail || "An error occurred while saving the event.");
+      toast.error(err?.data?.detail || "Ocurrió un error al guardar el evento.");
     }
   };
 
@@ -63,26 +63,26 @@ export default function UniEvents() {
   const handleConfirmDelete = async (id) => {
     try {
       await deleteEvent(id).unwrap();
-      toast.success("Event cancelled successfully");
+      toast.success("Evento cancelado con éxito");
       setEventToDelete(null);
     } catch (err) {
       console.error("Failed to delete event:", err);
-      toast.error(err?.data?.detail || "Failed to cancel event.");
+      toast.error(err?.data?.detail || "Error al cancelar el evento.");
     }
   };
 
-  if (isLoading) return <div className="p-8">Loading events...</div>;
-  if (error) return <div className="p-8 text-red-500">Error loading events.</div>;
+  if (isLoading) return <div className="p-8">Cargando eventos...</div>;
+  if (error) return <div className="p-8 text-red-500">Error al cargar eventos.</div>;
 
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Event Manager</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Administrador de Eventos</h1>
         <button
           onClick={handleCreateEvent}
           className="bg-blue text-white px-4 py-2 rounded-lg flex items-center gap-2"
         >
-          <span className="text-xl">+</span> Create Event
+          <span className="text-xl">+</span> Crear Evento
         </button>
       </div>
 
@@ -95,7 +95,7 @@ export default function UniEvents() {
             : "text-gray-600 hover:text-gray-900"
             }`}
         >
-          Calendar
+          Calendario
         </button>
         <button
           onClick={() => setActiveTab("list")}
@@ -104,7 +104,7 @@ export default function UniEvents() {
             : "text-gray-600 hover:text-gray-900"
             }`}
         >
-          List View
+          Vista de Lista
         </button>
       </div>
 

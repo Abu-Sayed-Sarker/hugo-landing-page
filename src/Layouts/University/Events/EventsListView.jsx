@@ -11,7 +11,7 @@ export default function EventsListView({
 }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const monthName = currentDate.toLocaleString("default", {
+  const monthName = currentDate.toLocaleString("es-ES", {
     month: "long",
     year: "numeric",
   });
@@ -80,7 +80,7 @@ export default function EventsListView({
       <div className="space-y-4">
         {currentMonthEvents.length === 0 ? (
           <div className="text-center py-8 text-gray-500">
-            No events in this month
+            No hay eventos en este mes
           </div>
         ) : (
           currentMonthEvents.map((event) => (
@@ -112,8 +112,7 @@ export default function EventsListView({
                       </span>
                     </div>
                     <span className={`flex items-center gap-2 text-gray-600`}>
-                      {getEventTypeIcon(event.event_type)} {event.event_type}{" "}
-                      Event
+                      {getEventTypeIcon(event.event_type)} Evento {event.event_type}
                     </span>
                   </div>
                 </div>
@@ -121,7 +120,7 @@ export default function EventsListView({
                   <div className="text-right flex gap-8 items-center">
                     <div className="text-sm text-gray-600 flex gap-2">
                       <Users size={18} strokeWidth={3.0} />{" "}
-                      {event.registration_count} registrations
+                      {event.registration_count} inscripciones
                     </div>
                     <span
                       className={`inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mt-1 ${event.status === "Upcoming" ? "bg-[#DCFCE7] text-[#166534]" : ""}`}
@@ -135,19 +134,19 @@ export default function EventsListView({
               {/* Action Links */}
               <div className="flex gap-3 text-sm border-t pt-4">
                 <button onClick={() => onEdit(event)} className="text-blue">
-                  Edit Event
+                  Editar Evento
                 </button>
                 <button
                   onClick={() => onViewRegistrations(event)}
                   className="text-blue"
                 >
-                  View Registrations
+                  Ver Inscripciones
                 </button>
                 <button
                   onClick={() => onDelete && onDelete(event)}
                   className="text-red hover:underline"
                 >
-                  Cancel Event
+                  Cancelar Evento
                 </button>
               </div>
             </div>

@@ -23,8 +23,8 @@ export default function EventsCalendarView({
   }, []);
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
 
   const getDaysInMonth = (date) => {
@@ -47,7 +47,7 @@ export default function EventsCalendarView({
     );
   };
 
-  const monthName = currentDate.toLocaleString("default", {
+  const monthName = currentDate.toLocaleString("es-ES", {
     month: "long",
     year: "numeric",
   });
@@ -146,7 +146,7 @@ export default function EventsCalendarView({
       {/* Calendar Grid */}
       <div className="grid grid-cols-7 gap-2">
         {/* Day headers */}
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        {["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].map((day) => (
           <div
             key={day}
             className="text-center font-semibold text-gray-700 py-3 bg-gradient-to-r from-[#F4E7E4] to-[#DFF0EC] rounded"

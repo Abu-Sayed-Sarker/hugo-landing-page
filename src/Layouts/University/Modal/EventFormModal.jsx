@@ -137,7 +137,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
       <div className="bg-white rounded-lg max-w-2xl w-full mx-4 h-[80vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-4 border-b p-4 ">
           <h2 className="text-xl font-semibold text-gray-900">
-            {isEdit ? "Edit Event" : "Create Event"}
+            {isEdit ? "Editar Evento" : "Crear Evento"}
           </h2>
           <button
             onClick={onClose}
@@ -171,10 +171,10 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
               >
                 <Upload size={24} className="text-gray-400 mb-2" />
                 <span className="text-sm text-gray-600">
-                  Upload Event Image
+                  Subir Imagen del Evento
                 </span>
                 <span className="text-xs text-gray-400 mt-1">
-                  Recommended: 400x400px
+                  Recomendado: 400x400px
                 </span>
               </div>
             )}
@@ -189,28 +189,28 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
           <div className="grid grid-cols-2 gap-4 px-6">
             <div className="">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Event Title
+                Título del Evento
               </label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                placeholder="e.g. Virtual Open Day"
+                placeholder="ej. Jornada de Puertas Abiertas Virtual"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
             <div className="">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category
+                Categoría
               </label>
               <input
                 type="text"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                placeholder="e.g. Bootcamp"
+                placeholder="ej. Bootcamp"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
@@ -219,7 +219,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
           <div className="grid grid-cols-2 gap-4 px-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Date
+                Fecha
               </label>
               <input
                 type="date"
@@ -232,7 +232,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Time
+                Hora
               </label>
               <input
                 type="text"
@@ -249,7 +249,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
           <div className="grid grid-cols-2 gap-4 px-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Event Type
+                Tipo de Evento
               </label>
               <select
                 name="type"
@@ -257,13 +257,13 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="Online">Online</option>
-                <option value="Person">In-Person</option>
+                <option value="Online">En Línea</option>
+                <option value="Person">Presencial</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Status
+                Estado
               </label>
               <select
                 name="status"
@@ -271,22 +271,22 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value="Upcoming">Upcoming</option>
-                <option value="Completed">Completed</option>
-                <option value="Cancelled">Cancelled</option>
+                <option value="Upcoming">Próximo</option>
+                <option value="Completed">Completado</option>
+                <option value="Cancelled">Cancelado</option>
               </select>
             </div>
           </div>
 
           <div className="px-6">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Event Description
+              Descripción del Evento
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Describe your event here..."
+              placeholder="Describe tu evento aquí..."
               rows="4"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -294,7 +294,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
           </div>
           <div className="px-6">
             <h3 className="text-lg font-bold text-gray-900 mb-4">
-              Event Agenda
+              Agenda del Evento
             </h3>
 
             <div className="space-y-4 mb-6">
@@ -322,12 +322,12 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
 
             <div className="bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300">
               <p className="text-xs font-bold text-gray-500 uppercase mb-3 text-center">
-                Add Agenda Item
+                Agregar Ítem a la Agenda
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
                   type="text"
-                  placeholder="Time (e.g. 09:00 AM - 10:30 AM)"
+                  placeholder="Hora (ej. 09:00 AM - 10:30 AM)"
                   value={newAgenda.time}
                   onChange={(e) =>
                     setNewAgenda({ ...newAgenda, time: e.target.value })
@@ -336,7 +336,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
                 />
                 <input
                   type="text"
-                  placeholder="Task Title (e.g. Introduction)"
+                  placeholder="Título de la Tarea (ej. Introducción)"
                   value={newAgenda.title}
                   onChange={(e) =>
                     setNewAgenda({ ...newAgenda, title: e.target.value })
@@ -344,7 +344,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
                   className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                 />
                 <textarea
-                  placeholder="Subtitle/Description (Optional)"
+                  placeholder="Subtítulo/Descripción (Opcional)"
                   value={newAgenda.subtitle}
                   onChange={(e) =>
                     setNewAgenda({ ...newAgenda, subtitle: e.target.value })
@@ -357,7 +357,7 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
                   onClick={handleAddAgenda}
                   className="md:col-span-2 bg-blue text-white py-2 rounded-lg text-sm font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition"
                 >
-                  <Plus size={16} /> Add to Agenda
+                  <Plus size={16} /> Agregar a la Agenda
                 </button>
               </div>
             </div>
@@ -365,13 +365,13 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
 
           <div className="px-6">
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Additional Information
+              Información Adicional
             </label>
             <textarea
               name="additional"
               value={formData.additional}
               onChange={handleChange}
-              placeholder="Optional"
+              placeholder="Opcional"
               rows="2"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -382,13 +382,13 @@ export default function EventFormModal({ event, onSave, onClose, isEdit }) {
               onClick={onClose}
               className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
               className="flex-1 px-4 py-2 bg-blue text-white rounded-lg font-medium shadow-md hover:bg-blue-600 transition"
             >
-              {isEdit ? "Save Changes" : "Create Event"}
+              {isEdit ? "Guardar Cambios" : "Crear Evento"}
             </button>
           </div>
         </form>
