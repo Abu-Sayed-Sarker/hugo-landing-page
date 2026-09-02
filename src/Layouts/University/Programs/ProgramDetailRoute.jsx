@@ -15,17 +15,17 @@ export default function ProgramDetailRoute() {
     return (
       <div className="min-h-screen p-8 bg-gray-50">
         <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">No program selected</h2>
+          <h2 className="text-xl font-semibold mb-4">No se seleccionó ningún programa</h2>
           <p className="text-gray-600 mb-6">
-            This page expects program data passed from the Programs list. Open
-            the program from the Programs page or go back.
+            Esta página requiere datos del programa pasados desde la lista de Programas. Abra
+            el programa desde la página de Programas o regrese.
           </p>
           <div className="flex justify-end">
             <button
               onClick={handleClose}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
-              Back to Programs
+              Volver a Programas
             </button>
           </div>
         </div>

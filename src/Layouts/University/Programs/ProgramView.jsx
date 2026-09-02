@@ -51,25 +51,25 @@ export default function ProgramsView({
     return (
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Programs</h1>
+                <h1 className="text-3xl font-bold text-gray-900">Programas</h1>
                 <div className="flex gap-3">    <button
                     onClick={() => setShowAddCareerModal(true)}
                     className=" text-blue border border-blue px-4 py-2 rounded-lg hover:bg-gray-50"
                 >
-                    + Add Career
+                    + Agregar Carrera
                 </button>
                     <button
                         onClick={onAdd}
                         className="bg-[#1D4ED8] text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2"
                     >
-                        + Add New Program
+                        + Agregar Nuevo Programa
                     </button></div>
             </div>
 
             {/* Search Bar */}
             <input
                 type="text"
-                placeholder="Search programs..."
+                placeholder="Buscar programas..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full mb-8 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -103,22 +103,22 @@ export default function ProgramsView({
 
                                 <div>
                                     <div>
-                                        <p className="text-gray-600">Level</p>
+                                        <p className="text-gray-600">Nivel</p>
                                         <p className="">{program.level}</p>
                                     </div>
                                     <div>
-                                        <p className="text-gray-600">Language</p>
+                                        <p className="text-gray-600">Idioma</p>
                                         <p className="">{program.language}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <p className="text-gray-600">Duration</p>
+                                        <p className="text-gray-600">Duración</p>
                                         <p className="">{program.duration}</p>
                                     </div>
 
                                     <div>
-                                        <p className="text-gray-600">Applications</p>
+                                        <p className="text-gray-600">Solicitudes</p>
                                         <p className="">{program.applications}</p>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@ export default function ProgramsView({
                             {/* Footer */}
                             <div className="border-t pt-3 flex justify-between items-center">
                                 <p className=" text-grey">
-                                    Last updated: {program.lastUpdated}
+                                    Última actualización: {program.lastUpdated}
                                 </p>
                                 <div className="flex gap-3 items-center ">
                                     <button onClick={() => onView && onView(program)}>
@@ -157,25 +157,25 @@ export default function ProgramsView({
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg w-full max-w-lg shadow-lg">
                         <h2 className="text-xl font-bold text-gray-900 mb-4 px-6 py-4 border-b">
-                            Delete Program
+                            Eliminar Programa
                         </h2>
                         <p className="text-gray-600 mb-6 px-6">
-                            Are you sure you want to delete the program{" "}
+                            ¿Estás seguro de que deseas eliminar el programa{" "}
                             <span className="font-semibold">{programToDelete.name}</span>?
-                            This action cannot be undone.
+                            Esta acción no se puede deshacer.
                         </p>
                         <div className="flex gap-3 justify-end px-6 bg-[#F9FAFB] py-4 border-t">
                             <button
                                 onClick={() => setDeleteModal(false)}
                                 className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
                             >
-                                Cancel
+                                Cancelar
                             </button>
                             <button
                                 onClick={handleConfirmDelete}
                                 className="px-4 py-2 bg-red text-white rounded-lg hover:bg-red-700 transition"
                             >
-                                Delete
+                                Eliminar
                             </button>
                         </div>
                     </div>

@@ -38,10 +38,10 @@ export default function Programs() {
     try {
       const res = await deleteProgram(program.id);
       console.log("res", res.data.message)
-      toast.success("Program deleted successfully");
+      toast.success("Programa eliminado exitosamente");
     } catch (err) {
       console.error(" te program:", err);
-      toast.error("Failed to delete program");
+      toast.error("Error al eliminar el programa");
     }
   };
 
@@ -60,11 +60,11 @@ export default function Programs() {
         await createProgram(programData).unwrap();
       }
       setView("list");
-      toast.success(editingProgram ? "Program updated" : "Program created");
+      toast.success(editingProgram ? "Programa actualizado" : "Programa creado");
     } catch (err) {
       console.error("API Error Detailed:", err);
       if (err?.data) console.log("Validation Errors:", err.data);
-      toast.error(err?.data?.detail || "An error occurred. Check console.");
+      toast.error(err?.data?.detail || "Ocurrió un error. Revise la consola.");
     }
   };
 
@@ -83,7 +83,7 @@ export default function Programs() {
   if (error) {
     return (
       <div className="flex justify-center items-center h-screen text-red-500">
-        Error loading programs. Please try again later.
+        Error al cargar los programas. Por favor intente de nuevo más tarde.
       </div>
     );
   }

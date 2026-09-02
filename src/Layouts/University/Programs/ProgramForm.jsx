@@ -375,7 +375,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
         <div className="bg-gradient-to-r from-[#F5E6E3] to-[#DEF0EC] text-lg px-6 py-4 rounded-t-lg border-gray-200 flex justify-between items-start sticky top-0 w-full z-10">
           <div className="font-semibold">
             {" "}
-            {isEdit ? "Edit Program" : "Add New Program"}
+            {isEdit ? "Editar Programa" : "Agregar Nuevo Programa"}
           </div>
           <button
             onClick={onCancel}
@@ -392,33 +392,33 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="col-span-1 md:col-span-2">
                   <label className="block font-semibold text-xl text-gray-700 mb-2">
-                    Program Title
+                    Título del Programa
                   </label>
                   <input
                     type="text"
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
-                    placeholder="e.g. Bachelor of Computer Science"
+                    placeholder="ej. Licenciatura en Ciencias de la Computación"
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   />
                 </div>
                 <div>
                   <label className="block font-semibold text-gray-700 mb-2">
-                    Language
+                    Idioma
                   </label>
                   <input
                     type="text"
                     name="language"
                     value={formData.language}
                     onChange={handleInputChange}
-                    placeholder="e.g. English"
+                    placeholder="ej. Español"
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   />
                 </div>
                 <div>
                   <label className="block font-semibold text-gray-700 mb-2">
-                    Level
+                    Nivel
                   </label>
                   <select
                     name="level"
@@ -426,35 +426,35 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   >
-                    <option value="">Select Level</option>
-                    <option value="Bachelor">Bachelor</option>
-                    <option value="Master">Master</option>
-                    <option value="PhD">PhD</option>
-                    <option value="College">College</option>
-                    <option value="Degree">Degree</option>
-                    <option value="Online Courses">Online Courses</option>
+                    <option value="">Seleccionar Nivel</option>
+                    <option value="Bachelor">Licenciatura</option>
+                    <option value="Master">Maestría</option>
+                    <option value="PhD">Doctorado</option>
+                    <option value="College">Universidad</option>
+                    <option value="Degree">Grado</option>
+                    <option value="Online Courses">Cursos en Línea</option>
                     <option value="Professional Formation">
-                      Professional Formation
+                      Formación Profesional
                     </option>
                   </select>
                 </div>
                 <div>
                   <label className="block font-semibold text-gray-700 mb-2">
-                    Duration
+                    Duración
                   </label>
                   <input
                     type="text"
                     name="duration"
                     value={formData.duration}
                     onChange={handleInputChange}
-                    placeholder="e.g. 4 years"
+                    placeholder="ej. 4 años"
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   />
                 </div>
 
                 <div>
                   <label className="block font-semibold text-gray-700 mb-2">
-                    Status
+                    Estado
                   </label>
                   <select
                     name="status"
@@ -462,20 +462,20 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   >
-                    <option>Draft</option>
-                    <option>Published</option>
+                    <option value="Draft">Borrador</option>
+                    <option value="Published">Publicado</option>
                   </select>
                 </div>
                 <div>
                   <label className="block font-semibold text-gray-700 mb-2">
-                    Credits
+                    Créditos
                   </label>
                   <input
                     type="number"
                     name="credits"
                     value={formData.credits}
                     onChange={handleInputChange}
-                    placeholder="e.g. 120"
+                    placeholder="ej. 120"
                     className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                   />
                 </div>
@@ -504,10 +504,10 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   <>
                     <Upload size={32} className="text-gray-400 mb-2" />
                     <button className="text-blue font-medium hover:underline">
-                      Upload Image
+                      Subir Imagen
                     </button>
                     <span className="text-xs text-gray-500 mt-1">
-                      PNG, JPG up to 10MB
+                      PNG, JPG hasta 10MB
                     </span>
                   </>
                 )}
@@ -516,13 +516,13 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
 
             <div>
               <label className="block font-semibold mb-2">
-                Program Description
+                Descripción del Programa
               </label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                placeholder="Detailed program description..."
+                placeholder="Descripción detallada del programa..."
                 rows="4"
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
               />
@@ -531,7 +531,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Learning Outcomes */}
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                Learning Outcomes
+                Resultados de Aprendizaje
               </h2>
               <div className="space-y-2 mb-4">
                 {formData.learningOutcomes.map((outcome, index) => (
@@ -557,7 +557,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   type="text"
                   value={newOutcome}
                   onChange={(e) => setNewOutcome(e.target.value)}
-                  placeholder="Add a new learning outcome..."
+                  placeholder="Agregar un nuevo resultado de aprendizaje..."
                   className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <button
@@ -572,7 +572,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Faculties */}
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                Key Faculties
+                Facultades Principales
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 {formData.faculties.map((faculty, index) => (
@@ -610,7 +610,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   onChange={(e) =>
                     setNewFaculty((prev) => ({ ...prev, name: e.target.value }))
                   }
-                  placeholder="Faculty Name"
+                  placeholder="Nombre de la Facultad"
                   className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <input
@@ -622,7 +622,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       department: e.target.value,
                     }))
                   }
-                  placeholder="Department"
+                  placeholder="Departamento"
                   className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <input
@@ -634,14 +634,14 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       expertise: e.target.value,
                     }))
                   }
-                  placeholder="Expertise"
+                  placeholder="Especialidad"
                   className=" col-span-1 md:col-span-2 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <button
                   onClick={handleAddFaculty}
                   className="md:col-span-4 px-4 py-2 bg-blue text-white rounded font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2"
                 >
-                  <Plus size={18} /> Add Faculty
+                  <Plus size={18} /> Agregar Facultad
                 </button>
               </div>
             </div>
@@ -649,17 +649,17 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Curriculum */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                Program Curriculum
+                Plan de Estudios del Programa
               </h2>
               <div className="mb-4">
                 <label className="block font-semibold text-gray-700 mb-2">
-                  Curriculum Overview
+                  Resumen del Plan de Estudios
                 </label>
                 <textarea
                   name="curriculum_overview"
                   value={formData.curriculum_overview}
                   onChange={handleInputChange}
-                  placeholder="Brief overview of the curriculum..."
+                  placeholder="Breve resumen del plan de estudios..."
                   rows="3"
                   className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
@@ -671,10 +671,10 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     className="bg-blue-50 p-4 rounded-lg border border-blue-100"
                   >
                     <label className="block font-semibold text-blue-800 mb-2">
-                      {["First", "Second", "Third", "Fourth"][idx]} Year Courses
+                      Cursos del {["Primer", "Segundo", "Tercer", "Cuarto"][idx]} Año
                     </label>
                     <textarea
-                      placeholder={`Enter courses for year ${idx + 1}...`}
+                      placeholder={`Ingresar cursos para el año ${idx + 1}...`}
                       rows="5"
                       value={formData.curriculum[year] || ""}
                       onChange={(e) =>
@@ -683,7 +683,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       className="w-full px-3 py-2 border border-blue-200 rounded focus:outline-none focus:ring-2 focus:ring-blue bg-white"
                     />
                     <p className="text-xs text-gray-500 mt-1 text-right">
-                      Separate courses with new lines
+                      Separe los cursos con saltos de línea
                     </p>
                   </div>
                 ))}
@@ -693,18 +693,18 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Application Deadlines & Requirements */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                Admission Requirements & Deadlines
+                Requisitos de Admisión y Plazos
               </h2>
 
               <div className="mb-6">
                 <label className="block font-semibold text-gray-700 mb-2">
-                  Requirements
+                  Requisitos
                 </label>
                 <textarea
                   name="requirements"
                   value={formData.requirements}
                   onChange={handleInputChange}
-                  placeholder="Enter admission requirements..."
+                  placeholder="Ingrese los requisitos de admisión..."
                   rows="4"
                   className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue mb-4"
                 />
@@ -712,7 +712,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
 
               <div className="bg-[#EFF6FF] p-5 border border-[#BFDBFE] rounded-lg">
                 <p className="font-semibold text-blue mb-4">
-                  Application Deadlines
+                  Plazos de Solicitud
                 </p>
                 <div className="space-y-3 mb-4">
                   {formData.deadlines.map((deadline, index) => (
@@ -728,17 +728,17 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                         <br />
                         <span className=" text-gray-600 ">
                           {" "}
-                          <span className="font-semibold">Start: </span>
+                          <span className="font-semibold">Inicio: </span>
                           {deadline.start_date}
                         </span>
                         <span className=" text-gray-600 ">
                           {" "}
-                          <span className="font-semibold">End: </span>
+                          <span className="font-semibold">Fin: </span>
                           {deadline.end_date}
                         </span>
                         <span className=" text-gray-600 ">
                           {" "}
-                          <span className="font-semibold">Next Start: </span>
+                          <span className="font-semibold">Próximo Inicio: </span>
                           {formData.next_start_date}
                         </span>
                       </div>
@@ -754,7 +754,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                 <div className="flex gap-3 items-end">
                   <div className="flex-1">
                     <label className="text-xs font-semibold text-gray-500 uppercase">
-                      Batch Name
+                      Nombre del Grupo
                     </label>
                     <input
                       type="text"
@@ -765,13 +765,13 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                           batch_name: e.target.value,
                         }))
                       }
-                      placeholder="e.g. Spring 2026"
+                      placeholder="ej. Primavera 2026"
                       className="w-full px-3 py-2 border border-blue-200 rounded mt-1 focus:ring-2 focus:ring-blue focus:outline-none"
                     />
                   </div>
                   <div className="flex-1">
                     <label className="text-xs font-semibold text-gray-500 uppercase">
-                      Start Date
+                      Fecha de Inicio
                     </label>
                     <input
                       type="date"
@@ -787,7 +787,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   </div>
                   <div className="flex-1">
                     <label className="text-xs font-semibold text-gray-500 uppercase">
-                      End Date
+                      Fecha de Finalización
                     </label>
                     <input
                       type="date"
@@ -803,7 +803,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   </div>
                   <div className="flex-1">
                     <label className="text-xs font-semibold text-gray-500 uppercase">
-                      Next Start Date
+                      Próxima Fecha de Inicio
                     </label>
                     <input
                       type="date"
@@ -821,7 +821,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     onClick={handleAddDeadline}
                     className="px-4 py-2 bg-blue text-white rounded font-semibold hover:bg-blue-600 h-[42px]"
                   >
-                    Add
+                    Agregar
                   </button>
                 </div>
               </div>
@@ -830,19 +830,19 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Tuition Fees & Financial Aid */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                Tuition Fees & Financial Aid
+                Costos de Matrícula y Ayuda Financiera
               </h2>
 
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
                 <h3 className="font-semibold text-gray-800 mb-4 uppercase text-sm tracking-wider">
-                  Tuition Fees
+                  Costos de Matrícula
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-2 text-green-600 mb-2">
                       <span className="font-bold text-xl">$</span>
                       <span className="text-sm font-semibold uppercase">
-                        Domestic Students
+                        Estudiantes Nacionales
                       </span>
                     </div>
                     <input
@@ -850,7 +850,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       name="domestic_tuition"
                       value={formData.domestic_tuition}
                       onChange={handleInputChange}
-                      placeholder="e.g. $52,000 per year"
+                      placeholder="ej. $52,000 por año"
                       className="w-full text-lg text-gray-800 outline-none border-b-2 border-transparent focus:border-blue-300 transition-colors py-1"
                     />
                   </div>
@@ -858,7 +858,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     <div className="flex items-center gap-2 text-green-600 mb-2">
                       <span className="font-bold text-xl">$</span>
                       <span className="text-sm font-semibold uppercase">
-                        International Students
+                        Estudiantes Internacionales
                       </span>
                     </div>
                     <input
@@ -866,26 +866,26 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       name="international_tuition"
                       value={formData.international_tuition}
                       onChange={handleInputChange}
-                      placeholder="e.g. $55,000 per year"
+                      placeholder="ej. $55,000 por año"
                       className="w-full text-lg text-gray-800 outline-none border-b-2 border-transparent focus:border-blue-300 transition-colors py-1"
                     />
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 mt-4 italic">
-                  Does not include accommodation, books, and other expenses
+                  No incluye alojamiento, libros y otros gastos
                 </p>
               </div>
 
               <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex justify-between items-center">
                   <span className="font-semibold text-gray-700 text-sm uppercase">
-                    Additional Expenses (Estimated)
+                    Gastos Adicionales (Estimados)
                   </span>
                 </div>
                 <div className="divide-y divide-gray-100">
                   <div className="grid grid-cols-2 px-4 py-2 bg-gray-50 text-xs font-bold text-gray-500 uppercase">
-                    <div className="text-center">Expense</div>
-                    <div className="text-center">Cost (Annual)</div>
+                    <div className="text-center">Gasto</div>
+                    <div className="text-center">Costo (Anual)</div>
                   </div>
                   {formData.additional_expenses.map((exp, index) => (
                     <div
@@ -912,7 +912,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                 <div className="p-4 bg-gray-50 border-t border-gray-200 grid grid-cols-1 md:grid-cols-5 gap-3">
                   <input
                     type="text"
-                    placeholder="e.g. Accommodation"
+                    placeholder="ej. Alojamiento"
                     value={newExpense.expense_name}
                     onChange={(e) =>
                       setNewExpense({
@@ -924,7 +924,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   />
                   <input
                     type="text"
-                    placeholder="e.g. $16,000 - $18,000"
+                    placeholder="ej. $16,000 - $18,000"
                     value={newExpense.cost_estimate}
                     onChange={(e) =>
                       setNewExpense({
@@ -938,7 +938,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     onClick={handleAddExpense}
                     className="bg-blue text-white rounded font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2 py-2"
                   >
-                    <Plus size={18} /> Add
+                    <Plus size={18} /> Agregar
                   </button>
                 </div>
               </div>
@@ -947,7 +947,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Scholarships & Financial Aid */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                Scholarships & Financial Aid
+                Becas y Ayuda Financiera
               </h2>
 
               <div className="space-y-4 mb-6">
@@ -965,11 +965,11 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                           {scholarship.name}
                         </h3>
                         <p className="text-sm text-gray-700 mb-1">
-                          <span className="font-semibold">Amount:</span>{" "}
+                          <span className="font-semibold">Monto:</span>{" "}
                           {scholarship.amount}
                         </p>
                         <p className="text-sm text-gray-700">
-                          <span className="font-semibold">Eligibility:</span>{" "}
+                          <span className="font-semibold">Elegibilidad:</span>{" "}
                           {scholarship.eligibility}
                         </p>
                       </div>
@@ -987,12 +987,12 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
               {/* Add Scholarship Inputs */}
               <div className="bg-gray-50 p-5 rounded-lg border border-dashed border-gray-300 mb-6">
                 <p className="text-xs font-bold text-gray-500 uppercase mb-4">
-                  Add Scholarship
+                  Agregar Beca
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
                     type="text"
-                    placeholder="Scholarship Name"
+                    placeholder="Nombre de la Beca"
                     value={newScholarship.name}
                     onChange={(e) =>
                       setNewScholarship({
@@ -1004,7 +1004,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   />
                   <input
                     type="text"
-                    placeholder="Amount (e.g. Up to $10,000)"
+                    placeholder="Monto (ej. Hasta $10,000)"
                     value={newScholarship.amount}
                     onChange={(e) =>
                       setNewScholarship({
@@ -1015,7 +1015,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     className="px-3 py-2 border border-gray-300 rounded text-sm focus:ring-2 focus:ring-blue focus:outline-none"
                   />
                   <textarea
-                    placeholder="Eligibility details..."
+                    placeholder="Detalles de elegibilidad..."
                     value={newScholarship.eligibility}
                     onChange={(e) =>
                       setNewScholarship({
@@ -1030,7 +1030,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     onClick={handleAddScholarship}
                     className="md:col-span-2 bg-blue text-white rounded font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2 py-2"
                   >
-                    <Plus size={18} /> Add Scholarship
+                    <Plus size={18} /> Agregar Beca
                   </button>
                 </div>
               </div>
@@ -1038,11 +1038,11 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
               {/* Financial Aid Office Info */}
               <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
                 <h3 className="font-bold text-blue-800 mb-4">
-                  Financial Aid Office
+                  Oficina de Ayuda Financiera
                 </h3>
                 <div className="space-y-4">
                   <textarea
-                    placeholder="General description about financial aid, grants, loans..."
+                    placeholder="Descripción general sobre ayuda financiera, becas, préstamos..."
                     value={formData.financial_aid?.description}
                     onChange={(e) =>
                       setFormData({
@@ -1059,7 +1059,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-gray-500 uppercase">
-                        Email
+                        Correo
                       </label>
                       <input
                         type="email"
@@ -1079,7 +1079,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-gray-500 uppercase">
-                        Phone
+                        Teléfono
                       </label>
                       <input
                         type="text"
@@ -1105,7 +1105,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
             {/* Application Steps */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                Application Process
+                Proceso de Solicitud
               </h2>
               <div className="space-y-3 mb-4">
                 {formData.appProcess.map((step, index) => (
@@ -1136,7 +1136,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded border border-gray-200 border-dashed">
                 <div className="col-span-1 md:col-span-2 text-sm font-semibold text-gray-500 uppercase">
-                  Add New Step
+                  Agregar Nuevo Paso
                 </div>
                 <input
                   type="text"
@@ -1147,7 +1147,7 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       title: e.target.value,
                     }))
                   }
-                  placeholder="Step Title (e.g. Online Application)"
+                  placeholder="Título del Paso (ej. Solicitud en Línea)"
                   className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <input
@@ -1159,14 +1159,14 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                       description: e.target.value,
                     }))
                   }
-                  placeholder="Description (e.g. Fill out the admission form...)"
+                  placeholder="Descripción (ej. Complete el formulario de admisión...)"
                   className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue"
                 />
                 <button
                   onClick={handleAddAppProcess}
                   className="col-span-1 md:col-span-2 px-4 py-2 bg-blue text-white rounded font-semibold hover:bg-blue-600 transition"
                 >
-                  Add Step
+                  Agregar Paso
                 </button>
               </div>
             </div>
@@ -1177,13 +1177,13 @@ export default function ProgramForm({ programId, onSave, onCancel, isEdit }) {
                 onClick={onCancel}
                 className="px-6 py-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-semibold text-gray-700"
               >
-                Cancel
+                Cancelar
               </button>
               <button
                 onClick={handleSubmit}
                 className="px-8 py-2.5 bg-blue text-white rounded-lg hover:bg-blue-600 transition font-semibold shadow-sm hover:shadow"
               >
-                {isEdit ? "Save Changes" : "Create Program"}
+                {isEdit ? "Guardar Cambios" : "Crear Programa"}
               </button>
             </div>
           </div>

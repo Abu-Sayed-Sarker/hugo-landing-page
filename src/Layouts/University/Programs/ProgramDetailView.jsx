@@ -73,7 +73,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
       <div className="bg-white rounded-xl shadow-lg w-full max-w-3xl my-8 max-h-[80vh] overflow-y-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-[#F5E6E3] to-[#DEF0EC] px-6 py-5 border-b border-gray-200 flex justify-between items-start sticky top-0 w-full max-w-3xl z-10">
-          <div className="font-semibold text-lg">Program Details</div>
+          <div className="font-semibold text-lg">Detalles del Programa</div>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition"
@@ -105,7 +105,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
             <div className="grid grid-cols-2 gap-4 flex-1">
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Level
+                  Nivel
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">
                   {program?.level}
@@ -113,7 +113,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Duration
+                  Duración
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">
                   {program?.duration}
@@ -121,7 +121,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Language
+                  Idioma
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">
                   {program?.language}
@@ -129,7 +129,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Modality
+                  Modalidad
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">
                   {program?.modality}
@@ -137,7 +137,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Next Start Date
+                  Próxima Fecha de Inicio
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">
                   {program?.next_start_date}
@@ -145,13 +145,13 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Credits
+                  Créditos
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">{program?.credits}</p>
               </div>
               <div>
                 <p className=" text-gray-500 font-medium uppercase tracking-wide text-xs">
-                  Last Updated
+                  Última Actualización
                 </p>
                 <p className="font-semibold text-gray-900 mt-1">{program?.updated_at ? program?.updated_at.split("T")[0] : "N/A"}</p>
               </div>
@@ -165,14 +165,14 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
         {/* Content */}
         <div className="">
           {/* Program Description */}
-          <DetailSection title="Program Description" section="description">
+          <DetailSection title="Descripción del Programa" section="description">
             <p className="text-gray-700 leading-relaxed">
               {program?.description}
             </p>
           </DetailSection>
 
           {/* Learning Outcomes */}
-          <DetailSection title="Learning Outcomes" section="outcomes">
+          <DetailSection title="Resultados de Aprendizaje" section="outcomes">
             <div className="space-y-3">
               {outcomes.length > 0 ? (
                 outcomes.map((outcome, index) => (
@@ -184,13 +184,13 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
                   </div>
                 ))
               ) : (
-                <p className=" text-gray-500">No learning outcomes added</p>
+                <p className=" text-gray-500">No se agregaron resultados de aprendizaje</p>
               )}
             </div>
           </DetailSection>
 
           {/* Program Faculties */}
-          <DetailSection title="Program Faculties" section="faculties">
+          <DetailSection title="Facultades del Programa" section="faculties">
             {program?.faculties && program.faculties.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {program?.faculties.map((faculty, index) => (
@@ -216,15 +216,15 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
                 ))}
               </div>
             ) : (
-              <p className=" text-gray-500">No faculties added</p>
+              <p className=" text-gray-500">No se agregaron facultades</p>
             )}
           </DetailSection>
 
           {/* Program Curriculum */}
-          <DetailSection title="Program Curriculum" section="curriculum">
+          <DetailSection title="Plan de Estudios del Programa" section="curriculum">
             <div className="mb-6">
               <p className="text-gray-700 leading-relaxed">
-                {program?.curriculum_overview || "No curriculum overview available."}
+                {program?.curriculum_overview || "No hay resumen del plan de estudios disponible."}
               </p>
             </div>
             {curriculumYears.length > 0 ? (
@@ -248,16 +248,16 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
                 ))}
               </div>
             ) : (
-              <p className=" text-gray-500">No curriculum courses added</p>
+              <p className=" text-gray-500">No se agregaron cursos al plan de estudios</p>
             )}
           </DetailSection>
 
           {/* Admission Requirements */}
-          <DetailSection title="Admission Requirements" section="requirements">
+          <DetailSection title="Requisitos de Admisión" section="requirements">
             {deadlines.length > 0 ? (
               <div className="bg-blue-50 border border-[#BFDBFE] rounded-lg p-6 bg-[#EFF6FF] mb-6">
                 <h3 className="text-lg font-semibold text-blue mb-4 flex items-center">
-                  Application Deadlines
+                  Plazos de Solicitud
                 </h3>
 
                 <div className="space-y-3 ">
@@ -280,7 +280,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
               </div>
             ) : null}
             <div>
-              <h3 className="font-semibold my-4 text-black text-lg">Requirements</h3>
+              <h3 className="font-semibold my-4 text-black text-lg">Requisitos</h3>
               {Array.isArray(program?.requirements) ? (
                 <ul className="space-y-2">
                   {program.requirements.map((req, index) => (
@@ -290,12 +290,12 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
                     </li>
                   ))}
                   {program.requirements.length === 0 && (
-                    <p className="text-gray-500 italic text-sm">No specific requirements listed.</p>
+                    <p className="text-gray-500 italic text-sm">No se enumeran requisitos específicos.</p>
                   )}
                 </ul>
               ) : (
                 <p className="text-gray-700 whitespace-pre-wrap">
-                  {program?.requirements || "No specific requirements listed."}
+                  {program?.requirements || "No se enumeran requisitos específicos."}
                 </p>
               )}
             </div>
@@ -303,7 +303,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
 
           {/* Application Process */}
           <DetailSection
-            title="Application Process"
+            title="Proceso de Solicitud"
             section="process"
           >
             {steps.length > 0 ? (
@@ -325,29 +325,29 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
                     </div>
                   </li>
                 ))}
-              </ol>
+                </ol>
             ) : (
-              <p className=" text-gray-500">No application steps added</p>
+              <p className=" text-gray-500">No se agregaron pasos de solicitud</p>
             )}
           </DetailSection>
 
           {/* Fees & Financial Aid */}
-          <DetailSection title="Fees & Financial Aid" section="fees" isLast={true}>
+          <DetailSection title="Tarifas y Ayuda Financiera" section="fees" isLast={true}>
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 border rounded-lg bg-green-50 border-green-100">
-                  <p className="text-xs font-semibold text-green-700 uppercase">Domestic Tuition</p>
+                  <p className="text-xs font-semibold text-green-700 uppercase">Matrícula Nacional</p>
                   <p className="text-lg font-bold text-gray-900">{program?.tuition?.domestic_tuition} {program?.tuition?.currency}</p>
                 </div>
                 <div className="p-4 border rounded-lg bg-green-50 border-green-100">
-                  <p className="text-xs font-semibold text-green-700 uppercase">International Tuition</p>
+                  <p className="text-xs font-semibold text-green-700 uppercase">Matrícula Internacional</p>
                   <p className="text-lg font-bold text-gray-900">{program?.tuition?.international_tuition} {program?.tuition?.currency}</p>
                 </div>
               </div>
 
               {program?.additional_expenses?.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">Additional Expenses</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">Gastos Adicionales</h4>
                   <div className="space-y-2">
                     {program.additional_expenses.map((exp, idx) => (
                       <div key={idx} className="flex justify-between items-center p-3 bg-gray-50 rounded border border-gray-100">
@@ -361,12 +361,12 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
 
               {program?.scholarships?.length > 0 && (
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">Scholarships</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">Becas</h4>
                   <div className="grid grid-cols-1 gap-3">
                     {program.scholarships.map((scholarship, idx) => (
                       <div key={idx} className="p-4 bg-orange-50 border border-orange-100 rounded-lg">
                         <p className="font-bold text-gray-900">{scholarship.name}</p>
-                        <p className="text-sm text-gray-700 mt-1"><span className="font-semibold">Amount:</span> {scholarship.amount}</p>
+                        <p className="text-sm text-gray-700 mt-1"><span className="font-semibold">Monto:</span> {scholarship.amount}</p>
                         <p className="text-sm text-gray-600 mt-1 italic">{scholarship.eligibility}</p>
                       </div>
                     ))}
@@ -376,17 +376,17 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
 
               {program?.financial_aid && (
                 <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
-                  <h4 className="font-bold text-blue-800 mb-2">Financial Aid</h4>
+                  <h4 className="font-bold text-blue-800 mb-2">Ayuda Financiera</h4>
                   <p className="text-gray-700 text-sm mb-3">{program.financial_aid.description}</p>
                   <div className="flex flex-wrap gap-4 text-sm">
                     {program.financial_aid.email && (
                       <div className="flex items-center gap-1">
-                        <span className="font-semibold">Email:</span> {program.financial_aid.email}
+                        <span className="font-semibold">Correo:</span> {program.financial_aid.email}
                       </div>
                     )}
                     {program.financial_aid.phone && (
                       <div className="flex items-center gap-1">
-                        <span className="font-semibold">Phone:</span> {program.financial_aid.phone}
+                        <span className="font-semibold">Teléfono:</span> {program.financial_aid.phone}
                       </div>
                     )}
                   </div>
@@ -402,7 +402,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium text-gray-700"
           >
-            Close
+            Cerrar
           </button>
           <button
             onClick={() => {
@@ -411,7 +411,7 @@ export default function ProgramDetailView({ programId, onEdit, onClose }) {
             }}
             className="px-4 py-2 bg-blue text-white rounded-lg hover:bg-blue-700 transition font-medium"
           >
-            Edit Program
+            Editar Programa
           </button>
         </div>
       </div>
