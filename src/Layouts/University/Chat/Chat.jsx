@@ -20,7 +20,7 @@ export default function Chat() {
         const isStudent = conv.other_user?.type === "Student";
         const displayName = isStudent
           ? conv.other_user?.student_name
-          : (conv.other_user?.univ_name || "Unknown User");
+          : (conv.other_user?.univ_name || "Usuario Desconocido");
 
         let avatarText = "U";
         if (isStudent && conv.other_user?.initials) {
@@ -146,7 +146,7 @@ export default function Chat() {
         <div className="w-80 border-r flex flex-col">
           <div className="p-4 flex-1 overflow-y-auto">
             {/* Search Bar */}
-            <h2 className="text-xl font-bold mb-4">Chat Management</h2>
+            <h2 className="text-xl font-bold mb-4">Gestión de Chat</h2>
 
 
             {/* Conversation List */}
@@ -199,12 +199,12 @@ export default function Chat() {
                   <MessageSquare className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-medium mb-2">
-                  Select a conversation
+                  Selecciona una conversación
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  Choose a conversation from the list to view messages
+                  Elige una conversación de la lista para ver los mensajes
                   <br />
-                  and respond to student inquiries
+                  y responder a las consultas de los estudiantes
                 </p>
               </div>
             </div>
@@ -286,7 +286,7 @@ export default function Chat() {
                     value={messageInput}
                     onChange={(e) => setMessageInput(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    placeholder="Type your message..."
+                    placeholder="Escribe tu mensaje..."
                     rows="1"
                     className="flex-1 px-4 py-2 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-y-auto min-h-10 max-h-56 leading-relaxed"
                   />
