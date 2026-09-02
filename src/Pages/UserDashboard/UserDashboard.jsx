@@ -16,18 +16,18 @@ export default function UserDashboard() {
   };
 
   if (isLoading)
-    return <div className="p-8 text-center">Loading dashboard...</div>;
+    return <div className="p-8 text-center">Cargando panel...</div>;
 
   return (
-    <div className="min-h-screen bg-base p-8 xl:pt-24">
+    <div className="min-h-screen bg-base p-4 sm:p-8 xl:pt-24">
       <div className="w-11/12 mx-auto">
         {/* Header */}
-        <h1 className="text-2xl font-bold mb-6">User Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-6">Panel de Usuario</h1>
 
         <div className="bg-white p-6 mb-6 rounded-lg shadow">
           {/* Profile Section */}
           <div className=" border-b border-[#CCCCCC] pb-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-[#BFDBFE] rounded-full flex items-center justify-center text-blue font-semibold overflow-hidden border-2 border-white shadow-sm">
                   {profile?.image ? (
@@ -54,21 +54,21 @@ export default function UserDashboard() {
                     <button
                       onClick={() => setIsEditModalOpen(true)}
                       className="p-1 hover:bg-gray-100 rounded-full transition-colors text-blue"
-                      title="Edit Profile"
+                      title="Editar Perfil"
                     >
                       <Edit2 size={16} />
                     </button>
                   </div>
                   <p className="text-gray-600 text-sm">
-                    {profile?.role || "Student"}
+                    {profile?.role || "Estudiante"}
                   </p>
                   <p className="text-gray-400 text-xs mt-1">{profile?.email}</p>
                 </div>
               </div>
-              <div className="flex gap-3">
-                <Link to={"/message"}>
-                  <button className="bg-blue hover:shadow-lg hover:scale-105 transition-transform text-white px-6 py-2 rounded font-medium hover:bg-blue-700">
-                    Message
+              <div className="flex gap-3 w-full sm:w-auto mt-2 sm:mt-0">
+                <Link to={"/message"} className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto bg-blue hover:shadow-lg hover:scale-105 transition-transform text-white px-6 py-2 rounded font-medium hover:bg-blue-700">
+                    Mensaje
                   </button>
                 </Link>
               </div>
@@ -77,22 +77,22 @@ export default function UserDashboard() {
 
           {/* Your Activity Section */}
           <div className="mt-6">
-            <h3 className="font-semibold mb-3">Your Activity</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <h3 className="font-semibold mb-3">Tu Actividad</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-base rounded-lg  p-4">
-                <p className="text-gray-600 text-sm mb-1"> Applied Program</p>
+                <p className="text-gray-600 text-sm mb-1"> Programas Aplicados</p>
                 <p className="text-blue  text-2xl font-bold">
                   {profile?.applied_program_count || 0}
                 </p>
               </div>
               <div className="bg-base rounded-lg  p-4">
-                <p className="text-gray-600 text-sm mb-1"> Applied Job</p>
+                <p className="text-gray-600 text-sm mb-1"> Empleos Aplicados</p>
                 <p className="text-blue  text-2xl font-bold">
                   {profile?.applied_job_count || 0}
                 </p>
               </div>
               <div className="bg-base rounded-lg  p-4">
-                <p className="text-gray-600 text-sm mb-1">Event Registered</p>
+                <p className="text-gray-600 text-sm mb-1">Eventos Registrados</p>
                 <p className="text-blue  text-2xl font-bold">
                   {profile?.event_registered_count || 0}
                 </p>
@@ -104,13 +104,13 @@ export default function UserDashboard() {
         <div className="grid grid-cols-1 gap-6">
           {/* Recent Applications */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="font-semibold mb-4">Recent Applications</h3>
+            <h3 className="font-semibold mb-4">Solicitudes Recientes</h3>
             <div className="space-y-4 divide-y-2 divide-[#CCCCCC]">
               {profile?.recent_applications?.length > 0 ? (
                 profile.recent_applications.map((app, index) => (
                   <div
                     key={app.id}
-                    className={`flex justify-between items-start ${index === 0 ? "" : "pt-4"}`}
+                    className={`flex flex-col sm:flex-row sm:justify-between items-start gap-2 sm:gap-0 ${index === 0 ? "" : "pt-4"}`}
                   >
                     <div>
                       <h4 className="text-lg">{app?.desired_program}</h4>
@@ -137,7 +137,7 @@ export default function UserDashboard() {
                 ))
               ) : (
                 <div className="py-4 text-center text-gray-500">
-                  No recent applications found.
+                  No se encontraron solicitudes recientes.
                 </div>
               )}
             </div>
