@@ -42,10 +42,10 @@ export default function LoginPage() {
           {/* Header */}
           <div className="text-center space-y-3 max-w-3xl mb-6 mt-6 md:mt-10">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white/95">
-              Welcome to <span className="text-[#0047E9]">Clasia</span>
+              Bienvenido a <span className="text-[#0047E9]">Clasia</span>
             </h1>
             <p className="text-base md:text-lg font-medium text-white/85 max-w-2xl mx-auto leading-relaxed">
-              The all-in-one platform to manage universities, students, programs, and academic success.
+              La plataforma todo en uno para gestionar universidades, estudiantes, programas y éxito académico.
             </p>
             <div className="w-12 h-1 bg-[#0047E9] mx-auto mt-4 rounded-full"></div>
           </div>
@@ -76,12 +76,12 @@ export default function LoginPage() {
                 </div>
 
                 {/* Title and Subtitle */}
-                <h2 className="text-2xl font-bold text-slate-900 mt-5">University User</h2>
-                <p className="text-sm font-semibold text-[#0047E9] mt-1">For Staff & Faculty</p>
+                <h2 className="text-2xl font-bold text-slate-900 mt-5">Usuario de Universidad</h2>
+                <p className="text-sm font-semibold text-[#0047E9] mt-1">Para Personal y Profesores</p>
                 
                 {/* Description */}
                 <p className="text-sm text-slate-500 mt-3 leading-relaxed">
-                  Access the Admin Portal to manage programs, events, and essential staff communication tools.
+                  Accede al Portal de Administración para gestionar programas, eventos y herramientas de comunicación esenciales del personal.
                 </p>
 
                 {/* Divider */}
@@ -93,32 +93,32 @@ export default function LoginPage() {
                     <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[#0047E9] flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Manage programs and courses</span>
+                    <span>Gestionar programas y cursos</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[#0047E9] flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Organize events and workshops</span>
+                    <span>Organizar eventos y talleres</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[#0047E9] flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Access staff and faculty tools</span>
+                    <span>Acceder a herramientas del personal y profesores</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[#0047E9] flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Analytics and reporting</span>
+                    <span>Análisis e informes</span>
                   </li>
                 </ul>
               </div>
 
               <Link to={"/university-login"} className="relative z-10 w-full mt-auto">
                 <button className="bg-[#0047E9] hover:bg-[#003cc4] text-white font-semibold w-full py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg shadow-blue-500/10">
-                  <span>Log In as University User</span>
+                  <span>Iniciar sesión como Universidad</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
@@ -147,12 +147,12 @@ export default function LoginPage() {
                 </div>
 
                 {/* Title and Subtitle */}
-                <h2 className="text-2xl font-bold text-slate-900 mt-5">Student User</h2>
-                <p className="text-sm font-semibold text-[#0047E9] mt-1">For Current & Prospective Students</p>
+                <h2 className="text-2xl font-bold text-slate-900 mt-5">Usuario Estudiante</h2>
+                <p className="text-sm font-semibold text-[#0047E9] mt-1">Para Estudiantes Actuales y Futuros</p>
                 
                 {/* Description */}
                 <p className="text-sm text-slate-500 mt-3 leading-relaxed">
-                  Access the Student Portal for grades, course registration, application tracking, and more.
+                  Accede al Portal del Estudiante para ver calificaciones, inscripción a cursos, seguimiento de solicitudes y más.
                 </p>
 
                 {/* Divider */}
@@ -164,32 +164,32 @@ export default function LoginPage() {
                     <div className="w-5 h-5 rounded-full text-[#0047E9] flex items-center justify-center flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>View and register for courses</span>
+                    <span>Ver e inscribirse en cursos</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full text-[#0047E9] flex items-center justify-center flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Track applications and admissions</span>
+                    <span>Seguimiento de solicitudes y admisiones</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full text-[#0047E9] flex items-center justify-center flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>MdOutlineCheckCircle grades and academic progress</span>
+                    <span>Ver calificaciones y progreso académico</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full text-[#0047E9] flex items-center justify-center flex-shrink-0">
                       <MdOutlineCheckCircle className="text-4xl" />
                     </div>
-                    <span>Access student services</span>
+                    <span>Acceder a servicios estudiantiles</span>
                   </li>
                 </ul>
               </div>
 
               <Link to={"/login"} className="relative z-10 w-full mt-auto">
                 <button className="bg-[#0047E9] hover:bg-[#003cc4] text-white font-semibold w-full py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg shadow-green-500/10">
-                  <span>Log In as Student User</span>
+                  <span>Iniciar sesión como Estudiante</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
@@ -209,8 +209,8 @@ export default function LoginPage() {
                 <LuShieldCheck className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-slate-800 text-sm">Secure & Reliable</h4>
-                <p className="text-xs text-slate-500 mt-0.5">Enterprise-grade security to protect your data</p>
+                <h4 className="font-bold text-slate-800 text-sm">Seguro y Confiable</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Seguridad de nivel empresarial para proteger tus datos</p>
               </div>
             </div>
 
@@ -219,8 +219,8 @@ export default function LoginPage() {
                 <Zap className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-slate-800 text-sm">All-in-One Platform</h4>
-                <p className="text-xs text-slate-500 mt-0.5">Everything you need in one centralized system</p>
+                <h4 className="font-bold text-slate-800 text-sm">Plataforma Todo en Uno</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Todo lo que necesitas en un sistema centralizado</p>
               </div>
             </div>
 
@@ -229,8 +229,8 @@ export default function LoginPage() {
                 <BarChart3 className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-slate-800 text-sm">Smart Analytics</h4>
-                <p className="text-xs text-slate-500 mt-0.5">Data-driven insights for better decisions</p>
+                <h4 className="font-bold text-slate-800 text-sm">Análisis Inteligente</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Información basada en datos para mejores decisiones</p>
               </div>
             </div>
 
@@ -239,8 +239,8 @@ export default function LoginPage() {
                 <Headphones className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <h4 className="font-bold text-slate-800 text-sm">24/7 Support</h4>
-                <p className="text-xs text-slate-500 mt-0.5">We're here to help you every step of the way</p>
+                <h4 className="font-bold text-slate-800 text-sm">Soporte 24/7</h4>
+                <p className="text-xs text-slate-500 mt-0.5">Estamos aquí para ayudarte en cada paso del camino</p>
               </div>
             </div>
 
