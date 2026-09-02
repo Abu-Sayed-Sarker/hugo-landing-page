@@ -17,7 +17,7 @@ export default function UniNavbar() {
         <div className="flex items-center gap-4">
           <button onClick={handleLogout} className="flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-transform px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
             <LogOut size={18} />
-            Logout
+            Cerrar Sesión
           </button>
         </div>
       </div>

@@ -23,7 +23,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-        ignoredActionPaths: ["register", "rehydrate", "meta.baseQueryMeta.request"],
+        ignoredActionPaths: ["register", "rehydrate", "meta.baseQueryMeta.request", "meta.baseQueryMeta.response"],
       },
     }).concat(api.middleware),
 });

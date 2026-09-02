@@ -8,6 +8,7 @@ import {
   Mic,
   AudioLines,
   Trash2,
+  Menu,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
@@ -28,6 +29,7 @@ export default function AIAssistant() {
   const [input, setInput] = useState("");
   const [voiceStatus, setVoiceStatus] = useState("idle"); // idle | listening | error | unsupported
   const [historyOpen, setHistoryOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [chatWithAI, { isLoading: isChatLoading }] = useChatWithAIMutation();
   const { data: historyData, refetch: refetchHistory } =
     useGetAIChatHistoryQuery();
@@ -103,7 +105,7 @@ export default function AIAssistant() {
   };
 
   const truncateTitle = (text) => {
-    if (!text) return "Untitled Chat";
+    if (!text) return "Chat sin título";
     const words = text.split(" ");
     if (words.length <= 4) return text;
     return words.slice(0, 4).join(" ") + "...";
@@ -112,11 +114,11 @@ export default function AIAssistant() {
   const groupHistory = (items) => {
     if (!items) return {};
     const groups = {
-      Today: [],
-      Yesterday: [],
-      "Last Week": [],
-      "Last Month": [],
-      Earlier: [],
+      Hoy: [],
+      Ayer: [],
+      "Última Semana": [],
+      "Último Mes": [],
+      "Más antiguo": [],
     };
 
     const now = new Date();
@@ -143,15 +145,15 @@ export default function AIAssistant() {
       );
 
       if (itemDate >= today) {
-        groups.Today.push(item);
+        groups.Hoy.push(item);
       } else if (itemDate >= yesterday) {
-        groups.Yesterday.push(item);
+        groups.Ayer.push(item);
       } else if (itemDate >= lastWeek) {
-        groups["Last Week"].push(item);
+        groups["Última Semana"].push(item);
       } else if (itemDate >= lastMonth) {
-        groups["Last Month"].push(item);
+        groups["Último Mes"].push(item);
       } else {
-        groups.Earlier.push(item);
+        groups["Más antiguo"].push(item);
       }
     });
 
@@ -162,13 +164,13 @@ export default function AIAssistant() {
     e.stopPropagation();
     try {
       await deleteChatSession(sessionId).unwrap();
-      toast.success("Chat deleted successfully");
+      toast.success("Chat eliminado con éxito");
       if (currentChatId === sessionId) {
         handleNewChat();
       }
     } catch (error) {
       console.error("Failed to delete chat session:", error);
-      toast.error("Failed to delete chat");
+      toast.error("Error al eliminar el chat");
     }
   };
 
@@ -198,7 +200,7 @@ export default function AIAssistant() {
 
         const aiMessage = {
           id: Date.now() + 1,
-          text: response.response || "Sorry, I couldn't understand that.",
+          text: response.response || "Lo siento, no pude entender eso.",
           sender: "ai",
           timestamp: new Date(),
         };
@@ -213,7 +215,7 @@ export default function AIAssistant() {
         console.error("Failed to stream chat:", error);
         const errorMessage = {
           id: Date.now() + 1,
-          text: "Sorry, something went wrong. Please try again.",
+          text: "Lo siento, algo salió mal. Por favor, inténtalo de nuevo.",
           sender: "ai",
           timestamp: new Date(),
         };
@@ -229,7 +231,7 @@ export default function AIAssistant() {
 
     if (!SpeechRecognitionAPI) {
       setVoiceStatus("unsupported");
-      toast.error("Speech recognition not supported in this browser");
+      toast.error("El reconocimiento de voz no es compatible con este navegador");
       return;
     }
 
@@ -292,7 +294,7 @@ export default function AIAssistant() {
         shouldKeepListeningRef.current = false;
         setVoiceStatus("error");
         toast.error(
-          "Microphone access denied. Please allow it in browser settings.",
+          "Acceso al micrófono denegado. Por favor, permítelo en la configuración del navegador.",
         );
         return;
       }
@@ -300,12 +302,12 @@ export default function AIAssistant() {
       if (event.error === "network") {
         shouldKeepListeningRef.current = false;
         setVoiceStatus("error");
-        toast.error("Network error with speech recognition.");
+        toast.error("Error de red con el reconocimiento de voz.");
         return;
       }
 
       if (event.error !== "no-speech" && event.error !== "aborted") {
-        toast.error(`Speech error: ${event.error}`);
+        toast.error(`Error de voz: ${event.error}`);
       }
     };
 
@@ -329,12 +331,21 @@ export default function AIAssistant() {
     console.log("🎤 startListening() called via native API");
   };
 
+
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="bg-white shadow-xl w-full flex flex-col h-screen">
         {/* Header */}
-        <div className="bg-primary text-white px-6 py-4 flex items-center justify-between">
-          <h1 className="text-lg font-semibold">AI Assistant</h1>
+        <div className="bg-primary text-white px-4 md:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden hover:bg-blue-800 p-1 rounded transition-colors"
+            >
+              <Menu size={24} />
+            </button>
+            <h1 className="text-lg font-semibold">Asistente de IA</h1>
+          </div>
           <Link to={"/"}>
             <button className="hover:bg-blue-800 p-1 rounded transition-colors">
               <X size={24} />
@@ -342,31 +353,48 @@ export default function AIAssistant() {
           </Link>
         </div>
 
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden relative">
+          {/* Mobile Overlay */}
+          {sidebarOpen && (
+            <div
+              className="absolute inset-0 bg-black/50 z-40 md:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+
           {/* Sidebar */}
-          <div className="w-80 bg-white text-primary font-medium flex flex-col">
+          <div className={`absolute md:relative z-50 h-full w-72 sm:w-80 bg-white text-primary font-medium flex flex-col transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+            <div className="flex justify-between items-center mx-4 mt-4 md:hidden">
+              <span className="font-semibold text-gray-700">Menú</span>
+              <button onClick={() => setSidebarOpen(false)} className="p-1 text-gray-500 hover:text-gray-800 rounded">
+                <X size={20} />
+              </button>
+            </div>
+
             <button
-              onClick={handleNewChat}
+              onClick={() => { handleNewChat(); setSidebarOpen(false); }}
               className="m-4 mb-8 flex text-[#374151] items-center gap-2 px-4 py-3 rounded-lg transition-colors border hover:bg-gray-50"
             >
               <Edit size={20} />
-              <span className="font-medium">New Chat</span>
+              <span className="font-medium">Nuevo Chat</span>
             </button>
 
             <div className="flex-1 overflow-y-auto px-4">
-              <button
-                onClick={() => setHistoryOpen(!historyOpen)}
-                className="flex items-center gap-2 w-full mb-5 px-3 transition-colors text-[#374151]"
-              >
-                <span className="font-semibold">Chat History</span>
-                <ChevronDown
-                  size={16}
-                  style={{
-                    transform: historyOpen ? "rotate(0deg)" : "rotate(-90deg)",
-                    transition: "transform 0.2s",
-                  }}
-                />
-              </button>
+              {historyData?.sessions?.length > 0 &&
+                <button
+                  onClick={() => setHistoryOpen(!historyOpen)}
+                  className="flex items-center gap-2 w-full mb-5 px-3 transition-colors text-[#374151]"
+                >
+                  <span className="font-semibold">Historial de Chat</span>
+                  <ChevronDown
+                    size={16}
+                    style={{
+                      transform: historyOpen ? "rotate(0deg)" : "rotate(-90deg)",
+                      transition: "transform 0.2s",
+                    }}
+                  />
+                </button>
+              }
 
               {historyOpen && (
                 <div className="space-y-6">
@@ -381,12 +409,11 @@ export default function AIAssistant() {
                             {items.map((item) => (
                               <div
                                 key={item.id}
-                                onClick={() => handleSelectChat(item)}
-                                className={`group relative flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors ${
-                                  currentChatId === item.id
-                                    ? "bg-blue/10 text-blue font-semibold"
-                                    : "text-[#374151] hover:bg-gray-50"
-                                }`}
+                                onClick={() => { handleSelectChat(item); setSidebarOpen(false); }}
+                                className={`group relative flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors ${currentChatId === item.id
+                                  ? "bg-blue/10 text-blue font-semibold"
+                                  : "text-[#374151] hover:bg-gray-50"
+                                  }`}
                               >
                                 <div className="flex-1 min-w-0 pr-2">
                                   <div className="flex items-center justify-between gap-2 overflow-hidden">
@@ -426,8 +453,8 @@ export default function AIAssistant() {
           </div>
 
           {/* Chat Area */}
-          <div className="flex-1 flex flex-col bg-base">
-            <div className="flex-1 overflow-y-auto p-6 flex flex-col max-w-7xl mx-auto w-full">
+          <div className="flex-1 flex flex-col bg-base min-w-0">
+            <div className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col max-w-7xl mx-auto w-full">
               {messages.length === 0 ? (
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center -space-y-24">
@@ -435,11 +462,11 @@ export default function AIAssistant() {
                       <Lottie animationData={robotLottie}></Lottie>
                     </div>
                     <div>
-                      <p className="text-3xl lg:text-4xl font-semibold text-gray-900 my-4">
-                        Hi, I'm Hugo.
+                      <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 my-4">
+                        Hola, soy Hugo.
                       </p>
-                      <p className="text-gray-600 text-xl">
-                        What can I help with?
+                      <p className="text-gray-600 text-lg md:text-xl">
+                        ¿En qué te puedo ayudar?
                       </p>
                     </div>
                   </div>
@@ -460,11 +487,10 @@ export default function AIAssistant() {
                         className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}
                       >
                         <div
-                          className={`max-w-xs lg:max-w-md xl:max-w-2xl px-4 py-2 rounded-lg ${
-                            msg.sender === "user"
-                              ? "bg-blue text-white rounded-br-none"
-                              : "bg-gray-200 text-gray-900 rounded-bl-none"
-                          }`}
+                          className={`max-w-[85%] sm:max-w-xs lg:max-w-md xl:max-w-2xl px-4 py-2 rounded-lg ${msg.sender === "user"
+                            ? "bg-blue text-white rounded-br-none"
+                            : "bg-gray-200 text-gray-900 rounded-bl-none"
+                            }`}
                         >
                           {msg.sender === "ai" ? (
                             <ReactMarkdown
@@ -523,9 +549,9 @@ export default function AIAssistant() {
                         <p className={`text-[10px] text-gray-400 mt-1`}>
                           {msg.timestamp
                             ? new Date(msg.timestamp).toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })
                             : ""}
                         </p>
                       </div>
@@ -559,8 +585,8 @@ export default function AIAssistant() {
             </div>
 
             {/* Input Area */}
-            <div className="p-8">
-              <div className="flex border mx-auto max-w-4xl items-center bg-white rounded-lg border-gray-300">
+            <div className="p-4 md:p-8">
+              <div className="flex border mx-auto max-w-4xl items-center bg-white rounded-lg border-gray-300 shadow-sm">
                 <textarea
                   ref={textareaRef}
                   value={input}
@@ -571,7 +597,7 @@ export default function AIAssistant() {
                       handleSendMessage();
                     }
                   }}
-                  placeholder="Type your message..."
+                  placeholder="Escribe tu mensaje..."
                   rows={1}
                   className="flex-1 px-4 py-4 bg-transparent outline-none focus:outline-none transition-colors resize-none overflow-y-hidden max-h-56"
                 />
@@ -579,12 +605,11 @@ export default function AIAssistant() {
                 {/* Voice Input Button */}
                 <button
                   onClick={handleVoiceInput}
-                  className={`self-center p-2 mr-2 rounded-full transition-all duration-200 flex items-center justify-center ${
-                    voiceStatus === "listening"
-                      ? "text-primary"
-                      : "text-grayText hover:text-primary"
-                  }`}
-                  title="Speak"
+                  className={`self-center p-2 mr-2 rounded-full transition-all duration-200 flex items-center justify-center ${voiceStatus === "listening"
+                    ? "text-primary"
+                    : "text-grayText hover:text-primary"
+                    }`}
+                  title="Hablar"
                 >
                   {voiceStatus === "listening" ? (
                     <AudioLines size={20} className="animate-pulse" />
