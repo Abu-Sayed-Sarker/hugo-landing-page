@@ -78,9 +78,9 @@ export default function Settings() {
     try {
       await updatePrivacy({ content }).unwrap();
       setEditingPrivacy(false);
-      toast.success("Privacy policy updated successfully", { position: "bottom-center" });
+      toast.success("Política de privacidad actualizada con éxito", { position: "bottom-center" });
     } catch (err) {
-      toast.error("Failed to update privacy policy", { position: "bottom-center" });
+      toast.error("Error al actualizar la política de privacidad", { position: "bottom-center" });
     }
   };
 
@@ -93,9 +93,9 @@ export default function Settings() {
     try {
       await updateTerms({ content }).unwrap();
       setEditingTerms(false);
-      toast.success("Terms & conditions updated successfully", { position: "bottom-center" });
+      toast.success("Términos y condiciones actualizados con éxito", { position: "bottom-center" });
     } catch (err) {
-      toast.error("Failed to update terms & conditions", { position: "bottom-center" });
+      toast.error("Error al actualizar los términos y condiciones", { position: "bottom-center" });
     }
   };
 
@@ -105,12 +105,12 @@ export default function Settings() {
   };
 
   if (isPrivacyLoading || isTermsLoading) {
-    return <div className="p-8 text-center text-gray-500">Loading settings...</div>;
+    return <div className="p-8 text-center text-gray-500">Cargando configuraciones...</div>;
   }
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">System Settings</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Configuraciones del Sistema</h1>
 
       {/* Tabs */}
       <div className="flex gap-8 border-b border-gray-200 mb-8">
@@ -124,7 +124,7 @@ export default function Settings() {
             : "border-transparent text-gray-600 hover:text-gray-900"
             }`}
         >
-          Terms & Conditions
+          Términos y Condiciones
         </button>
         <button
           onClick={() => {
@@ -135,7 +135,7 @@ export default function Settings() {
             : "border-transparent text-gray-600 hover:text-gray-900"
             }`}
         >
-          Privacy Policy
+          Política de Privacidad
         </button>
       </div>
 
@@ -146,14 +146,14 @@ export default function Settings() {
         <div className="bg-white rounded-lg p-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg font-semibold text-gray-900">
-              Privacy Policy
+              Política de Privacidad
             </h2>
             {isAdmin && (
               <button
                 onClick={() => setEditingPrivacy(!editingPrivacy)}
                 className="px-6 py-2 bg-blue text-white rounded-lg font-medium"
               >
-                {editingPrivacy ? "Cancel" : "Edit"}
+                {editingPrivacy ? "Cancelar" : "Editar"}
               </button>
             )}
           </div>
@@ -240,7 +240,7 @@ export default function Settings() {
                   }}
                   className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50"
                 >
-                  Cancel
+                  Cancelar
                 </button>
                 <button
                   disabled={isUpdatingPrivacy}
@@ -252,7 +252,7 @@ export default function Settings() {
                   }}
                   className="px-6 py-2 bg-blue text-white rounded-lg font-medium disabled:opacity-50"
                 >
-                  {isUpdatingPrivacy ? "Saving..." : "Save"}
+                  {isUpdatingPrivacy ? "Guardando..." : "Guardar"}
                 </button>
               </div>
             </div>
@@ -272,14 +272,14 @@ export default function Settings() {
         <div className="bg-white rounded-lg p-8">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg font-semibold text-gray-900">
-              Terms & Conditions
+              Términos y Condiciones
             </h2>
             {isAdmin && (
               <button
                 onClick={() => setEditingTerms(!editingTerms)}
                 className="px-6 py-2 bg-blue text-white rounded-lg font-medium"
               >
-                {editingTerms ? "Cancel" : "Edit"}
+                {editingTerms ? "Cancelar" : "Editar"}
               </button>
             )}
           </div>
@@ -359,7 +359,7 @@ export default function Settings() {
                   }}
                   className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50"
                 >
-                  Cancel
+                  Cancelar
                 </button>
                 <button
                   disabled={isUpdatingTerms}
@@ -371,7 +371,7 @@ export default function Settings() {
                   }}
                   className="px-6 py-2 bg-blue text-white rounded-lg font-medium disabled:opacity-50"
                 >
-                  {isUpdatingTerms ? "Saving..." : "Save"}
+                  {isUpdatingTerms ? "Guardando..." : "Guardar"}
                 </button>
               </div>
             </div>
