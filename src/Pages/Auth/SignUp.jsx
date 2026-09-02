@@ -56,7 +56,7 @@ export default function SignUp() {
         };
         const response = await signup(data).unwrap();
         setLoading(false);
-        toast.success("Successfully logged in.");
+        toast.success("Inicio de sesión exitoso.");
         navigate("/");
       })
       .catch((err) => {
@@ -81,12 +81,12 @@ export default function SignUp() {
         };
         const response = await signup(data).unwrap();
         setLoading(false);
-        toast.success("Successfully logged in.");
+        toast.success("Inicio de sesión exitoso.");
         navigate("/");
       })
       .catch((err) => {
         console.log(err)
-        toast.error(err.data?.error?.[0] || "Failed to sign up with Apple", {
+        toast.error(err.data?.error?.[0] || "Error al registrarse con Apple", {
           position: "bottom-center",
         });
         setLoading(false);
@@ -101,7 +101,7 @@ export default function SignUp() {
       >
         <div className="mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold mb-8">
-            Sign Up
+            Regístrate
           </h1>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function SignUp() {
         <div className="flex items-center justify-center w-full p-8 lg:p-16">
           <div className="w-full">
             <h1 className="text-3xl font-semibold mb-8 border-b pb-4 border-[#E2E1E1]">
-              SIGN UP
+              REGÍSTRATE
             </h1>
 
 
@@ -119,7 +119,7 @@ export default function SignUp() {
                 <input
                   type="text"
                   value={fullName}
-                  placeholder="Full Name *"
+                  placeholder="Nombre completo *"
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -129,7 +129,7 @@ export default function SignUp() {
                 <input
                   type="tel"
                   value={phone}
-                  placeholder="Phone Number *"
+                  placeholder="Número de teléfono *"
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -139,7 +139,7 @@ export default function SignUp() {
                 <input
                   type="email"
                   value={email}
-                  placeholder="Email *"
+                  placeholder="Correo electrónico *"
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -149,7 +149,7 @@ export default function SignUp() {
                 <input
                   type="password"
                   value={password}
-                  placeholder="Password *"
+                  placeholder="Contraseña *"
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -161,12 +161,12 @@ export default function SignUp() {
                   disabled={isLoading}
                   className="bg-blue px-8 text-white py-3 rounded font-medium disabled:opacity-50"
                 >
-                  {isLoading ? "Signing Up..." : "Sign Up"}
+                  {isLoading ? "Registrando..." : "Regístrate"}
                 </button>
 
                 <div className="flex gap-4 justify-center items-center">
                   <span className="px-4  text-gray-500">
-                    or sign up with
+                    o regístrate con
                   </span>
                   <div className="flex gap-2">
                     <button disabled={loading} onClick={handleSocialLogin} className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 transition-colors">
@@ -199,10 +199,10 @@ export default function SignUp() {
               </div>
 
               <p className=" text-gray-600">
-                Already have an account?
+                ¿Ya tienes una cuenta?
                 <Link to={"/login"}>
                   <button className="text-blue-600 font-medium hover:underline ml-2">
-                    Sign In
+                    Iniciar sesión
                   </button>
                 </Link>
               </p>

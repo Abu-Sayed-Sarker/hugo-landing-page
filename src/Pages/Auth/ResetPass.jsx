@@ -41,7 +41,7 @@ export default function ResetPass() {
       >
         <div className="mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl md:text-4xl xl:text-5xl mb-8">
-            Forgot password
+            Recuperar contraseña
           </h1>
         </div>
       </div>
@@ -49,36 +49,35 @@ export default function ResetPass() {
         <div className="flex items-center justify-center w-1/2 p-8 lg:p-16">
           <div className="w-full">
             <h1 className="text-xl lg:text-4xl text-primary mb-5">
-              New Password
+              Nueva contraseña
             </h1>
 
             <p className="text-light mb-5">
-              Set the new password for your account so you can login and access
-              all featuress.
+              Establece la nueva contraseña para tu cuenta para que puedas iniciar sesión y acceder a todas las funciones.
             </p>
 
             <div className="space-y-4">
               <div>
                 <label className="block  mb-2">
-                  Enter new password <span className="text-red-500">*</span>
+                  Ingresa nueva contraseña <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   className="w-full px-4 py-3 bg-base border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <div>
                 <label className="block  mb-2">
-                  Confirm Password <span className="text-red-500">*</span>
+                  Confirmar contraseña <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm Password"
+                  placeholder="Confirmar contraseña"
                   className="w-full px-4 py-3 bg-base border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -89,7 +88,7 @@ export default function ResetPass() {
                   disabled={isLoading}
                   className="bg-primary w-full text-lg  px-8 text-white py-3 rounded font-medium disabled:opacity-50"
                 >
-                  {isLoading ? "Updating..." : "Update Password"}
+                  {isLoading ? "Actualizando..." : "Actualizar contraseña"}
                 </button>
               </div>
             </div>

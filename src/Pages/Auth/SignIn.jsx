@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
-import signin from "../../assets/images/signin.png"; // TODO: swap this asset for a generic campus/education photo (not a person)
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useLoginMutation } from "../../Api/authapi";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { RiGraduationCapLine, RiSingleQuotesL } from "react-icons/ri";
+import { RiGraduationCapLine } from "react-icons/ri";
 import { FiBookOpen } from "react-icons/fi";
 import { PiCalendarDotsBold } from "react-icons/pi";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
@@ -48,7 +47,7 @@ export default function SignIn() {
         };
         const response = await login(data).unwrap();
         setLoading(false);
-        toast.success("Successfully logged in.");
+        toast.success("Inicio de sesión exitoso.");
         navigate("/");
       })
       .catch((err) => {
@@ -73,12 +72,12 @@ export default function SignIn() {
         };
         const response = await login(data).unwrap();
         setLoading(false);
-        toast.success("Successfully logged in.");
+        toast.success("Inicio de sesión exitoso.");
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.data?.error?.[0] || "Failed to login with Apple", {
+        toast.error(err.data?.error?.[0] || "Error al iniciar sesión con Apple", {
           position: "bottom-center",
         });
         setLoading(false);
@@ -95,15 +94,15 @@ export default function SignIn() {
           {/* Left: Sign In Form */}
           <div className="flex flex-col justify-center px-8 py-10 lg:px-12 lg:py-14">
             <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 flex items-center gap-2">
-              Welcome back <span>👋</span>
+              Bienvenido de nuevo <span>👋</span>
             </h1>
             <p className="text-sm text-slate-500 mt-2 mb-8">
-              Sign in to your account and continue your academic journey.
+              Inicia sesión en tu cuenta y continúa tu viaje académico.
             </p>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Email address
+                  Correo electrónico
                 </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -116,14 +115,14 @@ export default function SignIn() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder="Ingresa tu correo"
                     className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Password
+                  Contraseña
                 </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -136,14 +135,14 @@ export default function SignIn() {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
+                    placeholder="Ingresa tu contraseña"
                     className="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
                     className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
-                    aria-label="Toggle password visibility"
+                    aria-label="Alternar visibilidad de contraseña"
                   >
                     {showPassword ? (
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -168,10 +167,10 @@ export default function SignIn() {
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                   />
-                  Remember me
+                  Recuérdame
                 </label>
                 <Link to={"/forget-pass"} className="text-blue hover:underline">
-                  Forgot password?
+                  ¿Olvidaste tu contraseña?
                 </Link>
               </div>
 
@@ -180,12 +179,12 @@ export default function SignIn() {
                 disabled={isLoading}
                 className="w-full bg-blue text-white py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
               >
-                {isLoading ? "Signing In..." : "Sign In"}
+                {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
               </button>
 
               <div className="relative flex items-center py-1">
                 <div className="flex-grow border-t border-slate-200"></div>
-                <span className="mx-3 text-xs text-slate-400">or</span>
+                <span className="mx-3 text-xs text-slate-400">o</span>
                 <div className="flex-grow border-t border-slate-200"></div>
               </div>
 
@@ -214,7 +213,7 @@ export default function SignIn() {
                       d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                     />
                   </svg>
-                  {loading ? "Please wait..." : "Continue with Google"}
+                  {loading ? "Por favor espera..." : "Continuar con Google"}
                 </button>
 
                 <button
@@ -226,14 +225,14 @@ export default function SignIn() {
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.5-.64.74-1.2 1.88-1.05 3 .99-.08 2.12-.61 2.8-1.44" />
                   </svg>
-                  Continue with Apple
+                  Continuar con Apple
                 </button>
               </div>
 
               <p className="text-center text-sm text-slate-600 pt-2">
-                Don't have an account?{" "}
+                ¿No tienes una cuenta?{" "}
                 <Link to={"/register"} className="text-blue font-medium hover:underline">
-                  Sign up
+                  Regístrate
                 </Link>
               </p>
             </form>
@@ -250,24 +249,24 @@ export default function SignIn() {
 
             <div className="relative z-10 p-10 lg:p-12 flex flex-col h-full">
               <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 leading-snug">
-                Your future <br /> starts <span className="text-blue">here</span>
+                Tu futuro <br /> empieza <span className="text-blue">aquí</span>
               </h2>
 
               <div className="mt-6 lg:mt-12 space-y-6">
                 <FeatureItem
                   icon={<RiGraduationCapLine className="text-xl text-blue" />}
-                  title="Find what to study"
-                  desc="Explore thousands of institutions worldwide."
+                  title="Encuentra qué estudiar"
+                  desc="Explora miles de instituciones en todo el mundo."
                 />
                 <FeatureItem
                   icon={<FiBookOpen className="text-xl text-blue" />}
-                  title="Find the right program"
-                  desc="Search and compare programs that match your goals."
+                  title="Encuentra el programa adecuado"
+                  desc="Busca y compara programas que coincidan con tus objetivos."
                 />
                 <FeatureItem
                   icon={<PiCalendarDotsBold className="text-xl text-blue" />}
-                  title="Stay updated"
-                  desc="Get the latest events, webinars and opportunities."
+                  title="Mantente actualizado"
+                  desc="Recibe los últimos eventos, seminarios web y oportunidades."
                 />
               </div>
 
@@ -278,10 +277,10 @@ export default function SignIn() {
 
                   <div className="">
                     <p className="text-sm text-slate-700">
-                      Clasia was born with the idea of creating an ecosystem that helps anyone achieve their goals much faster than ever before.
+                      Clasia nació con la idea de crear un ecosistema que ayude a cualquier persona a alcanzar sus objetivos mucho más rápido que nunca.
                     </p>
                     <p className="text-xs text-slate-500 mt-3">
-                      <span className="font-semibold text-slate-700">-Hugo M,</span> <br /> founder of Clasia
+                      <span className="font-semibold text-slate-700">-Hugo M,</span> <br /> fundador de Clasia
                     </p>
                   </div>
                 </div>

@@ -41,7 +41,7 @@ export default function ForgetPass() {
       >
         <div className="mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl md:text-4xl xl:text-5xl mb-8">
-            Forgot password
+            Recuperar contraseña
           </h1>
         </div>
       </div>
@@ -49,22 +49,21 @@ export default function ForgetPass() {
         <div className="flex items-center justify-center w-1/2 p-8 lg:p-16">
           <div className="w-full">
             <h1 className="text-xl lg:text-4xl text-primary mb-5">
-              Forgot password
+              Recuperar contraseña
             </h1>
 
             <p className="text-light mb-5">
-              Enter your email for the verification process, we will send 4
-              digits code to your email.
+              Ingresa tu correo electrónico para el proceso de verificación, enviaremos un código de 4 dígitos a tu correo.
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block  mb-2">Email</label>
+                <label className="block  mb-2">Correo electrónico</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
+                  placeholder="Correo electrónico"
                   className="w-full px-4 py-3 bg-base border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -75,7 +74,7 @@ export default function ForgetPass() {
                   disabled={isLoading}
                   className="bg-primary w-full text-lg  px-8 text-white py-3 rounded font-medium disabled:opacity-50"
                 >
-                  {isLoading ? "Loading..." : "Continue"}
+                  {isLoading ? "Cargando..." : "Continuar"}
                 </button>
               </div>
             </div>

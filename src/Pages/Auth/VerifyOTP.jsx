@@ -66,12 +66,12 @@ export default function VerifyOTP() {
         navigate("/reset-pass", { state: email });
       } catch (err) {
         console.error("Failed to verify:", err.data.error);
-        toast.error(err.data?.error || "Verification failed", {
+        toast.error(err.data?.error || "La verificación falló", {
           position: "bottom-center",
         });
       }
     } else {
-      toast.error("Please enter a valid 4-digit code");
+      toast.error("Por favor ingresa un código válido de 4 dígitos");
     }
   };
 
@@ -84,7 +84,7 @@ export default function VerifyOTP() {
       >
         <div className="mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl md:text-4xl xl:text-5xl mb-8">
-            Verification
+            Verificación
           </h1>
         </div>
       </div>
@@ -92,11 +92,11 @@ export default function VerifyOTP() {
         <div className="flex items-center justify-center w-1/2 p-8 lg:p-16">
           <div className="w-full">
             <h1 className="text-xl lg:text-4xl text-primary text-center mb-5">
-              Verification
+              Verificación
             </h1>
 
             <p className="text-light text-center mb-5">
-              Enter your 4 digit code that you received on your email.
+              Ingresa el código de 4 dígitos que recibiste en tu correo electrónico.
             </p>
 
             <div className="space-y-4">
@@ -125,7 +125,7 @@ export default function VerifyOTP() {
                   disabled={isLoading}
                   className="bg-primary w-full text-lg  px-8 text-white py-3 rounded font-medium disabled:opacity-50"
                 >
-                  {isLoading ? "Loading..." : "Continue"}
+                  {isLoading ? "Cargando..." : "Continuar"}
                 </button>
               </div>
             </div>
