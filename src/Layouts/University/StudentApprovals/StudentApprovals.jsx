@@ -34,13 +34,13 @@ export default function StudentApprovals() {
   if (isLoading)
     return (
       <div className="p-8 text-center text-gray-500">
-        Loading applications...
+        Cargando solicitudes...
       </div>
     );
   if (error)
     return (
       <div className="p-8 text-center text-red-500">
-        Error loading applications.
+        Error al cargar las solicitudes.
       </div>
     );
 
@@ -50,11 +50,11 @@ export default function StudentApprovals() {
   const handleStatusUpdate = async (id, status) => {
     try {
       await updateStatus({ id, status }).unwrap();
-      toast.success(`Application ${status.toLowerCase()} successfully!`);
+      toast.success(`¡Solicitud ${status.toLowerCase() === 'approved' ? 'aprobada' : 'rechazada'} con éxito!`);
     } catch (err) {
       console.error(err);
       toast.error(
-        err?.data?.error || `Failed to ${status.toLowerCase()} application`,
+        err?.data?.error || `Error al ${status.toLowerCase() === 'approved' ? 'aprobar' : 'rechazar'} la solicitud`,
       );
     }
   };
@@ -62,12 +62,12 @@ export default function StudentApprovals() {
   const getDocumentsList = (app) => {
     const docs = [];
     if (app.id_photo_front)
-      docs.push({ name: "ID Front", url: getFullUrl(app.id_photo_front) });
+      docs.push({ name: "ID Frontal", url: getFullUrl(app.id_photo_front) });
     if (app.id_photo_back)
-      docs.push({ name: "ID Back", url: getFullUrl(app.id_photo_back) });
+      docs.push({ name: "ID Reverso", url: getFullUrl(app.id_photo_back) });
     if (app.supporting_documents)
       docs.push({
-        name: "Support Doc",
+        name: "Doc Respaldo",
         url: getFullUrl(app.supporting_documents),
       });
     return docs;
@@ -76,18 +76,18 @@ export default function StudentApprovals() {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Student Approvals</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Aprobaciones de Estudiantes</h1>
       </div>
 
       {/* Pending Applications Section */}
       <div className="mb-8 bg-white rounded-lg">
         <h2 className="text-xl font-semibold text-gray-900 p-6 border-b">
-          Pending Applications ({applications.length})
+          Solicitudes Pendientes ({applications.length})
         </h2>
 
         {applications.length === 0 ? (
           <p className="p-8 text-gray-500 text-center">
-            No pending applications
+            No hay solicitudes pendientes
           </p>
         ) : (
           <div className="divide-y-2">
@@ -109,25 +109,25 @@ export default function StudentApprovals() {
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
                     <div>
-                      <p className="text-gray-500">Applied Program</p>
+                      <p className="text-gray-500">Programa Solicitado</p>
                       <p className="font-medium text-gray-900">
                         {app.desired_program}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Nationality</p>
+                      <p className="text-gray-500">Nacionalidad</p>
                       <p className="font-medium text-gray-900">
                         {app.nationality}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Application Date</p>
+                      <p className="text-gray-500">Fecha de Solicitud</p>
                       <p className="font-medium text-gray-900">
                         {formatDate(app.created_at)}
                       </p>
                     </div>
                     <div className="">
-                      <p className="text-gray-500 mb-2">Documents</p>
+                      <p className="text-gray-500 mb-2">Documentos</p>
                       <div className="flex gap-4 flex-wrap">
                         {getDocumentsList(app).map((doc, idx) => (
                           <a
@@ -151,7 +151,7 @@ export default function StudentApprovals() {
                     disabled={isUpdating}
                     className="px-4 py-2 bg-[#DCFCE7] w-full max-w-[160px] justify-center items-center gap-2 flex text-[#15803D] rounded-lg hover:bg-[#d1fadf] disabled:opacity-50"
                   >
-                    <CheckCircle size={20} strokeWidth={3.0} /> Approve
+                    <CheckCircle size={20} strokeWidth={3.0} /> Aprobar
                   </button>
                   <button
                     onClick={() => handleStatusUpdate(app.id, "Rejected")}
@@ -163,19 +163,19 @@ export default function StudentApprovals() {
                       strokeWidth={3.0}
                       className="rotate-45"
                     />{" "}
-                    Reject
+                    Rechazar
                   </button>
                   <button
                     onClick={() => setViewingApp(app)}
                     className="px-4 py-2 bg-[#DBEAFE] w-full max-w-[160px] justify-center items-center gap-2 flex text-blue rounded-lg hover:bg-blue-200"
                   >
-                    <Eye size={20} strokeWidth={3.0} /> View Details
+                    <Eye size={20} strokeWidth={3.0} /> Ver Detalles
                   </button>
                   <a
                     href={`mailto:${app.email}`}
                     className="px-4 py-2 flex w-full max-w-[160px] justify-center items-center gap-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
                   >
-                    <Mail size={20} strokeWidth={3.0} /> Contact
+                    <Mail size={20} strokeWidth={3.0} /> Contactar
                   </a>
                 </div>
               </div>
@@ -187,33 +187,33 @@ export default function StudentApprovals() {
       {/* Recently Processed Section */}
       <div className="bg-white rounded-lg p-6">
         <h2 className="text-xl font-semibold text-gray-900 mb-6">
-          Recently Processed
+          Procesadas Recientemente
         </h2>
 
         {processedApplications.length === 0 ? (
-          <p className="text-gray-500 text-center">No processed applications</p>
+          <p className="text-gray-500 text-center">No hay solicitudes procesadas</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
                   <th className="text-left py-3 px-4 font-semibold text-gray-700">
-                    Student
+                    Estudiante
                   </th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700">
-                    Program
+                    Programa
                   </th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700">
-                    Nationality
+                    Nacionalidad
                   </th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700">
-                    Date
+                    Fecha
                   </th>
                   <th className="text-left py-3 px-4 font-semibold text-gray-700">
-                    Status
+                    Estado
                   </th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700 text-right">
-                    Actions
+                  <th className="py-3 px-4 font-semibold text-gray-700 text-right">
+                    Acciones
                   </th>
                 </tr>
               </thead>
@@ -242,11 +242,10 @@ export default function StudentApprovals() {
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          app.status === "Approved"
-                            ? " bg-[#DCFCE7] text-[#15803D] "
-                            : "bg-[#FEE2E2] text-[#B91C1C]"
-                        }`}
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${app.status === "Approved"
+                          ? " bg-[#DCFCE7] text-[#15803D] "
+                          : "bg-[#FEE2E2] text-[#B91C1C]"
+                          }`}
                       >
                         {app.status}
                       </span>
@@ -257,13 +256,13 @@ export default function StudentApprovals() {
                           onClick={() => setViewingApp(app)}
                           className="text-blue hover:underline"
                         >
-                          View
+                          Ver
                         </button>
                         <a
                           href={`mailto:${app.email}`}
                           className="text-blue hover:underline"
                         >
-                          Email
+                          Correo
                         </a>
                       </div>
                     </td>
