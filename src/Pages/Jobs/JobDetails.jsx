@@ -33,19 +33,19 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
   if (isLoading)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-gray-500">
-        Loading job details...
+        Cargando detalles del empleo...
       </div>
     );
   if (error)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-red-500">
-        Error loading job details.
+        Error al cargar los detalles del empleo.
       </div>
     );
   if (!job)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-gray-500">
-        Job not found.
+        Empleo no encontrado.
       </div>
     );
   const getFullUrl = (path) => {
@@ -62,7 +62,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             onClick={onBackClick}
             className="mb-4 md:mb-10 text-white/80 hover:text-white text-sm flex items-center gap-1"
           >
-            ← Back to Jobs
+            ← Volver a Empleos
           </button>
           <h1 className="text-xl md:text-3xl font-bold mb-3 md:mb-6">
             {job.title}
@@ -98,14 +98,14 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
           <div className="lg:col-span-2 space-y-6 bg-white rounded-lg p-6 h-fit">
             {/* Job Description */}
             <div className="">
-              <h2 className="text-lg font-bold mb-4">Job Description</h2>
+              <h2 className="text-lg font-bold mb-4">Descripción del Empleo</h2>
               <p className="text-gray-700 mb-6 leading-relaxed">
                 {job.description}
               </p>
 
               {job.responsibilities && job.responsibilities.length > 0 && (
                 <div className="mb-6">
-                  <h2 className="text-lg font-bold mb-4">Responsibilities</h2>
+                  <h2 className="text-lg font-bold mb-4">Responsabilidades</h2>
                   <div className="space-y-3">
                     {job.responsibilities.map((item, index) => (
                       <div key={index} className="flex items-start gap-3">
@@ -125,7 +125,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             {/* Requirements */}
             {job.requirements && job.requirements.length > 0 && (
               <div className="bg-white rounded-lg">
-                <h2 className="text-lg font-bold mb-4">Requirements</h2>
+                <h2 className="text-lg font-bold mb-4">Requisitos</h2>
                 <div className="space-y-3">
                   {job.requirements.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
@@ -144,7 +144,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             {/* Qualifications */}
             {job.qualifications && job.qualifications.length > 0 && (
               <div className="bg-white rounded-lg">
-                <h2 className="text-lg font-bold mb-4">Qualifications</h2>
+                <h2 className="text-lg font-bold mb-4">Cualificaciones</h2>
                 <div className="space-y-3">
                   {job.qualifications.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
@@ -163,7 +163,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             {/* Benefits */}
             {job.benefits && job.benefits.length > 0 && (
               <div className="bg-white rounded-lg">
-                <h2 className="text-lg font-bold mb-4">Benefits</h2>
+                <h2 className="text-lg font-bold mb-4">Beneficios</h2>
                 <div className="space-y-3">
                   {job.benefits.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
@@ -182,7 +182,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             {/* Application Process */}
             {job.application_process && job.application_process.length > 0 && (
               <div className="bg-white rounded-lg">
-                <h2 className="text-lg font-bold mb-4">Application Process</h2>
+                <h2 className="text-lg font-bold mb-4">Proceso de Aplicación</h2>
                 <div className="space-y-4">
                   {job.application_process.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
@@ -199,7 +199,7 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
             {/* Contact Information */}
             {job.contact_email && (
               <div className="bg-base rounded-lg p-6 mt-8">
-                <h2 className="text-lg font-bold mb-4">Contact Information</h2>
+                <h2 className="text-lg font-bold mb-4">Información de Contacto</h2>
                 <div className="space-y-3">
                   <p className="text-gray-700">
                     <span className="font-semibold">Email:</span>{" "}
@@ -216,43 +216,43 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
               {/* Job Details Sidebar */}
               <div className="mb-6">
                 <h3 className="font-bold mb-6 text-gray-900 border-b pb-2">
-                  Job Details Summary
+                  Resumen del Empleo
                 </h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500 font-medium">Job Type</span>
+                    <span className="text-gray-500 font-medium">Tipo de Empleo</span>
                     <span className="font-bold text-gray-900">
                       {job.job_type}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500 font-medium">Category</span>
+                    <span className="text-gray-500 font-medium">Categoría</span>
                     <span className="font-bold text-gray-900">
                       {job.category}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-500 font-medium">
-                      Department
+                      Departamento
                     </span>
                     <span className="font-bold text-gray-900">
                       {job.department}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500 font-medium">Salary</span>
-                    <span className="font-bold text-gray-900 text-green">
-                      {job.salary || "Not Specified"}
+                    <span className="text-gray-500 font-medium">Salario</span>
+                    <span className="font-bold text-green">
+                      {job.salary || "No Especificado"}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500 font-medium">Posted</span>
+                    <span className="text-gray-500 font-medium">Publicado</span>
                     <span className="font-bold text-gray-900">
                       {job.posted_date}
                     </span>
                   </div>
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500 font-medium">Deadline</span>
+                    <span className="text-gray-500 font-medium">Fecha límite</span>
                     <span
                       className={`font-bold ${isExpired ? "text-red" : "text-gray-900"}`}
                     >
@@ -270,16 +270,16 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
                       <Calendar size={24} />
                     </div>
                     <h3 className="font-bold text-gray-900 mb-1">
-                      Application Closed
+                      Aplicación Cerrada
                     </h3>
                     <p className="text-xs text-gray-500 mb-4 px-2">
-                      The deadline for this position has passed.
+                      La fecha límite para este puesto ha pasado.
                     </p>
                     <button
                       onClick={onBackClick}
                       className="w-full py-2.5 rounded-lg font-bold border-2 border-gray-200 text-gray-600 hover:bg-gray-50 transition-all text-sm"
                     >
-                      Browse Other Jobs
+                      Explorar otros empleos
                     </button>
                   </div>
                 ) : (
@@ -288,10 +288,10 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
                       onClick={() => setIsApplyModalOpen(true)}
                       className="w-full py-3.5 bg-blue text-white rounded-lg font-bold shadow-lg hover:shadow-blue-200 hover:bg-blue-600 transition-all text-sm mb-3"
                     >
-                      Apply Now
+                      Aplicar Ahora
                     </button>
                     <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-                      Hurry! Application is open
+                      ¡Date prisa! La aplicación está abierta
                     </p>
                   </div>
                 )}
@@ -313,14 +313,14 @@ export default function JobDetails({ jobId, onBackClick, all = false }) {
                 </h3>
               </div>
               <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                This position is posted through {job.university_name}'s career
-                services. Join our global community of scholars and innovators.
+                Este puesto está publicado a través de los servicios profesionales de {job.university_name}.
+                Únete a nuestra comunidad global de académicos e innovadores.
               </p>
               <button
                 onClick={onBackClick}
                 className="text-sm font-bold text-blue bg-blue-50 w-full py-2.5 rounded-lg hover:bg-blue-100 transition-colors"
               >
-                View University Profile
+                Ver Perfil de la Universidad
               </button>
             </div>
           </div>

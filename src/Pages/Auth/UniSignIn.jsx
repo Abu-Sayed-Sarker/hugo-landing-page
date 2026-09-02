@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import background from "../../assets/images/uniLogin.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../Api/authapi";
+import { Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function UniSignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   // const [rememberMe, setRememberMe] = useState(false); 
   const navigate = useNavigate();
 
@@ -35,20 +37,20 @@ export default function UniSignIn() {
     >
       <div className="mx-auto my-auto h-full max-w-2xl flex flex-col justify-center">
         <h1 className="text-2xl lg:text-4xl font-bold text-center mb-2">
-          Sign In
+          Iniciar Sesión
         </h1>
         <p className="text-blue-100 text-center mb-4 lg:mb-8">
-          Enter your credentials to access the admin portal
+          Ingresa tus credenciales para acceder al portal de administración
         </p>
 
         <div>
           <h2 className="text-lg font-semibold mb-4 text-center">
-            Identity & Contact Information
+            Información de Identidad y Contacto
           </h2>
 
           <div className="mb-4">
             <label className="block text-sm mb-2">
-              Official University Email *
+              Correo Electrónico Oficial de la Universidad *
             </label>
             <input
               type="email"
@@ -56,20 +58,29 @@ export default function UniSignIn() {
               // value={signinForm.email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 bg-transparent border-2 border-blue-300 rounded-lg placeholder-blue-200 focus:outline-none focus:border-blue-400"
-              placeholder="Enter your email"
+              placeholder="Ingresa tu correo electrónico"
             />
           </div>
 
           <div className="mb-8">
-            <label className="block text-sm mb-2">Create Password *</label>
-            <input
-              type="password"
-              name="password"
-              // value={signinForm.password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-transparent border-2 border-blue-300 rounded-lg placeholder-blue-200 focus:outline-none focus:border-blue-400"
-              placeholder="••••••••••"
-            />
+            <label className="block text-sm mb-2">Contraseña *</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                // value={signinForm.password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-transparent border-2 border-blue-300 rounded-lg placeholder-blue-200 focus:outline-none focus:border-blue-400 pr-12"
+                placeholder="••••••••••"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-blue-200 hover:text-blue-400 transition-colors focus:outline-none"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
 
@@ -79,15 +90,15 @@ export default function UniSignIn() {
             disabled={isLoading}
             className="w-full bg-blue hover:bg-blue-700 font-semibold py-3 rounded-lg transition duration-200 mb-4"
           >
-            {isLoading ? "Signing In..." : "Sign In"}
+            {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
 
           </button>
 
           <p className="text-center text-blue-100">
-            Don't have an account?{" "}
+            ¿No tienes una cuenta?{" "}
             <Link to={"/university-register"}>
               <button type="button" className="text-blue-300 hover:text-blue">
-                Sign Up
+                Registrarse
               </button>
             </Link>
           </p>

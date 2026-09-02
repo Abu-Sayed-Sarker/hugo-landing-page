@@ -54,13 +54,13 @@ export default function JobList({ onViewDetails }) {
   if (isLoading)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-gray-500">
-        Loading jobs...
+        Cargando empleos...
       </div>
     );
   if (error)
     return (
       <div className="min-h-screen bg-base p-8 text-center text-red-500">
-        Error loading jobs.
+        Error al cargar los empleos.
       </div>
     );
 
@@ -85,14 +85,14 @@ export default function JobList({ onViewDetails }) {
 
           {/* Heading */}
           <h1 className="text-white mt-20 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-2xl">
-            Jobs & Internships
+            Empleos y Prácticas
           </h1>
 
           {/* Subtitle */}
           <p className="text-[#BFDBFE] max-w-xl lg:text-lg mb-8">
-            Find career opportunities and internships from top universities and
-            partner companies. Kickstart your career with positions tailored for
-            students and graduates.
+            Encuentra oportunidades profesionales y prácticas de las mejores universidades y
+            empresas asociadas. Impulsa tu carrera con puestos adaptados para
+            estudiantes y graduados.
           </p>
 
 
@@ -103,7 +103,7 @@ export default function JobList({ onViewDetails }) {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <input
             type="text"
-            placeholder="Search for job title, company, keywords..."
+            placeholder="Buscar por título del empleo, empresa, palabras clave..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
@@ -117,12 +117,12 @@ export default function JobList({ onViewDetails }) {
           {/* Filters Sidebar */}
           <div className="w-68 flex-shrink-0 text-sm">
             <div className="bg-[#ECF5FF] rounded p-6">
-              <h3 className="font-semibold mb-4 text-xl">Filters</h3>
+              <h3 className="font-semibold mb-4 text-xl">Filtros</h3>
 
               {/* Job Type */}
               <div className="mb-5">
                 <h4 className=" font-medium mb-3 text-gray-900 text-base">
-                  Job Type
+                  Tipo de Empleo
                 </h4>
                 <div className="space-y-2">
                   <label className="flex items-center  text-gray-700">
@@ -133,27 +133,27 @@ export default function JobList({ onViewDetails }) {
                       checked={selectedType === "All Types"}
                       onChange={() => setSelectedType("All Types")}
                     />
-                    <span>All Types</span>
+                    <span>Todos los Tipos</span>
                   </label>
                   {[
-                    "Full Time",
-                    "Part Time",
-                    "Internship",
-                    "Research",
-                    "PhD Positions",
+                    { val: "Full Time", label: "Tiempo Completo" },
+                    { val: "Part Time", label: "Tiempo Parcial" },
+                    { val: "Internship", label: "Prácticas" },
+                    { val: "Research", label: "Investigación" },
+                    { val: "PhD Positions", label: "Posiciones de Doctorado" },
                   ].map((type) => (
                     <label
-                      key={type}
+                      key={type.val}
                       className="flex items-center  text-gray-700"
                     >
                       <input
                         type="radio"
                         name="jobType"
                         className="mr-2"
-                        checked={selectedType === type}
-                        onChange={() => setSelectedType(type)}
+                        checked={selectedType === type.val}
+                        onChange={() => setSelectedType(type.val)}
                       />
-                      <span>{type}</span>
+                      <span>{type.label}</span>
                     </label>
                   ))}
                 </div>
@@ -162,7 +162,7 @@ export default function JobList({ onViewDetails }) {
               {/* Category */}
               <div className="mb-5">
                 <h4 className=" font-medium mb-3 text-gray-900 text-base">
-                  Category
+                  Categoría
                 </h4>
                 <div className="space-y-2">
                   <label className="flex items-center  text-gray-700">
@@ -173,29 +173,29 @@ export default function JobList({ onViewDetails }) {
                       checked={selectedCategory === "All Categories"}
                       onChange={() => setSelectedCategory("All Categories")}
                     />
-                    <span>All Categories</span>
+                    <span>Todas las Categorías</span>
                   </label>
                   {[
-                    "Technology",
-                    "Business",
-                    "Healthcare",
-                    "Natural Sciences",
-                    "Humanities",
-                    "Education",
-                    "Legal",
+                    { val: "Technology", label: "Tecnología" },
+                    { val: "Business", label: "Negocios" },
+                    { val: "Healthcare", label: "Salud" },
+                    { val: "Natural Sciences", label: "Ciencias Naturales" },
+                    { val: "Humanities", label: "Humanidades" },
+                    { val: "Education", label: "Educación" },
+                    { val: "Legal", label: "Legal" },
                   ].map((cat) => (
                     <label
-                      key={cat}
+                      key={cat.val}
                       className="flex items-center  text-gray-700"
                     >
                       <input
                         type="radio"
                         name="category"
                         className="mr-2"
-                        checked={selectedCategory === cat}
-                        onChange={() => setSelectedCategory(cat)}
+                        checked={selectedCategory === cat.val}
+                        onChange={() => setSelectedCategory(cat.val)}
                       />
-                      <span>{cat}</span>
+                      <span>{cat.label}</span>
                     </label>
                   ))}
                 </div>
@@ -204,7 +204,7 @@ export default function JobList({ onViewDetails }) {
               {/* Posted Within */}
               <div>
                 <h4 className="font-medium mb-3 text-gray-900 text-base">
-                  Posted Within
+                  Publicado en
                 </h4>
                 <div className="space-y-2">
                   <label className="flex items-center  text-gray-700">
@@ -215,7 +215,7 @@ export default function JobList({ onViewDetails }) {
                       checked={postedWithin === "Any Time"}
                       onChange={() => setPostedWithin("Any Time")}
                     />
-                    <span>Any Time</span>
+                    <span>Cualquier fecha</span>
                   </label>
                   <label className="flex items-center  text-gray-700">
                     <input
@@ -225,7 +225,7 @@ export default function JobList({ onViewDetails }) {
                       checked={postedWithin === "Past Week"}
                       onChange={() => setPostedWithin("Past Week")}
                     />
-                    <span>Past Week</span>
+                    <span>Última semana</span>
                   </label>
                   <label className="flex items-center  text-gray-700">
                     <input
@@ -235,7 +235,7 @@ export default function JobList({ onViewDetails }) {
                       checked={postedWithin === "Past Month"}
                       onChange={() => setPostedWithin("Past Month")}
                     />
-                    <span>Past Month</span>
+                    <span>Último mes</span>
                   </label>
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default function JobList({ onViewDetails }) {
           {/* Jobs List */}
           <div className="flex-1">
             <div className="mb-4 flex justify-between items-center">
-              <p className=" text-gray-600">Showing {jobs.length} jobs</p>
+              <p className=" text-gray-600">Mostrando {jobs.length} empleos</p>
             </div>
 
             <div className="space-y-4">
@@ -315,7 +315,7 @@ export default function JobList({ onViewDetails }) {
                         {job.category}
                       </span>
                       <span className="text-gray-500">
-                        Posted: {job.posted_date}
+                        Publicado: {job.posted_date}
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
@@ -323,13 +323,13 @@ export default function JobList({ onViewDetails }) {
                         onClick={() => setIsApplyModalOpen(true)}
                         className="py-2 px-6 bg-blue text-white rounded-lg font-medium shadow-lg hover:shadow-blue-200 hover:bg-blue-600 transition-all text-sm "
                       >
-                        Apply Now
+                        Aplicar Ahora
                       </button>
                       <button
                         onClick={() => onViewDetails && onViewDetails(job)}
                         className="bg-blue text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:bg-blue-700 shadow-sm"
                       >
-                        View Details
+                        Ver Detalles
                       </button>
                     </div>
                   </div>
