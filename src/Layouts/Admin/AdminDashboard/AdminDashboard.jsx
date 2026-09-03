@@ -29,42 +29,42 @@ export default function AdminDashboard() {
     }));
   }, [statsData]);
 
-  if (isLoading) return <div className="p-8 text-center text-gray-500">Loading dashboard stats...</div>;
-  if (error) return <div className="p-8 text-center text-red-500">Error loading dashboard stats.</div>;
+  if (isLoading) return <div className="p-8 text-center text-gray-500">Cargando estadísticas del panel...</div>;
+  if (error) return <div className="p-8 text-center text-red-500">Error al cargar estadísticas del panel.</div>;
 
   const summary = statsData?.summary || {};
 
   return (
     <div className="space-y-8 p-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Panel de Control</h1>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <AdminStat
-          title="Total Universities"
+          title="Total de Universidades"
           value={summary.total_universities || "0"}
           icon={icon2}
           bgColor="bg-blue-50"
           iconBg="bg-blue-100"
         />
         <AdminStat
-          title="Active Students"
+          title="Estudiantes Activos"
           value={summary.active_students || "0"}
           icon={icon3}
           bgColor="bg-green-50"
           iconBg="bg-green-100"
         />
         <AdminStat
-          title="Active Jobs"
+          title="Trabajos Activos"
           value={summary.active_jobs || "0"}
           icon={icon1}
           bgColor="bg-purple-50"
           iconBg="bg-purple-100"
         />
         <AdminStat
-          title="Upcoming Events"
+          title="Próximos Eventos"
           icon={icon4}
           value={summary.upcoming_events || "0"}
           bgColor="bg-yellow-50"
@@ -77,7 +77,7 @@ export default function AdminDashboard() {
         {/* University Users Chart */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            University User
+            Usuario de Universidad
           </h2>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={formattedChartData}>
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
         {/* Student Users Chart */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Student User
+            Usuario Estudiante
           </h2>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={formattedChartData}>

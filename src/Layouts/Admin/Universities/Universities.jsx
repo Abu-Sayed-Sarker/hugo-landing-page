@@ -39,13 +39,13 @@ export default function Universities() {
   if (isLoading)
     return (
       <div className="p-8 text-center text-gray-500">
-        Loading onboardings...
+        Cargando incorporaciones...
       </div>
     );
   if (error)
     return (
       <div className="p-8 text-center text-red-500">
-        Error loading onboarding list.
+        Error al cargar la lista de incorporaciones.
       </div>
     );
 
@@ -70,12 +70,12 @@ export default function Universities() {
   const handleAction = async (id, action) => {
     try {
       const res = await manageOnboarding({ id, action }).unwrap();
-      toast.success(res.message || `University ${action}ed successfully`, {
+      toast.success(res.message || `Universidad ${action === "approve" ? "aprobada" : "rechazada"} exitosamente`, {
         position: "bottom-center",
       });
       setShowModal(false);
     } catch (err) {
-      toast.error(err?.data?.message || `Failed to ${action} university`, {
+      toast.error(err?.data?.message || `Error al ${action === "approve" ? "aprobar" : "rechazar"} la universidad`, {
         position: "bottom-center",
       });
     }
@@ -93,7 +93,7 @@ export default function Universities() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Partner University Onboarding
+            Incorporación de Universidad Asociada
           </h1>
         </div>
       </div>
@@ -102,7 +102,7 @@ export default function Universities() {
       <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-100 mb-6">
         <input
           type="text"
-          placeholder="Search by name or email..."
+          placeholder="Buscar por nombre o correo electrónico..."
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -135,7 +135,7 @@ export default function Universities() {
                     {university.univ_name}
                   </h3>
                   <p className="text-gray-500 text-sm">
-                    {university.location || "No address provided"}
+                    {university.location || "Sin dirección proporcionada"}
                   </p>
                 </div>
               </div>
@@ -146,16 +146,16 @@ export default function Universities() {
                     university.status,
                   )}`}
                 >
-                  {university.status}
+                  {university.status?.toLowerCase() === "approved" ? "aprobado" : university.status?.toLowerCase() === "pending" ? "pendiente" : university.status?.toLowerCase() === "rejected" ? "rechazado" : university.status}
                 </span>
                 <span className="text-sm text-gray-500 font-medium whitespace-nowrap">
-                  Applied on: {university.applied_on}
+                  Solicitado el: {university.applied_on}
                 </span>
                 <button
                   onClick={() => handleViewUniversity(university)}
                   className="text-blue font-semibold text-sm px-5 py-2 bg-blue/5 hover:bg-blue/10 rounded-lg transition-colors border border-blue/10"
                 >
-                  View Detail
+                  Ver Detalles
                 </button>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function Universities() {
         ) : (
           <div className="bg-white p-12 text-center rounded-lg border border-dashed border-gray-300">
             <p className="text-gray-500">
-              No universities found matching your search.
+              No se encontraron universidades que coincidan con su búsqueda.
             </p>
           </div>
         )}
@@ -177,7 +177,7 @@ export default function Universities() {
             disabled={currentPage === 1}
             className="p-2 border border-gray-300 rounded-lg disabled:opacity-50 hover:bg-gray-50 transition-colors"
           >
-            ← Previous
+            ← Anterior
           </button>
           <div className="flex gap-1">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -201,7 +201,7 @@ export default function Universities() {
             disabled={currentPage === totalPages}
             className="p-2 border border-gray-300 rounded-lg disabled:opacity-50 hover:bg-gray-50 transition-colors"
           >
-            Next →
+            Siguiente →
           </button>
         </div>
       )}
