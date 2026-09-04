@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   useGetUniversityOverviewQuery,
   useGetProgramsByUniIdQuery,
@@ -123,6 +124,13 @@ export default function UniDashboard() {
 
   return (
     <div className="bg-[#f5f6fa] min-h-screen">
+      <Helmet>
+        <title>{uniData?.univ_name ? `${uniData.univ_name} | Clasia .Net` : 'University | Clasia .Net'}</title>
+        <meta name="description" content={uniData?.overview || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
+        <meta property="og:title" content={uniData?.univ_name ? `${uniData.univ_name} | Clasia .Net` : 'University | Clasia .Net'} />
+        <meta property="og:description" content={uniData?.overview || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
+        {uniData?.logo && <meta property="og:image" content={uniData.logo} />}
+      </Helmet>
       {/* Hero Banner */}
       <UniBanner data={uniData} setShowApply={setShowApply} />
 
