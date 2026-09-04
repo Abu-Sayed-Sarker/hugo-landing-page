@@ -24,7 +24,7 @@ export default function OurServices() {
           {/* Service 1: Program Matching */}
           <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 md:p-8">
             <div className="mb-4 md:mb-6 inline-flex">
-              <img src={service1} alt="" />
+              <img src={service1} alt="Icono de Búsqueda de Programas" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
               Búsqueda de Programas
@@ -38,7 +38,7 @@ export default function OurServices() {
           {/* Service 2: Scholarship Finder */}
           <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 md:p-8">
             <div className="mb-4 md:mb-6 inline-flex">
-              <img src={service2} alt="" />
+              <img src={service2} alt="Icono de Buscador de Becas" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
               Buscador de Becas
@@ -52,7 +52,7 @@ export default function OurServices() {
           {/* Service 3: Events & Webinars */}
           <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 md:p-8">
             <div className="mb-4 md:mb-6 inline-flex">
-              <img src={service3} alt="" />
+              <img src={service3} alt="Icono de Eventos y Seminarios web" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-1">
               Eventos y Seminarios web
@@ -66,7 +66,7 @@ export default function OurServices() {
           {/* Service 4: Career Resources */}
           <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 md:p-8">
             <div className="mb-4 md:mb-6 inline-flex">
-              <img src={service4} alt="" />
+              <img src={service4} alt="Icono de Recursos Profesionales" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-1 md:mb-3">
               Recursos Profesionales

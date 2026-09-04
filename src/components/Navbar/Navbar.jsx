@@ -51,7 +51,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to={"/"}>
             <div>
-              <img src={logo} className="h-10 xl:h-auto" alt="" />
+              <img src={logo} className="h-10 xl:h-auto" alt="Clasia Logo" />
             </div>
           </Link>
 

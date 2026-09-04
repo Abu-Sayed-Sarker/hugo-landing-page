@@ -199,7 +199,7 @@ export default function FeaturedUniversities() {
                     </div>
                     <img
                       src={getFullUrl(uni.logo)}
-                      alt=""
+                      alt={`${uni.univ_name} logo`}
                       className="w-10 h-10 rounded-full object-contain ml-2 flex-shrink-0"
                     />
                   </div>

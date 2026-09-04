@@ -68,7 +68,7 @@ export default function Testimonial() {
           <div className="flex flex-col w-full">
             {/* Quote Section */}
             <div className="absolute left-2 top-2 sm:top-4">
-              <img className="h-8 sm:h-auto opacity-20" src={comment} alt="" />
+              <img className="h-8 sm:h-auto opacity-20" src={comment} alt="Icono de Comentario" />
             </div>
             <div className="relative z-10 px-4">
               <p className="text-gray-700 sm:text-lg leading-relaxed mb-6 italic">
