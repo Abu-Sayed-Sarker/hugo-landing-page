@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
+import TrustedPartners from "../../components/TrustedPartners/TrustedPartners";
 import FeaturedUniversities from "../../components/FeaturedUniversities/FeaturedUniversities";
 import OurServices from "../../components/OurServices/OurServices";
 import Newsletter from "../../components/Newsletter/Newsletter";
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <FeaturedUniversities />
       <OurServices />
+      <TrustedPartners />
       <Newsletter />
       <Testimonial />
       <Footer />
