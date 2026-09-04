@@ -60,6 +60,13 @@ export default function UniDashboard() {
     uniData?.id,
     { skip: !uniData?.id || !showRequestForm }
   );
+
+  const getFullUrl = (path) => {
+    if (!path) return "";
+    if (path.startsWith("http") || path.startsWith("blob:")) return path;
+    return `https://api.clasia.io${path}`;
+  };
+
   const [postRequestInfo, { isLoading: isSubmitting }] = usePostRequestInfoMutation();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -126,10 +133,11 @@ export default function UniDashboard() {
     <div className="bg-[#f5f6fa] min-h-screen">
       <Helmet>
         <title>{uniData?.univ_name ? `${uniData.univ_name} | Clasia .Net` : 'University | Clasia .Net'}</title>
-        <meta name="description" content={uniData?.overview || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
+        <meta name="description" content={uniData?.about || uniData?.description || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
         <meta property="og:title" content={uniData?.univ_name ? `${uniData.univ_name} | Clasia .Net` : 'University | Clasia .Net'} />
-        <meta property="og:description" content={uniData?.overview || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
-        {uniData?.logo && <meta property="og:image" content={uniData.logo} />}
+        <meta property="og:description" content={uniData?.about || uniData?.description || `Explore programs, events, and admissions at ${uniData?.univ_name}.`} />
+        {uniData?.logo && <meta property="og:image" content={getFullUrl(uniData.logo)} />}
+        {uniData?.picture && <meta property="og:image:secure_url" content={getFullUrl(uniData.picture)} />}
       </Helmet>
       {/* Hero Banner */}
       <UniBanner data={uniData} setShowApply={setShowApply} />
