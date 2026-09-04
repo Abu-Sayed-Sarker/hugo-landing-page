@@ -9,14 +9,13 @@ import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-[#F3F4F6]">
+    <main className="bg-[#F3F4F6]">
       <Hero />
       <FeaturedUniversities />
       <OurServices />
       <Newsletter />
       <Testimonial />
       <Footer />
-   
-    </div>
+    </main>
   );
 }
